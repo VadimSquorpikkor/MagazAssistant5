@@ -1,14 +1,9 @@
 package com.squorpikkor.magazassistant5.ui.main.entities;
 
-public class Location {
+public class Location extends Entity{
 
-   private String name;
-
-   public Location(String name) {
-      this.name = name;
+   public Location(String id, String name) {
+      super(id, name);
    }
 
-   public String getName() {
-      return name;
-   }
 }

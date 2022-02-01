@@ -6,7 +6,32 @@ import com.squorpikkor.magazassistant5.ui.main.entities.Order;
 
 import java.util.ArrayList;
 
+/**
+ *    ____      ____      ____
+ *    |  |      |  |      |  |
+ *    |  |-----<|  |-----<|  |
+ *    |  |      |  |      |  |
+ * Locations  Employees  Orders
+ *
+ * */
+
 class DataBase {
+
+   ArrayList<Location> locations;
+   ArrayList<Employee> employees;
+   ArrayList<Order> orders;
+
+
+   public DataBase() {
+      locations = new ArrayList<>();
+      locations.add(new Location("1","Монтаж"));
+      locations.add(new Location("2","Сборка"));
+      locations.add(new Location("3","Праневич"));
+      locations.add(new Location("4","Корелин"));
+
+
+
+   }
 
    public void saveEmployee(Employee employee) {
 
@@ -21,12 +46,7 @@ class DataBase {
    }
 
    public ArrayList<Location> getAllLocations() {
-      ArrayList<Location> list = new ArrayList<>();
-      list.add(new Location("Монтаж"));
-      list.add(new Location("Сборка"));
-      list.add(new Location("Праневич"));
-      list.add(new Location("Корелин"));
-      return list;
+      return locations;
    }
 
    public ArrayList<Employee> getAllEmployees() {
@@ -34,7 +54,7 @@ class DataBase {
    }
 
    public ArrayList<Employee> getEmployeesByLocation(Location location) {
-      String name = location.getName();
+      String id = location.getId();
       return null;
    }
 

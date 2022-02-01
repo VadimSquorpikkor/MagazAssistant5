@@ -1,12 +1,15 @@
 package com.squorpikkor.magazassistant5.ui.main.entities;
 
-public class Employee {
+public class Employee extends Entity{
 
-    String name;
+    private final String locationId;
 
+    public Employee(String id, String name, String employeeId) {
+        super(id, name);
+        this.locationId = employeeId;
+    }
 
-
-    public String getName() {
-        return name;
+    public String getLocationId() {
+        return locationId;
     }
 }
