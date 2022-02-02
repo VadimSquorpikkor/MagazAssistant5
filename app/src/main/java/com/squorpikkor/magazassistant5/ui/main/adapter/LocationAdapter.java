@@ -16,6 +16,16 @@ import java.util.ArrayList;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.AdapterViewHolder> {
 
+    private OnItemClickListener onItemClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Location location);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     private ArrayList<Location> list;
 
     @SuppressLint("NotifyDataSetChanged")
@@ -43,13 +53,17 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Adapte
         return list.size();
     }
 
-    public static class AdapterViewHolder extends RecyclerView.ViewHolder {
+    public class AdapterViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView textName;
 
         public AdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.text_name);
+
+            itemView.setOnClickListener(view -> {
+                if (onItemClickListener!=null) onItemClickListener.onItemClick(list.get(getAdapterPosition()));
+            });
         }
     }
 }

@@ -1,6 +1,9 @@
-package com.squorpikkor.magazassistant5.ui.main;
+package com.squorpikkor.magazassistant5.ui.main.fragment;
+
+import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squorpikkor.magazassistant5.R;
+import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
 import com.squorpikkor.magazassistant5.ui.main.adapter.LocationAdapter;
+import com.squorpikkor.magazassistant5.ui.main.entities.Location;
 
 public class OrderFragment  extends Fragment {
 
@@ -30,10 +35,18 @@ public class OrderFragment  extends Fragment {
       LocationAdapter locationAdapter = new LocationAdapter();
       locationRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
       locationRecyclerView.setAdapter(locationAdapter);
-      //locationAdapter.setOnDeviceClickListener(mViewModel::connectToDevice);
+      locationAdapter.setOnItemClickListener(this::startFragment);
       mViewModel.getLocations().observe(getViewLifecycleOwner(), locationAdapter::setList);
 
       return view;
+   }
+
+   private void startFragment(Location location) {
+      Log.e(TAG, "startFragment: "+location.getName());
+      requireActivity().getSupportFragmentManager().beginTransaction()
+              .replace(R.id.fragment_container, LocationFragment.newInstance())
+              .addToBackStack(null)
+              .commit();
    }
 
 }

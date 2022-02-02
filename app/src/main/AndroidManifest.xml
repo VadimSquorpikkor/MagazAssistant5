@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".ui.main.App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -13,7 +14,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MagazAssistant5.NoActionBar">
+            android:theme="@style/Theme.MagazAssistant5.Dark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

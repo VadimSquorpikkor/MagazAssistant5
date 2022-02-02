@@ -1,5 +1,7 @@
 # AdjustmentDB   
 
+* <b>1.04 - 02/02/21</b>
+1. ItemClickListener, App
 * <b>1.03 - 01/02/21</b>
 1. LocationRecycler, LocationAdapter, MutableLiveData
 * <b>1.02 - 01/02/21</b>

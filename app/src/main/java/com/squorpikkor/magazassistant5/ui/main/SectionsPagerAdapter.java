@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.squorpikkor.magazassistant5.R;
+import com.squorpikkor.magazassistant5.ui.main.fragment.OrderFragment;
+import com.squorpikkor.magazassistant5.ui.main.fragment.PriceFragment;
 
 import java.util.HashMap;
 import java.util.Map;

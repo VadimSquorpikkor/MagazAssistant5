@@ -1,4 +1,4 @@
-package com.squorpikkor.magazassistant5.ui.main;
+package com.squorpikkor.magazassistant5.ui.main.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.squorpikkor.magazassistant5.R;
+import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
 
 public class PriceFragment extends Fragment{
 
