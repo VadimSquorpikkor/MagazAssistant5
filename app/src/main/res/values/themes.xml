@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-    <style name="Theme.MagazAssistant5.Dark" parent="Theme.AppCompat.NoActionBar">
+    <!-- Base application theme. -->
+    <style name="Theme.MagazAssistant5" parent="Theme.AppCompat.NoActionBar">
 
     </style>
-
 </resources>

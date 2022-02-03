@@ -35,6 +35,7 @@ public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployee
    @Override
    public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
       Employee employee = list.get(position);
+      holder.name.setText(employee.getName());
 
    }
 

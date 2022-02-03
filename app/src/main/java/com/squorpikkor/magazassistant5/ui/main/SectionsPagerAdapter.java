@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.squorpikkor.magazassistant5.R;
+import com.squorpikkor.magazassistant5.ui.main.fragment.CradleFragment;
 import com.squorpikkor.magazassistant5.ui.main.fragment.OrderFragment;
 import com.squorpikkor.magazassistant5.ui.main.fragment.PriceFragment;
 
@@ -22,7 +23,7 @@ import java.util.Map;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.prices, R.string.orders};
+    private static final int[] TAB_TITLES = new int[]{R.string.invoice, R.string.orders};
     private final Context mContext;
     private final Map<Integer, Fragment> fragmentMap;
 
@@ -32,7 +33,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         mContext = context;
         fragmentMap = new HashMap<Integer, Fragment>() {
             {
-                put(0, PriceFragment.newInstance());
+//                put(0, PriceFragment.newInstance());
+                put(0, CradleFragment.newInstance());
                 put(1, OrderFragment.newInstance());
             }
         };

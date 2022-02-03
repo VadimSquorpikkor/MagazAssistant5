@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--TODO НЕ РАБОТАЕТ PARENT!!!-->
     <style name="base_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    <style name="vertical">
+    <style name="vertical" parent="base_style">
         <item name="android:gravity">center|center_vertical</item>
         <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="vertical_left">
+    <style name="vertical_left" parent="vertical">
         <item name="android:gravity">left</item>
-        <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="horizontal">
+    <style name="horizontal" parent="base_style">
         <item name="android:orientation">horizontal</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="horizontalCenter" parent="horizontal">
         <item name="android:gravity">center</item>
     </style>
+
     <style name="text_small">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">10sp</item>
         <item name="android:padding">5dp</item>
-        <item name="android:gravity">center</item>
     </style>
-    <style name="text_medium">
+    <style name="text_medium" parent="text_small">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="check_box">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">10sp</item>
-        <item name="android:padding">5dp</item>
-        <item name="android:gravity">center</item>
+        <item name="android:buttonTint">@color/colorLightGray</item>
+        <item name="android:checked">true</item>
+    </style>
+    <style name="check_box.small">
+        <item name="android:scaleX">0.7</item>
+        <item name="android:scaleY">0.7</item>
+        <item name="marginHorizontal">1dp</item>
+        <item name="android:paddingLeft">-5dp</item>
     </style>
 
 </resources>
