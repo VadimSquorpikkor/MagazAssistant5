@@ -1,5 +1,9 @@
 package com.squorpikkor.magazassistant5.ui.main.data;
 
+import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
+
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
@@ -31,6 +35,9 @@ class DataBase {
       locations.add(new Location("3","Праневич"));
       locations.add(new Location("4","Корелин"));
 
+      employees = new ArrayList<>();
+      employees.add(new Employee("2_1", "Шустов", "2"));
+      employees.add(new Employee("2_2", "Алисевич", "2"));
 
 
    }
@@ -51,8 +58,8 @@ class DataBase {
       locations.setValue(this.locations);
    }
 
-   public ArrayList<Employee> getAllEmployees() {
-      return null;
+   public void getAllEmployees(MutableLiveData<ArrayList<Employee>> employees) {
+      employees.setValue(this.employees);
    }
 
    public ArrayList<Employee> getEmployeesByLocation(Location location) {
@@ -63,5 +70,12 @@ class DataBase {
    public ArrayList<Order> getOrderByEmployee(Employee employee) {
       String name = employee.getName();
       return null;
+   }
+
+   public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice) {
+      juicePrice.setValue(350);
+      juiceSmallPrice.setValue(150);
+      kefirPrice.setValue(250);
+      kefirSmallPrice.setValue(100);
    }
 }

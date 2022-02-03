@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--TODO НЕ РАБОТАЕТ PARENT!!!-->
+    <style name="base_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="vertical">
+        <item name="android:gravity">center|center_vertical</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="vertical_left">
+        <item name="android:gravity">left</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="horizontal">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="horizontalCenter" parent="horizontal">
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="text_small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="text_medium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+</resources>

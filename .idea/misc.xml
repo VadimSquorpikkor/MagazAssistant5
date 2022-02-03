@@ -4,10 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/activity_main.xml" value="0.3546875" />
+        <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/fragment_invoice.xml" value="0.3546875" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/fragment_location.xml" value="0.3546875" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/fragment_order.xml" value="0.3546875" />
-        <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/fragment_price.xml" value="0.3546875" />
+        <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/fragment_price.xml" value="1.1" />
+        <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/item_invoice_employee.xml" value="0.67" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/item_location.xml" value="0.3546875" />
+        <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/qweqwe.xml" value="0.3546875" />
       </map>
     </option>
   </component>
