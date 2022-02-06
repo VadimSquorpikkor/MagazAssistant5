@@ -18,8 +18,9 @@ public class CradleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cradle, container, false);
-        getChildFragmentManager().beginTransaction().replace(R.id.child_fragment_container, PriceFragment.newInstance()).commit();
-        getChildFragmentManager().beginTransaction().replace(R.id.child_fragment_container_2, InvoiceFragment.newInstance()).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.fragment_price, PriceFragment.newInstance()).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.fragment_invoice, InvoiceFragment.newInstance()).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.fragment_employees, EmployeesFragment.newInstance()).commit();
         return view;
     }
 

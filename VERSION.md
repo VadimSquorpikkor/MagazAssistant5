@@ -1,5 +1,8 @@
 # AdjustmentDB   
 
+* <b>1.07 - 06/02/21</b>
+1. CradleFragment. В нем расположены Фрагменты: EmployeesFragment, PriceFragment, InvoiceFragment
+2. Стили
 * <b>1.06 - 03/02/21</b>
 1. Исправлена ошибка parent для стилей и ошибка темы (неотображение чекБоксов)
 2. CradleFragment

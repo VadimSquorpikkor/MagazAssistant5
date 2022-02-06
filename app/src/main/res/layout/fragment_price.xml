@@ -1,7 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/outer_block">
 
-    <TextView style="@style/text_small" android:text="rerwrwrwe"/>
+    <LinearLayout style="@style/inner_block">
+
+        <LinearLayout style="@style/vertical">
+
+        <TextView
+            style="@style/h2"
+            android:text="Цены на соки" />
+
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Сок большой"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/juice_big_price"
+                    android:text="3.5"/>
+            </LinearLayout>
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Сок маленький"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/juice_small_price"
+                    android:text="3.5"/>
+            </LinearLayout>
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Кефир большой"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/kefir_big_price"
+                    android:text="3.5"/>
+            </LinearLayout>
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Кефир маленький"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/kefir_small_price"
+                    android:text="3.5"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </LinearLayout>

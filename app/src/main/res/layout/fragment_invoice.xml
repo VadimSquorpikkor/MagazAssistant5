@@ -1,11 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/outer_block">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <LinearLayout style="@style/inner_block">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout style="@style/vertical">
+
+            <TextView
+                style="@style/h2"
+                android:text="Количество соков и итоговая цена" />
+
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Рабочих дней"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/working_day_count"
+                    android:text="5"/>
+            </LinearLayout>
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Соков больших"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/big_juice_count"
+                    android:text="5"/>
+            </LinearLayout>
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Соков маленьких"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/small_juice_count"
+                    android:text="5"/>
+            </LinearLayout>
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Кефиров больших"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/big_kefir_count"
+                    android:text="5"/>
+            </LinearLayout>
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Кефиров маленьких"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/small_kefir_count"
+                    android:text="5"/>
+            </LinearLayout>
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Сумма в накладной"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/invoice_total"
+                    android:text="100"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

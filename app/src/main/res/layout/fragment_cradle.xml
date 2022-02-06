@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/vertical"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/vertical"
+    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/child_fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </FrameLayout>
+<!--    <Spinner-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
 
-    <FrameLayout
-        android:id="@+id/child_fragment_container_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fragment_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
+        <FrameLayout
+            android:id="@+id/fragment_invoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_employees"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+<!--    </Spinner>-->
 </LinearLayout>

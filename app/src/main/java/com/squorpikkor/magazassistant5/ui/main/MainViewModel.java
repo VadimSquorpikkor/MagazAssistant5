@@ -28,6 +28,14 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<Integer> workingDays;
     private MutableLiveData<Integer> invoiceMoney;
 
+    /**Количество человекодней*/
+    private MutableLiveData<Integer> employeeDayCount;
+    private MutableLiveData<Integer> bigJuiceCount;
+    private MutableLiveData<Integer> smallJuiceCount;
+    private MutableLiveData<Integer> bigKefirCount;
+    private MutableLiveData<Integer> smallKefirCount;
+
+
     private int moneyForEmployeePerDay;//сумма на человекодень
 
     public MainViewModel() {
@@ -41,6 +49,11 @@ public class MainViewModel extends ViewModel {
         kefirSmallPrice = new MutableLiveData<>();
         workingDays = new MutableLiveData<>(5);
         invoiceMoney = new MutableLiveData<>(0);
+        employeeDayCount = new MutableLiveData<>(0);
+        bigJuiceCount = new MutableLiveData<>(0);
+        smallJuiceCount = new MutableLiveData<>(0);
+        bigKefirCount = new MutableLiveData<>(0);
+        smallKefirCount = new MutableLiveData<>(0);
         data = new DataHelper(locations, employees, orders);
         data.getAllLocations();
         data.getAllEmployees();
@@ -71,6 +84,18 @@ public class MainViewModel extends ViewModel {
     }
     public MutableLiveData<Integer> getWorkingDays() {
         return workingDays;
+    }
+    public MutableLiveData<Integer> getBigJuiceCount() {
+        return bigJuiceCount;
+    }
+    public MutableLiveData<Integer> getSmallJuiceCount() {
+        return smallJuiceCount;
+    }
+    public MutableLiveData<Integer> getBigKefirCount() {
+        return bigKefirCount;
+    }
+    public MutableLiveData<Integer> getSmallKefirCount() {
+        return smallKefirCount;
     }
 
     private void проверка() {
