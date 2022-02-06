@@ -1,5 +1,7 @@
 # AdjustmentDB   
 
+* <b>1.08 - 06/02/21</b>
+1. Работаю над чекбоксами
 * <b>1.07 - 06/02/21</b>
 1. CradleFragment. В нем расположены Фрагменты: EmployeesFragment, PriceFragment, InvoiceFragment
 2. Стили

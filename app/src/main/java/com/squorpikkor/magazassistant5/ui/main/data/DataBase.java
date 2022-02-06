@@ -36,8 +36,8 @@ class DataBase {
       locations.add(new Location("4","Корелин"));
 
       employees = new ArrayList<>();
-      employees.add(new Employee("2_1", "Шустов", "2"));
-      employees.add(new Employee("2_2", "Алисевич", "2"));
+      employees.add(new Employee("2_1", "Шустов", "2", "00110"));
+      employees.add(new Employee("2_2", "Алисевич", "2", "10101"));
 
 
    }

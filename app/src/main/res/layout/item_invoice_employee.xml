@@ -12,10 +12,14 @@
 
     <TextView style="@style/text_medium" android:id="@+id/text_name" tools:text="Шустов" android:layout_weight="1"/>
 
-    <CheckBox style="@style/check_box.small"/>
-    <CheckBox style="@style/check_box.small"/>
-    <CheckBox style="@style/check_box.small"/>
-    <CheckBox style="@style/check_box.small"/>
-    <CheckBox style="@style/check_box.small" android:layout_marginEnd="10dp"/>
+    <CheckBox style="@style/check_box.small" android:id="@+id/check1"/>
+    <CheckBox style="@style/check_box.small" android:id="@+id/check2"/>
+    <CheckBox style="@style/check_box.small" android:id="@+id/check3"/>
+    <CheckBox style="@style/check_box.small" android:id="@+id/check4"/>
+    <CheckBox style="@style/check_box.small" android:id="@+id/check5"/>
+    <CheckBox style="@style/check_box.small" android:id="@+id/check6"/>
+    <CheckBox style="@style/check_box.small" android:id="@+id/check7"/>
+    <CheckBox style="@style/check_box.small" android:id="@+id/check8"/>
+    <CheckBox style="@style/check_box.small" android:id="@+id/check9" android:layout_marginEnd="10dp"/>
 
 </LinearLayout>

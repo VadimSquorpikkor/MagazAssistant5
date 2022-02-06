@@ -14,6 +14,15 @@ public class Employee extends Entity{
         this.isPresent = true;
     }
 
+    //для проверки
+    public Employee(String id, String name, String locationId, String daysString) {
+        super(id, name);
+        this.locationId = locationId;
+        this.days = 5;
+        this.isPresent = true;
+        this.daysString = daysString;
+    }
+
     public String getLocationId() {
         return locationId;
     }
@@ -24,6 +33,14 @@ public class Employee extends Entity{
 
     public int getDays() {
         return days;
+    }
+
+    public String getDaysString() {
+        return daysString;
+    }
+
+    public void setDaysString(String daysString) {
+        this.daysString = daysString;
     }
 
     public boolean isPresent() {

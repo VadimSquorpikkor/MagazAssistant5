@@ -33,6 +33,7 @@ public class EmployeesFragment extends Fragment{
       recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
       recyclerView.setAdapter(adapter);
       mViewModel.getEmployees().observe(getViewLifecycleOwner(), adapter::setList);
+      mViewModel.getWorkingDays().observe(getViewLifecycleOwner(), adapter::setWorkingDaysCount);
 
       return view;
    }
