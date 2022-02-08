@@ -103,12 +103,12 @@ public class MainViewModel extends ViewModel {
         Log.e(TAG, "в накладной: "+invoiceMoney.getValue());
     }
 
-    private static final int JUICE_PER_DAY = 250;
-    private static final int JUICE_BIG_VOLUME = 1000;
-    private static final int JUICE_SMALL_VOLUME = 250;
-    private static final int KEFIR_PER_DAY = 500;
-    private static final int KEFIR_BIG_VOLUME = 1000;
-    private static final int KEFIR_SMALL_VOLUME = 250;
+    private static final int JUICE_PER_DAY = 250;//норма сока в день
+    private static final int KEFIR_PER_DAY = 500;//норма кефира в день
+    private static final int JUICE_BIG_VOLUME = 1000;//объем большого сока
+    private static final int JUICE_SMALL_VOLUME = 250;//объем маленького сока
+    private static final int KEFIR_BIG_VOLUME = 1000;//объем большого кефира
+    private static final int KEFIR_SMALL_VOLUME = 250;//объем маленького кефира
 
 
     /**Подсчет денег в накладной. Также считает количество больших и маленьких соков и кефиров и
@@ -126,6 +126,7 @@ public class MainViewModel extends ViewModel {
         }
         int totalDaysForAllEmployees = 0;
         for (Employee employee:employees.getValue()) totalDaysForAllEmployees+=employee.isPresent()?employee.getDays():0;
+        Log.e(TAG, "calculateInvoice: totalDaysForAllEmployees = "+totalDaysForAllEmployees);
         int juiceVolume = JUICE_PER_DAY*totalDaysForAllEmployees;
         int bigJuiceCount = juiceVolume/JUICE_BIG_VOLUME;//2500ml->2 больших сока
         int smallJuiceCount = (juiceVolume-bigJuiceCount*JUICE_BIG_VOLUME)/JUICE_SMALL_VOLUME;//(2500ml-2000ml)=>500ml/250=2 маленьких сока
@@ -140,6 +141,11 @@ public class MainViewModel extends ViewModel {
         Log.e(TAG, "calculateInvoice: JB-"+bigJuiceCount+" JS-"+smallJuiceCount+" KB-"+bigKefirCount+" KS-"+smallKefirCount);
         invoiceMoney.setValue(totalPrice);
         if (totalDaysForAllEmployees!=0) moneyForEmployeePerDay = totalPrice/totalDaysForAllEmployees;
+
+        //moneyForEmployeePerDay = JUICE_PER_DAY*juicePrice.getValue()+KEFIR_PER_DAY*kefirPrice.getValue();
+        //это не совсем так: маленький сок не стоит четверть цены от большого, а значит при объеме
+        // соков на всех = 2.25 литра и объеме 2 литра цена на один человекодень будет различаться:
+        // 2*ценаБС/8 дней НЕ РАВНО (2*ценаБС+1*ценаМС)/9 дней
     }
 
     /**На какую сумму купить товара пользоватедю. Считается, как сумма указанная в накладной
