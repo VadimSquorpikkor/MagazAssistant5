@@ -27,5 +27,12 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
 
+        //CustomView
+        //noinspection ConstantConditions
+        tabs.getTabAt(0).setCustomView(R.layout.tab_view_0);
+        //noinspection ConstantConditions
+        tabs.getTabAt(1).setCustomView(R.layout.tab_view_1);
+
+
     }
 }

@@ -26,7 +26,6 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<Integer> kefirPrice;
     private MutableLiveData<Integer> kefirSmallPrice;
     private MutableLiveData<Integer> workingDays;
-    private MutableLiveData<Integer> invoiceMoney;
 
     /**Количество человекодней*/
     private MutableLiveData<Integer> employeeDayCount;
@@ -34,6 +33,7 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<Integer> smallJuiceCount;
     private MutableLiveData<Integer> bigKefirCount;
     private MutableLiveData<Integer> smallKefirCount;
+    private MutableLiveData<Integer> invoiceTotal;
 
 
     private int moneyForEmployeePerDay;//сумма на человекодень
@@ -48,12 +48,12 @@ public class MainViewModel extends ViewModel {
         kefirPrice = new MutableLiveData<>();
         kefirSmallPrice = new MutableLiveData<>();
         workingDays = new MutableLiveData<>(5);
-        invoiceMoney = new MutableLiveData<>(0);
         employeeDayCount = new MutableLiveData<>(0);
         bigJuiceCount = new MutableLiveData<>(0);
         smallJuiceCount = new MutableLiveData<>(0);
         bigKefirCount = new MutableLiveData<>(0);
         smallKefirCount = new MutableLiveData<>(0);
+        invoiceTotal = new MutableLiveData<>(0);
         data = new DataHelper(locations, employees, orders);
         data.getAllLocations();
         data.getAllEmployees();
@@ -97,10 +97,16 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<Integer> getSmallKefirCount() {
         return smallKefirCount;
     }
+    public MutableLiveData<Integer> getInvoiceTotal() {
+        return invoiceTotal;
+    }
+
+    public void update() {
+        calculateInvoice();
+    }
 
     private void проверка() {
         calculateInvoice();
-        Log.e(TAG, "в накладной: "+invoiceMoney.getValue());
     }
 
     private static final int JUICE_PER_DAY = 250;//норма сока в день
@@ -121,7 +127,7 @@ public class MainViewModel extends ViewModel {
                 ||kefirPrice.getValue()==null
                 ||kefirSmallPrice.getValue()==null
         ) {
-            invoiceMoney.setValue(0);
+            invoiceTotal.setValue(0);
             return;
         }
         int totalDaysForAllEmployees = 0;
@@ -139,13 +145,18 @@ public class MainViewModel extends ViewModel {
                 bigKefirCount*kefirPrice.getValue()+
                 smallKefirCount*kefirSmallPrice.getValue();
         Log.e(TAG, "calculateInvoice: JB-"+bigJuiceCount+" JS-"+smallJuiceCount+" KB-"+bigKefirCount+" KS-"+smallKefirCount);
-        invoiceMoney.setValue(totalPrice);
         if (totalDaysForAllEmployees!=0) moneyForEmployeePerDay = totalPrice/totalDaysForAllEmployees;
 
         //moneyForEmployeePerDay = JUICE_PER_DAY*juicePrice.getValue()+KEFIR_PER_DAY*kefirPrice.getValue();
         //это не совсем так: маленький сок не стоит четверть цены от большого, а значит при объеме
         // соков на всех = 2.25 литра и объеме 2 литра цена на один человекодень будет различаться:
         // 2*ценаБС/8 дней НЕ РАВНО (2*ценаБС+1*ценаМС)/9 дней
+
+        this.bigJuiceCount.setValue(bigJuiceCount);
+        this.smallJuiceCount.setValue(smallJuiceCount);
+        this.bigKefirCount.setValue(bigKefirCount);
+        this.smallKefirCount.setValue(smallKefirCount);
+        this.invoiceTotal.setValue(totalPrice);
     }
 
     /**На какую сумму купить товара пользоватедю. Считается, как сумма указанная в накладной

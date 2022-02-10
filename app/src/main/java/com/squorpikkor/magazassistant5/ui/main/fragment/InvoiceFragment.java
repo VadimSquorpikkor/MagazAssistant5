@@ -29,12 +29,14 @@ public class InvoiceFragment extends Fragment {
         TextView kefirBigCount = view.findViewById(R.id.big_kefir_count);
         TextView kefirSmallCount = view.findViewById(R.id.small_kefir_count);
         TextView workingDayCount = view.findViewById(R.id.working_day_count);
+        TextView invoiceTotal = view.findViewById(R.id.invoice_total);
 
         mViewModel.getBigJuiceCount().observe(getViewLifecycleOwner(), bjcount -> juiceBigCount.setText(""+bjcount));
         mViewModel.getSmallJuiceCount().observe(getViewLifecycleOwner(), sjcount -> juiceSmallCount.setText(""+sjcount));
         mViewModel.getBigKefirCount().observe(getViewLifecycleOwner(), bkcount -> kefirBigCount.setText(""+bkcount));
         mViewModel.getSmallKefirCount().observe(getViewLifecycleOwner(), skcount -> kefirSmallCount.setText(""+skcount));
         mViewModel.getWorkingDays().observe(getViewLifecycleOwner(), wdays -> workingDayCount.setText(""+wdays));
+        mViewModel.getInvoiceTotal().observe(getViewLifecycleOwner(), invoice -> invoiceTotal.setText(""+invoice));
 
         return view;
     }

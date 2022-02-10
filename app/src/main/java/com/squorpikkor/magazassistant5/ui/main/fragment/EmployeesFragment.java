@@ -29,7 +29,7 @@ public class EmployeesFragment extends Fragment{
       mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
       RecyclerView recyclerView = view.findViewById(R.id.recycler);
-      InvoiceEmployeeAdapter adapter = new InvoiceEmployeeAdapter();
+      InvoiceEmployeeAdapter adapter = new InvoiceEmployeeAdapter(mViewModel);
       recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
       recyclerView.setAdapter(adapter);
       mViewModel.getEmployees().observe(getViewLifecycleOwner(), adapter::setList);

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squorpikkor.magazassistant5.R;
+import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 
 import java.util.ArrayList;
@@ -20,6 +21,11 @@ public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployee
 
    private ArrayList<Employee> list;
    private int workingDaysCount = 5;
+   private MainViewModel mainViewModel;
+
+   public InvoiceEmployeeAdapter(MainViewModel mainViewModel) {
+      this.mainViewModel = mainViewModel;
+   }
 
    @SuppressLint("NotifyDataSetChanged")
    public void setWorkingDaysCount(int workingDaysCount) {
@@ -77,6 +83,7 @@ public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployee
             check.setOnClickListener(view -> {
                Employee employee = list.get(getAdapterPosition());
                CheckBoxSwitcher.setDaysByCheckboxes(checks, employee);
+               mainViewModel.update();
             });
          }
       }

@@ -24,7 +24,7 @@ class CheckBoxSwitcher {
 
     static void setDaysByCheckboxes(CheckBox[] checks, Employee employee) {
         char[] str = new char[checks.length];
-        for (int i = 0; i < checks.length; i++) str[i]=checks[i].isChecked()?'1':'0';
+        for (int i = 0; i < checks.length; i++) str[i]=checks[i].isChecked()&&checks[i].getVisibility()==View.VISIBLE?'1':'0';
         String dayString = new String(str);
         employee.setDaysString(dayString);
         Log.e("TAG", "setDaysByCheckboxes: "+dayString);
