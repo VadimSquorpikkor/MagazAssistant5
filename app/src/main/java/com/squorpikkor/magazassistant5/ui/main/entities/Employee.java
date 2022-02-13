@@ -1,5 +1,7 @@
 package com.squorpikkor.magazassistant5.ui.main.entities;
 
+import java.util.ArrayList;
+
 public class Employee extends Entity{
 
     private final String locationId;
@@ -7,11 +9,29 @@ public class Employee extends Entity{
     private String daysString;// 11000
     private boolean isPresent;//присутствует на работе
 
+    ArrayList<String> ids;
+
     public Employee(String id, String name, String locationId) {
         super(id, name);
         this.locationId = locationId;
 //        this.days = 5;
         this.isPresent = true;
+    }
+
+    //ArrayList<String> ids нужен для объединенных работников, ведь нужно такому объединенному
+    // работнику как-то получить все ордеры входящих в него работников
+    //todo возможно есть смысл вместо string id использовать ArrayList, тогда getId будет брать
+    // первый id (для не объединенных работников он же единственный), с другой стороны с таким
+    // усложнением не очень очевидно всё работать будет...
+    public Employee(ArrayList<String> ids, String name, String locationId) {
+        super(ids.get(0), name);
+        this.ids = ids;
+        this.locationId = locationId;
+        this.isPresent = true;
+    }
+
+    public ArrayList<String> getIds() {
+        return ids;
     }
 
     //для проверки

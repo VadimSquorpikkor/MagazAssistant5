@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/outer_block">
+
+    <LinearLayout style="@style/inner_block">
+
+        <LinearLayout style="@style/vertical">
+
+            <TextView
+                style="@style/h2"
+                android:text="Название" />
+
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Денег всего"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/invoice_total"
+                    tools:text="2200"/>
+            </LinearLayout>
+            <LinearLayout style="@style/horizontal">
+                <TextView style="@style/text_small"
+                    android:text="Денег осталось"/>
+                <TextView style="@style/text_small_orange"
+                    android:id="@+id/invoice_left"
+                    tools:text="100"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

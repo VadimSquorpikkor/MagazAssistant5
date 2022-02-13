@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.fragment.CradleFragment;
+import com.squorpikkor.magazassistant5.ui.main.fragment.CradleFragment2;
 import com.squorpikkor.magazassistant5.ui.main.fragment.OrderFragment;
 import com.squorpikkor.magazassistant5.ui.main.fragment.PriceFragment;
 
@@ -35,7 +36,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             {
 //                put(0, PriceFragment.newInstance());
                 put(0, CradleFragment.newInstance());
-                put(1, OrderFragment.newInstance());
+                put(1, CradleFragment2.newInstance());
+//                put(1, OrderFragment.newInstance());
             }
         };
     }

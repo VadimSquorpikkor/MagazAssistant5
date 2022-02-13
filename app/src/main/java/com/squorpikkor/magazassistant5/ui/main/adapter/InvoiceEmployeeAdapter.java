@@ -20,18 +20,20 @@ import java.util.ArrayList;
 public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployeeAdapter.AdapterViewHolder> {
 
    private ArrayList<Employee> list;
-   private int workingDaysCount = 5;
+   //private int workingDaysCount = 5;
    private MainViewModel mainViewModel;
 
    public InvoiceEmployeeAdapter(MainViewModel mainViewModel) {
       this.mainViewModel = mainViewModel;
    }
 
-   @SuppressLint("NotifyDataSetChanged")
-   public void setWorkingDaysCount(int workingDaysCount) {
-      this.workingDaysCount = workingDaysCount;
-      notifyDataSetChanged();
-   }
+
+
+//   @SuppressLint("NotifyDataSetChanged")
+//   public void setWorkingDaysCount(int workingDaysCount) {
+//      this.workingDaysCount = workingDaysCount;
+//      notifyDataSetChanged();
+//   }
 
 
    @SuppressLint("NotifyDataSetChanged")
@@ -52,7 +54,7 @@ public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployee
    public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
       Employee employee = list.get(position);
       holder.name.setText(employee.getName());
-      CheckBoxSwitcher.setCheckboxesByEmployee(holder.checks, employee, workingDaysCount);
+      CheckBoxSwitcher.setCheckboxesByEmployee(holder.checks, employee, mainViewModel.getWorkingDays().getValue());
    }
 
    @Override

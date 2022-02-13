@@ -4,6 +4,7 @@ import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -34,6 +35,7 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<Integer> bigKefirCount;
     private MutableLiveData<Integer> smallKefirCount;
     private MutableLiveData<Integer> invoiceTotal;
+    private MutableLiveData<Integer> invoiceLeft;
 
 
     private int moneyForEmployeePerDay;//сумма на человекодень
@@ -54,6 +56,7 @@ public class MainViewModel extends ViewModel {
         bigKefirCount = new MutableLiveData<>(0);
         smallKefirCount = new MutableLiveData<>(0);
         invoiceTotal = new MutableLiveData<>(0);
+        invoiceLeft = new MutableLiveData<>(0);
         data = new DataHelper(locations, employees, orders);
         data.getAllLocations();
         data.getAllEmployees();
@@ -99,6 +102,9 @@ public class MainViewModel extends ViewModel {
     }
     public MutableLiveData<Integer> getInvoiceTotal() {
         return invoiceTotal;
+    }
+    public MutableLiveData<Integer> getInvoiceLeft() {
+        return invoiceLeft;
     }
 
     public void update() {
@@ -165,5 +171,32 @@ public class MainViewModel extends ViewModel {
     public int moneyForEmployee(Employee employee) {
         return employee.getDays()*moneyForEmployeePerDay;
     }
+
+    /**Возвращает всех работников выбранной локации*/
+    public ArrayList<Employee> getEmployeesByLocation(Location location) {
+        ArrayList<Employee> list = new ArrayList<>();
+        if (employees.getValue()==null) return list;
+        for (Employee employee:employees.getValue()) {
+            if (employee.getLocationId().equals(location.getId())) list.add(employee);
+        }
+        return list;
+    }
+
+    public ArrayList<Order> getOrdersByEmployee(Employee employee) {
+        ArrayList<Order> list = new ArrayList<>();
+        if (orders.getValue()==null) return list;
+        for (Order order:orders.getValue()) {
+            if (order.getEmployeeId().equals(employee.getId())) list.add(order);
+        }
+        return list;
+    }
+
+    //todo идея: реешние проблемы отображения обычного работника и объединенного:
+    // можно сделать UnitedEmployee extends Employee (который будет собирать в себе несколько
+    // работников) и из viewModel передавать каждой локации (в ресайклер) и вариант объединенного и
+    // вариант раздельного работника (список), а уже в ресайклере в итеме отображать вариант который
+    // выбирается нажатием кнопки выбора режима отображения локации
+
+
 
 }

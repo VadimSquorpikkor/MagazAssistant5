@@ -32,7 +32,7 @@ public class OrderFragment  extends Fragment {
       MainViewModel mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
       RecyclerView locationRecyclerView = view.findViewById(R.id.recycler_locations);
-      LocationAdapter locationAdapter = new LocationAdapter();
+      LocationAdapter locationAdapter = new LocationAdapter(mViewModel);
       locationRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
       locationRecyclerView.setAdapter(locationAdapter);
       locationAdapter.setOnItemClickListener(this::startFragment);

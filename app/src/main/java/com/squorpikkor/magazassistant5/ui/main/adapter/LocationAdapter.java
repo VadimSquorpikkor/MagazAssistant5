@@ -10,11 +10,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squorpikkor.magazassistant5.R;
+import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
+import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Location;
 
 import java.util.ArrayList;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.AdapterViewHolder> {
+
+    private MainViewModel mainViewModel;
+
+    /**
+     * Список работников, которые будут отображаться в итеме локации. Для большинства локаций лист
+     * будет содержать всех работников этой локации. Для Корелинских будет добавляться только один
+     * работник ("Все работники"), который будет формироваться через специальный метод и будет
+     * например содержать сумму всех человекодней всех работников локаций
+     */
+    private ArrayList<Employee> employees;
+
+    public LocationAdapter(MainViewModel mainViewModel) {
+        this.mainViewModel = mainViewModel;
+        employees = new ArrayList<>();
+    }
 
     private OnItemClickListener onItemClickListener;
 
@@ -30,7 +47,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Adapte
 
     @SuppressLint("NotifyDataSetChanged")
     public void setList(ArrayList<Location> list) {
-        if (list==null) list = new ArrayList<>();//Если list == null, то в ресайклер будет передан пустой лист
+        if (list == null)
+            list = new ArrayList<>();//Если list == null, то в ресайклер будет передан пустой лист
         this.list = list;
         notifyDataSetChanged();
     }
@@ -46,6 +64,13 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Adapte
     public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
         Location location = list.get(position);
         holder.textName.setText(location.getName());
+        ArrayList<Employee> allEmployees = mainViewModel.getEmployeesByLocation(location);
+        if (location.isUnitedEmployees()) {
+
+        } else {
+
+        }
+
     }
 
     @Override
@@ -62,7 +87,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Adapte
             textName = itemView.findViewById(R.id.text_name);
 
             itemView.setOnClickListener(view -> {
-                if (onItemClickListener!=null) onItemClickListener.onItemClick(list.get(getAdapterPosition()));
+                if (onItemClickListener != null)
+                    onItemClickListener.onItemClick(list.get(getAdapterPosition()));
             });
         }
     }
