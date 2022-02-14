@@ -10,6 +10,8 @@ class CheckBoxSwitcher {
 
     static void setCheckboxesByEmployee(CheckBox[] checks, Employee employee, int workingDaysCount) {
         for (int i = 0; i < checks.length; i++) {
+            checks[i].setEnabled(employee.isPresent());//todo строка не работает. Надо сделать: если employee отсутствует, то чекбоксы не активны, т.е. нельзя их переключить (иначе получается работника нет, а дни можно выбирать (хоть это и не влияет на кол-во соков))
+
             //перебираем все 9 чекбоксов
             checks[i].setVisibility(workingDaysCount>i? View.VISIBLE:View.GONE);//оставляем количество чекбоксов равное количеству рабочих дней
             if (employee.getDaysString().length()<i) checks[i].setChecked(true);//если чекбоксов больше, чем сохраненных то все чекбоксы сверх сохраненных чекаем
@@ -28,6 +30,12 @@ class CheckBoxSwitcher {
         String dayString = new String(str);
         employee.setDaysString(dayString);
         Log.e("TAG", "setDaysByCheckboxes: "+dayString);
+    }
+
+    static void toggleCheckBoxes(CheckBox[] checks, boolean state, Employee employee) {
+        for (CheckBox ch:checks) ch.setChecked(state);
+        employee.setDaysString(state?"111111111":"000000000");
+        employee.setPresent(state);
     }
 
 }

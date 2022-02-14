@@ -55,6 +55,7 @@ public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployee
       Employee employee = list.get(position);
       holder.name.setText(employee.getName());
       CheckBoxSwitcher.setCheckboxesByEmployee(holder.checks, employee, mainViewModel.getWorkingDays().getValue());
+      holder.mainCheck.setChecked(employee.isPresent());
    }
 
    @Override
@@ -66,10 +67,12 @@ public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployee
 
       TextView name;
       CheckBox[] checks;
+      CheckBox mainCheck;
 
       public AdapterViewHolder(@NonNull View itemView) {
          super(itemView);
          name = itemView.findViewById(R.id.text_name);
+         mainCheck = itemView.findViewById(R.id.main_check);
          checks = new CheckBox[]{
                  itemView.findViewById(R.id.check1),
                  itemView.findViewById(R.id.check2),
@@ -88,6 +91,11 @@ public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployee
                mainViewModel.update();
             });
          }
+         mainCheck.setOnClickListener(v -> {
+            Employee employee = list.get(getAdapterPosition());
+            CheckBoxSwitcher.toggleCheckBoxes(checks, mainCheck.isChecked(), employee);
+            mainViewModel.update();
+         });
       }
 
 

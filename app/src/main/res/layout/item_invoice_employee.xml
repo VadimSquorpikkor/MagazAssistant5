@@ -8,7 +8,7 @@
     android:elevation="10dp"
     android:gravity="center_vertical">
 
-    <CheckBox style="@style/check_box"/>
+    <CheckBox style="@style/check_box" android:id="@+id/main_check"/>
 
     <TextView style="@style/text_medium" android:id="@+id/text_name" tools:text="Шустов" android:layout_weight="1"/>
 
