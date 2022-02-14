@@ -115,12 +115,12 @@ public class MainViewModel extends ViewModel {
         calculateInvoice();
     }
 
-    private static final int JUICE_PER_DAY = 250;//норма сока в день
-    private static final int KEFIR_PER_DAY = 500;//норма кефира в день
-    private static final int JUICE_BIG_VOLUME = 1000;//объем большого сока
-    private static final int JUICE_SMALL_VOLUME = 250;//объем маленького сока
-    private static final int KEFIR_BIG_VOLUME = 1000;//объем большого кефира
-    private static final int KEFIR_SMALL_VOLUME = 250;//объем маленького кефира
+    private static final int JUICE_PER_DAY = 250;//норма сока в день, мл
+    private static final int KEFIR_PER_DAY = 500;//норма кефира в день, мл
+    private static final int JUICE_BIG_VOLUME = 1000;//объем большого сока, мл
+    private static final int JUICE_SMALL_VOLUME = 250;//объем маленького сока, мл
+    private static final int KEFIR_BIG_VOLUME = 1000;//объем большого кефира, мл
+    private static final int KEFIR_SMALL_VOLUME = 500;//объем маленького кефира, мл
 
 
     /**Подсчет денег в накладной. Также считает количество больших и маленьких соков и кефиров и
