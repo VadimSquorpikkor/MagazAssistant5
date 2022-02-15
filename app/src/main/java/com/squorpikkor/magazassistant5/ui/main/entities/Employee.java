@@ -5,9 +5,10 @@ import java.util.ArrayList;
 public class Employee extends Entity{
 
     private final String locationId;
-//    private int days;//на сколько дней брать сок
+    private int days;//на сколько дней брать сок
     private String daysString;// 11000
     private boolean isPresent;//присутствует на работе
+    private boolean workingDaysArray;
 
     ArrayList<String> ids;
 
@@ -43,20 +44,31 @@ public class Employee extends Entity{
         this.daysString = daysString;
     }
 
+    public Employee(String id, String name, String locationId, boolean workingDaysArray) {
+        super(id, name);
+        this.locationId = locationId;
+        this.isPresent = true;
+        this.workingDaysArray = workingDaysArray;
+    }
+
     public String getLocationId() {
         return locationId;
     }
 
-    /*public void setDays(int days) {
+    public void setDays(int days) {
         this.days = days;
-    }*/
+    }
 
-    public int getDays() {//11001000 -> 3 дня
+    public int getDays(int workingDaysWeek) {//11001000 -> 3 дня,
         int days = 0;
-        for (int i = 0; i < getDaysString().length(); i++) {
+        for (int i = 0; i < workingDaysWeek; i++) {
             if (getDaysString().charAt(i)=='1') days++;
         }
         return days;
+    }
+
+    public int getDaysInt() {//11001000 -> 3 дня,
+        return this.days;
     }
 
     public String getDaysString() {

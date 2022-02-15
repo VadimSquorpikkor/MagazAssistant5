@@ -6,14 +6,15 @@ import java.util.ArrayList;
 
 class EmployeeUnion {
 
-   static Employee uniteEmployeesInOne(ArrayList<Employee> employees, String name) {
-      ArrayList<String> list = new ArrayList<>();
+   static Employee unitedEmployeesInOne(ArrayList<Employee> employees, String name, int workingDays) {
+      String multiId = "";
+      int days = 0;
       for (Employee e:employees) {
-         list.add(e.getId());
+         multiId += e.getId()+"&";
+         days+=e.getDays(workingDays);
       }
-      Employee employee = new Employee(list, name, employees.get(0).getLocationId());
+      Employee employee = new Employee(multiId, name, employees.get(0).getLocationId());
+      employee.setDays(days);
       return employee;
    }
-
-
 }

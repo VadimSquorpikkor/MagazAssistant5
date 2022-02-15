@@ -1,6 +1,9 @@
 package com.squorpikkor.magazassistant5.ui.main.adapter;
 
+import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
+
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,12 +67,18 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Adapte
     public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
         Location location = list.get(position);
         holder.textName.setText(location.getName());
-        ArrayList<Employee> allEmployees = mainViewModel.getEmployeesByLocation(location);
+        ArrayList<Employee> allEmployees;
         if (location.isUnitedEmployees()) {
-
+            Log.e(TAG, ""+location.getName()+" (united)");
+            allEmployees = new ArrayList<>();
+            allEmployees.add(EmployeeUnion.unitedEmployeesInOne(mainViewModel.getEmployeesByLocation(location), location.getName(), mainViewModel.getWorkingDays().getValue()));
+            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDaysInt());
         } else {
-
+            Log.e(TAG, ""+location.getName());
+            allEmployees = mainViewModel.getEmployeesByLocation(location);
+            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays(mainViewModel.getWorkingDays().getValue()));
         }
+
 
     }
 

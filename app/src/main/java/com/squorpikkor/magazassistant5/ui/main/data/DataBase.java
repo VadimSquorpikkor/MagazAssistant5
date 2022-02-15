@@ -30,10 +30,10 @@ class DataBase {
 
    public DataBase() {
       locations = new ArrayList<>();
-      locations.add(new Location("1","Монтаж"));
-      locations.add(new Location("2","Сборка"));
-      locations.add(new Location("3","Мнипи"));
-      locations.add(new Location("4","1-й монтаж"));
+      locations.add(new Location("1","Монтаж", false));
+      locations.add(new Location("2","Сборка", false));
+      locations.add(new Location("3","Мнипи", true));
+      locations.add(new Location("4","1-й монтаж", false));
 
       employees = new ArrayList<>();
       employees.add(new Employee("1_1", "Карпук И.Н.", "1", "11111"));
@@ -43,7 +43,7 @@ class DataBase {
       employees.add(new Employee("1_1", "Шпилевская Л.С.", "1", "11111"));
       employees.add(new Employee("1_1", "Яцкевич И.В.", "1", "11111"));
 
-      employees.add(new Employee("2_2", "Алисевич Д.В.", "2", "10101"));
+      employees.add(new Employee("2_2", "Алисевич Д.В.", "2", "1010101"));
       employees.add(new Employee("2_2", "Алисевич О.В.", "2", "10101"));
       employees.add(new Employee("2_2", "Дементьев В.Ю.", "2", "11111"));
       employees.add(new Employee("2_2", "Долгий С.В.", "2", "11111"));

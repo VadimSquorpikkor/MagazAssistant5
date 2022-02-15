@@ -109,6 +109,7 @@ public class MainViewModel extends ViewModel {
 
     public void update() {
         calculateInvoice();
+        locations.setValue(locations.getValue());//перезапускаю ресайклер для ордеров при изменениях в накладной (если поменялось кол-во дней, то и сумма денег у работника изменится)
     }
 
     private void проверка() {
@@ -137,7 +138,7 @@ public class MainViewModel extends ViewModel {
             return;
         }
         int totalDaysForAllEmployees = 0;
-        for (Employee employee:employees.getValue()) totalDaysForAllEmployees+=employee.isPresent()?employee.getDays():0;
+        for (Employee employee:employees.getValue()) totalDaysForAllEmployees+=employee.isPresent()?employee.getDays(getWorkingDays().getValue()):0;
         Log.e(TAG, "calculateInvoice: totalDaysForAllEmployees = "+totalDaysForAllEmployees);
         int juiceVolume = JUICE_PER_DAY*totalDaysForAllEmployees;
         int bigJuiceCount = juiceVolume/JUICE_BIG_VOLUME;//2500ml->2 больших сока
@@ -169,7 +170,7 @@ public class MainViewModel extends ViewModel {
      * деленная на количество всех дней у всех пользователей умноженная на количество дней,
      * которые выбранный пользователь отработал*/
     public int moneyForEmployee(Employee employee) {
-        return employee.getDays()*moneyForEmployeePerDay;
+        return employee.getDays(getWorkingDays().getValue())*moneyForEmployeePerDay;
     }
 
     /**Возвращает всех работников выбранной локации*/
@@ -177,7 +178,10 @@ public class MainViewModel extends ViewModel {
         ArrayList<Employee> list = new ArrayList<>();
         if (employees.getValue()==null) return list;
         for (Employee employee:employees.getValue()) {
-            if (employee.getLocationId().equals(location.getId())) list.add(employee);
+            if (employee.getLocationId().equals(location.getId())) {
+                list.add(employee);
+            }
+
         }
         return list;
     }
