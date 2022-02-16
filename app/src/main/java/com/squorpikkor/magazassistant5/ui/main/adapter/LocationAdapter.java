@@ -71,12 +71,12 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Adapte
         if (location.isUnitedEmployees()) {
             Log.e(TAG, ""+location.getName()+" (united)");
             allEmployees = new ArrayList<>();
-            allEmployees.add(EmployeeUnion.unitedEmployeesInOne(mainViewModel.getEmployeesByLocation(location), location.getName(), mainViewModel.getWorkingDays().getValue()));
-            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDaysInt());
+            allEmployees.add(UniteEmployees.unitedEmployeesInOne(mainViewModel.getEmployeesByLocation(location), location.getName()));
+            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays());
         } else {
             Log.e(TAG, ""+location.getName());
             allEmployees = mainViewModel.getEmployeesByLocation(location);
-            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays(mainViewModel.getWorkingDays().getValue()));
+            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays());
         }
 
 

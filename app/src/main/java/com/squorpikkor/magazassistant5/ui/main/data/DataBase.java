@@ -1,9 +1,5 @@
 package com.squorpikkor.magazassistant5.ui.main.data;
 
-import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
-
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
@@ -43,7 +39,7 @@ class DataBase {
       employees.add(new Employee("1_1", "Шпилевская Л.С.", "1", "11111"));
       employees.add(new Employee("1_1", "Яцкевич И.В.", "1", "11111"));
 
-      employees.add(new Employee("2_2", "Алисевич Д.В.", "2", "1010101"));
+      employees.add(new Employee("2_2", "Алисевич Д.В.", "2", "10101"));
       employees.add(new Employee("2_2", "Алисевич О.В.", "2", "10101"));
       employees.add(new Employee("2_2", "Дементьев В.Ю.", "2", "11111"));
       employees.add(new Employee("2_2", "Долгий С.В.", "2", "11111"));

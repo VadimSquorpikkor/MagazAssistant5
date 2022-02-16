@@ -138,7 +138,7 @@ public class MainViewModel extends ViewModel {
             return;
         }
         int totalDaysForAllEmployees = 0;
-        for (Employee employee:employees.getValue()) totalDaysForAllEmployees+=employee.isPresent()?employee.getDays(getWorkingDays().getValue()):0;
+        for (Employee employee:employees.getValue()) totalDaysForAllEmployees+=employee.isPresent()?employee.getDays():0;
         Log.e(TAG, "calculateInvoice: totalDaysForAllEmployees = "+totalDaysForAllEmployees);
         int juiceVolume = JUICE_PER_DAY*totalDaysForAllEmployees;
         int bigJuiceCount = juiceVolume/JUICE_BIG_VOLUME;//2500ml->2 больших сока
@@ -170,7 +170,7 @@ public class MainViewModel extends ViewModel {
      * деленная на количество всех дней у всех пользователей умноженная на количество дней,
      * которые выбранный пользователь отработал*/
     public int moneyForEmployee(Employee employee) {
-        return employee.getDays(getWorkingDays().getValue())*moneyForEmployeePerDay;
+        return employee.getDays()*moneyForEmployeePerDay;
     }
 
     /**Возвращает всех работников выбранной локации*/
