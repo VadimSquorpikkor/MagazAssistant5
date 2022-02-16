@@ -10,8 +10,8 @@ android {
         minSdk 21
         targetSdk 31
         versionCode 1
-        versionName "1.09"
-
+        versionName "1.11"
+        setProperty("archivesBaseName", "MagazAssistant5-v" + versionName)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

@@ -65,5 +65,9 @@ public class Employee extends Entity{
         Arrays.fill(workingDaysArray, state);
     }
 
+    /**На какую сумму работник может взять продуктов*/
+    public int getMoneyLimit(int moneyPerDay) {
+        return getDays()*moneyPerDay;
+    }
 
 }

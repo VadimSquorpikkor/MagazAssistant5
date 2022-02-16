@@ -36,12 +36,10 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<Integer> smallKefirCount;
     private MutableLiveData<Integer> invoiceTotal;
     private MutableLiveData<Integer> invoiceLeft;
-
-
-    private int moneyForEmployeePerDay;//сумма на человекодень
+    private MutableLiveData<Integer> moneyForEmployeePerDay;//сумма на человекодень
 
     public MainViewModel() {
-        moneyForEmployeePerDay = 0;
+        moneyForEmployeePerDay = new MutableLiveData<>(0);
         locations = new MutableLiveData<>();
         employees = new MutableLiveData<>();
         orders = new MutableLiveData<>();
@@ -106,10 +104,17 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<Integer> getInvoiceLeft() {
         return invoiceLeft;
     }
+    /**На какую сумму купить товара пользоватедю. Считается, как сумма указанная в накладной
+     * деленная на количество всех дней у всех пользователей умноженная на количество дней,
+     * которые выбранный пользователь отработал*/
+    public MutableLiveData<Integer> getMoneyForEmployeePerDay() {
+        return moneyForEmployeePerDay;
+    }
 
     public void update() {
         calculateInvoice();
         locations.setValue(locations.getValue());//перезапускаю ресайклер для ордеров при изменениях в накладной (если поменялось кол-во дней, то и сумма денег у работника изменится)
+
     }
 
     private void проверка() {
@@ -152,7 +157,7 @@ public class MainViewModel extends ViewModel {
                 bigKefirCount*kefirPrice.getValue()+
                 smallKefirCount*kefirSmallPrice.getValue();
         Log.e(TAG, "calculateInvoice: JB-"+bigJuiceCount+" JS-"+smallJuiceCount+" KB-"+bigKefirCount+" KS-"+smallKefirCount);
-        if (totalDaysForAllEmployees!=0) moneyForEmployeePerDay = totalPrice/totalDaysForAllEmployees;
+        if (totalDaysForAllEmployees!=0) moneyForEmployeePerDay.setValue(totalPrice/totalDaysForAllEmployees);
 
         //moneyForEmployeePerDay = JUICE_PER_DAY*juicePrice.getValue()+KEFIR_PER_DAY*kefirPrice.getValue();
         //это не совсем так: маленький сок не стоит четверть цены от большого, а значит при объеме
@@ -166,12 +171,7 @@ public class MainViewModel extends ViewModel {
         this.invoiceTotal.setValue(totalPrice);
     }
 
-    /**На какую сумму купить товара пользоватедю. Считается, как сумма указанная в накладной
-     * деленная на количество всех дней у всех пользователей умноженная на количество дней,
-     * которые выбранный пользователь отработал*/
-    public int moneyForEmployee(Employee employee) {
-        return employee.getDays()*moneyForEmployeePerDay;
-    }
+
 
     /**Возвращает всех работников выбранной локации*/
     public ArrayList<Employee> getEmployeesByLocation(Location location) {
@@ -181,7 +181,6 @@ public class MainViewModel extends ViewModel {
             if (employee.getLocationId().equals(location.getId())) {
                 list.add(employee);
             }
-
         }
         return list;
     }

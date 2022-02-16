@@ -1,6 +1,7 @@
 package com.squorpikkor.magazassistant5.ui.main.adapter;
 
 import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
+import static com.squorpikkor.magazassistant5.ui.main.App.getContext;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squorpikkor.magazassistant5.R;
@@ -79,6 +81,11 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Adapte
             for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays());
         }
 
+        RecyclerView recyclerView = holder.recyclerView;
+        OrderEmployeeAdapter adapter = new OrderEmployeeAdapter(mainViewModel);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
+        adapter.setList(allEmployees);
 
     }
 
@@ -90,10 +97,12 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Adapte
     public class AdapterViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView textName;
+        RecyclerView recyclerView;
 
         public AdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.text_name);
+            recyclerView = itemView.findViewById(R.id.recycler);
 
             itemView.setOnClickListener(view -> {
                 if (onItemClickListener != null)
