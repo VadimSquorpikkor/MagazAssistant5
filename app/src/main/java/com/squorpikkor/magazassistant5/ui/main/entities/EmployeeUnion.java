@@ -16,5 +16,11 @@ public class EmployeeUnion extends Employee{
    public EmployeeUnion(ArrayList<String> ids, String name, String locationId, int days) {
       super(locationId, name, locationId, days);
       this.ids = ids;
+      this.days = days;
+   }
+
+   @Override
+   public int getDays(int daysInWeek) {
+      return days;
    }
 }

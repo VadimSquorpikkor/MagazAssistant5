@@ -56,6 +56,7 @@ public class MainViewModel extends ViewModel {
         data = new DataHelper(locations, employees, orders);
         data.getAllLocations();
         data.getAllEmployees();
+        data.getAllOrders();
         data.loadPrices(juicePrice, juiceSmallPrice, kefirPrice, kefirSmallPrice);
         calculateInvoice();
     }

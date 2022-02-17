@@ -21,12 +21,12 @@ import com.squorpikkor.magazassistant5.ui.main.entities.Location;
 
 import java.util.ArrayList;
 
-public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.AdapterViewHolder> {
+public class OrderLocationAdapter extends RecyclerView.Adapter<OrderLocationAdapter.AdapterViewHolder> {
 
     private final MainViewModel mainViewModel;
     private int workingDays;
 
-    public LocationAdapter(MainViewModel mainViewModel) {
+    public OrderLocationAdapter(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
     }
 

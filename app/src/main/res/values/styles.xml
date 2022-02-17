@@ -39,6 +39,10 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="text_medium_right" parent="text_medium">
+        <item name="android:gravity">right</item>
+    </style>
+
     <style name="check_box">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

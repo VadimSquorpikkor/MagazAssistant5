@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
-import com.squorpikkor.magazassistant5.ui.main.adapter.LocationAdapter;
+import com.squorpikkor.magazassistant5.ui.main.adapter.OrderLocationAdapter;
 import com.squorpikkor.magazassistant5.ui.main.entities.Location;
 
 public class OrderFragment  extends Fragment {
@@ -32,7 +32,7 @@ public class OrderFragment  extends Fragment {
       MainViewModel mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
       RecyclerView locationRecyclerView = view.findViewById(R.id.recycler_locations);
-      LocationAdapter locationAdapter = new LocationAdapter(mViewModel);
+      OrderLocationAdapter locationAdapter = new OrderLocationAdapter(mViewModel);
       locationRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
       locationRecyclerView.setAdapter(locationAdapter);
       locationAdapter.setOnItemClickListener(this::startFragment);

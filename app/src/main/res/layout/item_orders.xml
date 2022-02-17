@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/vertical"
+    android:layout_margin="0dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
+
+    <LinearLayout style="@style/horizontal">
+
+        <CheckBox
+            android:id="@+id/check"
+            style="@style/check_box" />
+
+        <TextView
+            android:id="@+id/text_name"
+            style="@style/text_medium"
+            android:layout_weight="5"
+            tools:text="Сок" />
+
+        <TextView
+            android:id="@+id/text_price"
+            style="@style/text_medium_right"
+            android:layout_weight="1"
+            tools:text="2.56" />
+
+        <TextView
+            android:id="@+id/text_count"
+            style="@style/text_medium_right"
+            android:layout_weight="1"
+            tools:text="2" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:background="?android:attr/listDivider" />
+
+</LinearLayout>

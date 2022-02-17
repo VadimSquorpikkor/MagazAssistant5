@@ -33,23 +33,23 @@ class DataBase {
 
       employees = new ArrayList<>();
       employees.add(new Employee("1_1", "Карпук И.Н.", "1", "11111"));
-      employees.add(new Employee("1_1", "Король В.А.", "1", "11111"));
-      employees.add(new Employee("1_1", "Курак Л.И.", "1", "11111"));
-      employees.add(new Employee("1_1", "Лютаревич А.Л.", "1", "11111"));
-      employees.add(new Employee("1_1", "Шпилевская Л.С.", "1", "11111"));
-      employees.add(new Employee("1_1", "Яцкевич И.В.", "1", "11111"));
+      employees.add(new Employee("1_2", "Король В.А.", "1", "11111"));
+      employees.add(new Employee("1_3", "Курак Л.И.", "1", "11111"));
+      employees.add(new Employee("1_4", "Лютаревич А.Л.", "1", "11111"));
+      employees.add(new Employee("1_5", "Шпилевская Л.С.", "1", "11111"));
+      employees.add(new Employee("1_6", "Яцкевич И.В.", "1", "11111"));
 
-      employees.add(new Employee("2_2", "Алисевич Д.В.", "2", "10101"));
-      employees.add(new Employee("2_2", "Алисевич О.В.", "2", "10101"));
-      employees.add(new Employee("2_2", "Дементьев В.Ю.", "2", "11111"));
-      employees.add(new Employee("2_2", "Долгий С.В.", "2", "11111"));
-      employees.add(new Employee("2_2", "Махнюков И.С.", "2", "11111"));
-      employees.add(new Employee("2_2", "Мороз Ю.В.", "2", "11111"));
-      employees.add(new Employee("2_2", "Пекарский Ю.В.", "2", "11111"));
-      employees.add(new Employee("2_2", "Праневич А.А.", "2", "11111"));
-      employees.add(new Employee("2_1", "Шустов М.В.", "2", "00110"));
-      employees.add(new Employee("2_2", "Яворский А.В.", "2", "11111"));
-      employees.add(new Employee("2_2", "Ячминев М.В.", "2", "11111"));
+      employees.add(new Employee("2_7", "Алисевич Д.В.", "2", "10101"));
+      employees.add(new Employee("2_8", "Алисевич О.В.", "2", "10101"));
+      employees.add(new Employee("2_9", "Дементьев В.Ю.", "2", "11111"));
+      employees.add(new Employee("2_10", "Долгий С.В.", "2", "11111"));
+      employees.add(new Employee("2_11", "Махнюков И.С.", "2", "11111"));
+      employees.add(new Employee("2_12", "Мороз Ю.В.", "2", "11111"));
+      employees.add(new Employee("2_13", "Пекарский Ю.В.", "2", "11111"));
+      employees.add(new Employee("2_14", "Праневич А.А.", "2", "11111"));
+      employees.add(new Employee("2_15", "Шустов М.В.", "2", "00110"));
+      employees.add(new Employee("2_16", "Яворский А.В.", "2", "11111"));
+      employees.add(new Employee("2_17", "Ячминев М.В.", "2", "11111"));
 
       employees.add(new Employee("3_2", "Барсуков С.Н.", "3", "11111"));
       employees.add(new Employee("3_2", "Буров Л.В.", "3", "11111"));
@@ -75,6 +75,10 @@ class DataBase {
       employees.add(new Employee("4_2", "Штылев Г.Н.", "4", "11111"));
       employees.add(new Employee("4_2", "Антонова О.Н.", "4", "11111"));
 
+      orders = new ArrayList<>();
+      orders.add(new Order("1", "Сок", 256, 2, "2_7", false));
+      orders.add(new Order("2", "Сок", 256, 1, "2_7", true));
+      orders.add(new Order("3", "Сок", 256, 3, "2_7", false));
 
    }
 
@@ -96,6 +100,10 @@ class DataBase {
 
    public void getAllEmployees(MutableLiveData<ArrayList<Employee>> employees) {
       employees.setValue(this.employees);
+   }
+
+   public void getAllOrders(MutableLiveData<ArrayList<Order>> orders) {
+      orders.setValue(this.orders);
    }
 
    public ArrayList<Employee> getEmployeesByLocation(Location location) {
