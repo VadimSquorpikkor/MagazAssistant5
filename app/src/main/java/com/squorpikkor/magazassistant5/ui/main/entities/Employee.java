@@ -6,28 +6,25 @@ public class Employee extends Entity{
 
     private final String locationId;
     private boolean isPresent;//присутствует на работе
-    private boolean[] workingDaysArray;
-
-    //для проверки
-    /*public Employee(String id, String name, String locationId, int workingDaysAtWeek) {
-        super(id, name);
-        this.locationId = locationId;
-        this.isPresent = true;
-        this.workingDaysArray = new boolean[workingDaysAtWeek];
-        for (boolean b:workingDaysArray) b=true;
-    }*/
+    private final boolean[] workingDaysArray;
+    private static final int MAX_DAYS_COUNT = 9;
 
     public Employee(String id, String name, String locationId, String days) {
         super(id, name);
         this.locationId = locationId;
         this.isPresent = true;
-        this.workingDaysArray = new boolean[days.length()];
-        for (int i = 0; i < days.length(); i++) {
-            if (days.charAt(i)=='1') workingDaysArray[i]=true;
+        this.workingDaysArray = new boolean[MAX_DAYS_COUNT];
+        for (int i = 0; i < workingDaysArray.length; i++) {
+            if (days.length() > i) {
+                if (days.charAt(i) == '1') workingDaysArray[i] = true;
+            } else {
+                workingDaysArray[i] = false;
+            }
         }
     }
 
-    public Employee(String id, String name, String locationId, int workingDaysAtWeek) {
+    //не паблик, этот констоуктор использует только EmployeeUnion
+    Employee(String id, String name, String locationId, int workingDaysAtWeek) {
         super(id, name);
         this.locationId = locationId;
         this.isPresent = true;
@@ -39,9 +36,10 @@ public class Employee extends Entity{
         return locationId;
     }
 
-    public int getDays() {
+    public int getDays(int daysInWeek) {
+        if (!isPresent) return 0;//если отсутствует, то и считать не надо, будет 0
         int count = 0;
-        for (boolean checked:workingDaysArray) if (checked) count++;
+        for (int i = 0; i < daysInWeek; i++) if (workingDaysArray[i]) count++;
         return count;
     }
 
@@ -53,21 +51,22 @@ public class Employee extends Entity{
         isPresent = present;
     }
 
-    public boolean[] getWorkingDaysArray() {
-        return workingDaysArray;
+    public boolean[] getWorkingDaysArray(int daysInWeek) {
+        boolean[] res = new boolean[daysInWeek];
+        for (int i = 0; i < res.length; i++) {
+            res[i]=workingDaysArray[i];
+        }
+        return res;
     }
 
-    public void setWorkingDaysArray(boolean[] workingDaysArray) {
-        this.workingDaysArray = workingDaysArray;
+    public void setWorkingDaysArray(boolean[] workingDays) {
+        for (int i = 0; i < workingDays.length; i++) {
+            this.workingDaysArray[i] = workingDays[i];
+        }
     }
 
     public void setAllDaysToValue(boolean state) {
         Arrays.fill(workingDaysArray, state);
-    }
-
-    /**На какую сумму работник может взять продуктов*/
-    public int getMoneyLimit(int moneyPerDay) {
-        return getDays()*moneyPerDay;
     }
 
 }

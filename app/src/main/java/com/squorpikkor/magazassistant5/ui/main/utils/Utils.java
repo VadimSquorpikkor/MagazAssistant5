@@ -2,6 +2,7 @@ package com.squorpikkor.magazassistant5.ui.main.utils;
 
 public class Utils {
 
+   /**Переводит: 456 -> 4.56*/
    public static String integerToMoneyString(int money) {
       int rub = money/100;
       int kop = money%100;

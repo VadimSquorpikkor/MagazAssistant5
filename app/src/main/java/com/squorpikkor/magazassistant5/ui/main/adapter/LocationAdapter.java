@@ -23,19 +23,11 @@ import java.util.ArrayList;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.AdapterViewHolder> {
 
-    private MainViewModel mainViewModel;
-
-    /**
-     * Список работников, которые будут отображаться в итеме локации. Для большинства локаций лист
-     * будет содержать всех работников этой локации. Для Корелинских будет добавляться только один
-     * работник ("Все работники"), который будет формироваться через специальный метод и будет
-     * например содержать сумму всех человекодней всех работников локаций
-     */
-    private ArrayList<Employee> employees;
+    private final MainViewModel mainViewModel;
+    private int workingDays;
 
     public LocationAdapter(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
-        employees = new ArrayList<>();
     }
 
     private OnItemClickListener onItemClickListener;
@@ -52,6 +44,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Adapte
 
     @SuppressLint("NotifyDataSetChanged")
     public void setList(ArrayList<Location> list) {
+        workingDays = mainViewModel.getWorkingDays().getValue();
         if (list == null)
             list = new ArrayList<>();//Если list == null, то в ресайклер будет передан пустой лист
         this.list = list;
@@ -70,15 +63,16 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Adapte
         Location location = list.get(position);
         holder.textName.setText(location.getName());
         ArrayList<Employee> allEmployees;
+
         if (location.isUnitedEmployees()) {
             Log.e(TAG, ""+location.getName()+" (united)");
             allEmployees = new ArrayList<>();
-            allEmployees.add(UniteEmployees.unitedEmployeesInOne(mainViewModel.getEmployeesByLocation(location), location.getName()));
-            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays());
+            allEmployees.add(UniteEmployees.unitedEmployeesInOne(mainViewModel.getEmployeesByLocation(location), location.getName(), workingDays));
+            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays(workingDays));
         } else {
             Log.e(TAG, ""+location.getName());
             allEmployees = mainViewModel.getEmployeesByLocation(location);
-            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays());
+            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays(workingDays));
         }
 
         RecyclerView recyclerView = holder.recyclerView;

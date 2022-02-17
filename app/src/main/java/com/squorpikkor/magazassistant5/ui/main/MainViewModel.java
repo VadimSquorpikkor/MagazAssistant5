@@ -3,8 +3,6 @@ package com.squorpikkor.magazassistant5.ui.main;
 import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
 
 import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -22,21 +20,21 @@ public class MainViewModel extends ViewModel {
     private final MutableLiveData<ArrayList<Location>> locations;
     private final MutableLiveData<ArrayList<Employee>> employees;
     private final MutableLiveData<ArrayList<Order>>    orders;
-    private MutableLiveData<Integer> juicePrice;
-    private MutableLiveData<Integer> juiceSmallPrice;
-    private MutableLiveData<Integer> kefirPrice;
-    private MutableLiveData<Integer> kefirSmallPrice;
-    private MutableLiveData<Integer> workingDays;
+    private final MutableLiveData<Integer> juicePrice;
+    private final MutableLiveData<Integer> juiceSmallPrice;
+    private final MutableLiveData<Integer> kefirPrice;
+    private final MutableLiveData<Integer> kefirSmallPrice;
+    private final MutableLiveData<Integer> workingDays;
 
     /**Количество человекодней*/
-    private MutableLiveData<Integer> employeeDayCount;
-    private MutableLiveData<Integer> bigJuiceCount;
-    private MutableLiveData<Integer> smallJuiceCount;
-    private MutableLiveData<Integer> bigKefirCount;
-    private MutableLiveData<Integer> smallKefirCount;
-    private MutableLiveData<Integer> invoiceTotal;
-    private MutableLiveData<Integer> invoiceLeft;
-    private MutableLiveData<Integer> moneyForEmployeePerDay;//сумма на человекодень
+    private final MutableLiveData<Integer> employeeDayCount;
+    private final MutableLiveData<Integer> bigJuiceCount;
+    private final MutableLiveData<Integer> smallJuiceCount;
+    private final MutableLiveData<Integer> bigKefirCount;
+    private final MutableLiveData<Integer> smallKefirCount;
+    private final MutableLiveData<Integer> invoiceTotal;
+    private final MutableLiveData<Integer> invoiceLeft;
+    private final MutableLiveData<Integer> moneyForEmployeePerDay;//сумма на человекодень
 
     public MainViewModel() {
         moneyForEmployeePerDay = new MutableLiveData<>(0);
@@ -59,7 +57,7 @@ public class MainViewModel extends ViewModel {
         data.getAllLocations();
         data.getAllEmployees();
         data.loadPrices(juicePrice, juiceSmallPrice, kefirPrice, kefirSmallPrice);
-        проверка();
+        calculateInvoice();
     }
 
     public MutableLiveData<ArrayList<Location>> getLocations() {
@@ -117,10 +115,6 @@ public class MainViewModel extends ViewModel {
 
     }
 
-    private void проверка() {
-        calculateInvoice();
-    }
-
     private static final int JUICE_PER_DAY = 250;//норма сока в день, мл
     private static final int KEFIR_PER_DAY = 500;//норма кефира в день, мл
     private static final int JUICE_BIG_VOLUME = 1000;//объем большого сока, мл
@@ -143,7 +137,7 @@ public class MainViewModel extends ViewModel {
             return;
         }
         int totalDaysForAllEmployees = 0;
-        for (Employee employee:employees.getValue()) totalDaysForAllEmployees+=employee.isPresent()?employee.getDays():0;
+        for (Employee employee:employees.getValue()) totalDaysForAllEmployees+=employee.isPresent()?employee.getDays(workingDays.getValue()):0;
         Log.e(TAG, "calculateInvoice: totalDaysForAllEmployees = "+totalDaysForAllEmployees);
         int juiceVolume = JUICE_PER_DAY*totalDaysForAllEmployees;
         int bigJuiceCount = juiceVolume/JUICE_BIG_VOLUME;//2500ml->2 больших сока
@@ -192,6 +186,11 @@ public class MainViewModel extends ViewModel {
             if (order.getEmployeeId().equals(employee.getId())) list.add(order);
         }
         return list;
+    }
+
+    /**На какую сумму работник может взять продуктов*/
+    public int getMoneyLimit(Employee employee) {
+        return employee.getDays(workingDays.getValue())*moneyForEmployeePerDay.getValue();
     }
 
     //todo идея: реешние проблемы отображения обычного работника и объединенного:

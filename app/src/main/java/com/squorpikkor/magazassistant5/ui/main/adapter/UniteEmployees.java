@@ -9,12 +9,12 @@ class UniteEmployees {
 
    //TODO вместо листа можно просто передавать id локации (она одинакова у всех employees этой локации)
 
-   static Employee unitedEmployeesInOne(ArrayList<Employee> employees, String name) {
+   static Employee unitedEmployeesInOne(ArrayList<Employee> employees, String name, int workingDays) {
       ArrayList<String> list = new ArrayList<>();
       int days = 0;
       for (Employee employee:employees) {
          list.add(employee.getId());
-         days+=employee.getDays();
+         days+=employee.getDays(workingDays);
       }
       return new EmployeeUnion(list, name, employees.get(0).getLocationId(), days);
    }

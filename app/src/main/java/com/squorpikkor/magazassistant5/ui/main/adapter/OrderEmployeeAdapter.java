@@ -1,7 +1,5 @@
 package com.squorpikkor.magazassistant5.ui.main.adapter;
 
-import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
-
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +16,15 @@ import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
 
 import java.util.ArrayList;
 
+/**
+ * Список работников, которые будут отображаться в итеме локации. Для большинства локаций лист
+ * будет содержать всех работников этой локации. Для Корелинских будет добавляться только один
+ * работник ("Все работники"), который будет формироваться через специальный метод и будет
+ * например содержать сумму всех человекодней всех работников локаций
+ */
 public class OrderEmployeeAdapter extends RecyclerView.Adapter<OrderEmployeeAdapter.AdapterViewHolder>{
 
-    private MainViewModel mainViewModel;
+    private final MainViewModel mainViewModel;
 
     public OrderEmployeeAdapter(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
@@ -46,9 +50,9 @@ public class OrderEmployeeAdapter extends RecyclerView.Adapter<OrderEmployeeAdap
     @Override
     public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
         Employee employee = list.get(position);
+        int moneyLimit = mainViewModel.getMoneyLimit(employee);
         holder.textName.setText(employee.getName());
-        holder.textMoney.setText(Utils.integerToMoneyString(employee.getMoneyLimit(mainViewModel.getMoneyForEmployeePerDay().getValue())));
-
+        holder.textMoney.setText(Utils.integerToMoneyString(moneyLimit));
     }
 
     @Override

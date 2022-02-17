@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
+import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
 
 public class InvoiceFragment extends Fragment {
 
@@ -36,7 +37,7 @@ public class InvoiceFragment extends Fragment {
         mViewModel.getBigKefirCount().observe(getViewLifecycleOwner(), bkcount -> kefirBigCount.setText(""+bkcount));
         mViewModel.getSmallKefirCount().observe(getViewLifecycleOwner(), skcount -> kefirSmallCount.setText(""+skcount));
         mViewModel.getWorkingDays().observe(getViewLifecycleOwner(), wdays -> workingDayCount.setText(""+wdays));
-        mViewModel.getInvoiceTotal().observe(getViewLifecycleOwner(), invoice -> invoiceTotal.setText(""+invoice));
+        mViewModel.getInvoiceTotal().observe(getViewLifecycleOwner(), invoice -> invoiceTotal.setText(Utils.integerToMoneyString(invoice)));
 
         return view;
     }

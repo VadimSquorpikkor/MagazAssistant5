@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
+import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
 
 public class OrdersHead extends Fragment {
    public static Fragment newInstance() {
@@ -25,9 +26,11 @@ public class OrdersHead extends Fragment {
 
       TextView invoiceTotal = view.findViewById(R.id.invoice_total);
       TextView invoiceLeft = view.findViewById(R.id.invoice_left);
+      TextView moneyPerDay = view.findViewById(R.id.money_per_day);
 
-      mViewModel.getInvoiceTotal().observe(getViewLifecycleOwner(), total -> invoiceTotal.setText(""+total));
-      mViewModel.getInvoiceLeft().observe(getViewLifecycleOwner(), left -> invoiceLeft.setText(""+left));
+      mViewModel.getInvoiceTotal().observe(getViewLifecycleOwner(), total -> invoiceTotal.setText(Utils.integerToMoneyString(total)));
+      mViewModel.getInvoiceLeft().observe(getViewLifecycleOwner(), left -> invoiceLeft.setText(Utils.integerToMoneyString(left)));
+      mViewModel.getMoneyForEmployeePerDay().observe(getViewLifecycleOwner(), day -> moneyPerDay.setText(Utils.integerToMoneyString(day)));
 
       return view;
    }

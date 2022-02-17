@@ -21,13 +21,16 @@ public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployee
 
    private ArrayList<Employee> list;
    private final MainViewModel mainViewModel;
+   private int workingDays;
 
    public InvoiceEmployeeAdapter(MainViewModel mainViewModel) {
       this.mainViewModel = mainViewModel;
+
    }
 
    @SuppressLint("NotifyDataSetChanged")
    public void setList(ArrayList<Employee> list) {
+      this.workingDays = mainViewModel.getWorkingDays().getValue();
       if (list==null) list = new ArrayList<>();
       this.list = list;
       notifyDataSetChanged();
@@ -44,7 +47,7 @@ public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployee
    public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
       Employee employee = list.get(position);
       holder.name.setText(employee.getName());
-      CheckBoxSwitcher.setCheckboxesByEmployee(holder.checks, employee);
+      CheckBoxSwitcher.setCheckboxesByEmployee(holder.checks, employee, workingDays);
       holder.mainCheck.setChecked(employee.isPresent());
    }
 

@@ -1,17 +1,13 @@
 package com.squorpikkor.magazassistant5.ui.main.adapter;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
-
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
-
-import java.util.Arrays;
 
 class CheckBoxSwitcher {
 
-    static void setCheckboxesByEmployee(CheckBox[] checks, Employee employee) {
-        boolean[] eDays = employee.getWorkingDaysArray();
+    static void setCheckboxesByEmployee(CheckBox[] checks, Employee employee, int workingDays) {
+        boolean[] eDays = employee.getWorkingDaysArray(workingDays);
         for (int i = 0; i < checks.length; i++) {
             if (eDays.length > i) {
                 checks[i].setChecked(eDays[i]);
@@ -23,10 +19,9 @@ class CheckBoxSwitcher {
     }
 
     static void setDaysByCheckboxes(CheckBox[] checks, Employee employee) {
-        for (int i = 0; i < employee.getWorkingDaysArray().length; i++) {
-            employee.getWorkingDaysArray()[i]=checks[i].isChecked();
-            Log.e("TAG", "setDaysByCheckboxes: "+ Arrays.toString(employee.getWorkingDaysArray()));
-        }
+        boolean[] arr = new boolean[checks.length];
+        for (int i = 0; i < checks.length; i++) arr[i] = checks[i].isChecked();
+        employee.setWorkingDaysArray(arr);
     }
 
     static void toggleCheckBoxes(CheckBox[] checks, boolean state, Employee employee) {
