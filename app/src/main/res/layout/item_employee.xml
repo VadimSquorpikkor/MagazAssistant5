@@ -17,19 +17,28 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:text="7.00" />
+
+        <ImageView
+            android:id="@+id/is_checked"
+            android:layout_height="18dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_check_24"/>
+
+        <TextView
+            android:id="@+id/text_state"
+            style="@style/text_medium"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            tools:text="2/3" />
 
         <TextView
             android:id="@+id/text_money"
+            style="@style/text_medium_right"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="7.00" />
 
     </LinearLayout>

@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squorpikkor.magazassistant5.R;
+import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
+import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Order;
 import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
 
@@ -19,6 +22,11 @@ import java.util.ArrayList;
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AdapterViewHolder>{
 
    private ArrayList<Order> list;
+   private final MainViewModel mainViewModel;
+
+   public OrderAdapter(MainViewModel mainViewModel) {
+      this.mainViewModel = mainViewModel;
+   }
 
    @SuppressLint("NotifyDataSetChanged")
    public void setList(ArrayList<Order> list) {
@@ -63,6 +71,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AdapterViewH
          textName = itemView.findViewById(R.id.text_name);
          textPrice = itemView.findViewById(R.id.text_price);
          textCount = itemView.findViewById(R.id.text_count);
+
+         checkBox.setOnClickListener(view -> {
+            Order order = list.get(getAdapterPosition());
+            order.setChecked(checkBox.isChecked());
+            mainViewModel.updateOrders();
+         });
 
       }
    }

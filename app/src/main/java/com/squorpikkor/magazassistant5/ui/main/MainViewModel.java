@@ -10,6 +10,7 @@ import com.squorpikkor.magazassistant5.ui.main.data.DataHelper;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Location;
 import com.squorpikkor.magazassistant5.ui.main.entities.Order;
+import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -113,7 +114,11 @@ public class MainViewModel extends ViewModel {
     public void update() {
         calculateInvoice();
         locations.setValue(locations.getValue());//перезапускаю ресайклер для ордеров при изменениях в накладной (если поменялось кол-во дней, то и сумма денег у работника изменится)
+    }
 
+    public void updateOrders() {
+        invoiceLeft.setValue(Utils.calculateMoneyLeftByOrdersInt(getOrders().getValue(), invoiceTotal.getValue()));
+        locations.setValue(locations.getValue());
     }
 
     private static final int JUICE_PER_DAY = 250;//норма сока в день, мл
@@ -164,6 +169,8 @@ public class MainViewModel extends ViewModel {
         this.bigKefirCount.setValue(bigKefirCount);
         this.smallKefirCount.setValue(smallKefirCount);
         this.invoiceTotal.setValue(totalPrice);
+
+        invoiceLeft.setValue(Utils.calculateMoneyLeftByOrdersInt(getOrders().getValue(), invoiceTotal.getValue()));
     }
 
 

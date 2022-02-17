@@ -30,4 +30,16 @@ public class Order extends Entity{
     public boolean isChecked() {
         return isChecked;
     }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
 }

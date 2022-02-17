@@ -8,6 +8,7 @@ public class Employee extends Entity{
     private boolean isPresent;//присутствует на работе
     private final boolean[] workingDaysArray;
     private static final int MAX_DAYS_COUNT = 9;
+    private boolean show;
 
     public Employee(String id, String name, String locationId, String days) {
         super(id, name);
@@ -67,6 +68,14 @@ public class Employee extends Entity{
 
     public void setAllDaysToValue(boolean state) {
         Arrays.fill(workingDaysArray, state);
+    }
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
     }
 
 }
