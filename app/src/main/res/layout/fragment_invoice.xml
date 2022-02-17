@@ -7,56 +7,46 @@
 
         <LinearLayout style="@style/vertical">
 
-            <TextView
-                style="@style/h2"
-                android:text="Количество соков и итоговая цена" />
+            <TextView style="@style/h2" android:text="Количество соков и итоговая цена" android:layout_marginBottom="5dp"/>
 
             <LinearLayout style="@style/horizontal">
-                <TextView style="@style/text_small"
-                    android:text="Рабочих дней"/>
-                <TextView style="@style/text_small_orange"
-                    android:id="@+id/working_day_count"
-                    tools:text="5"/>
-            </LinearLayout>
-            <LinearLayout style="@style/horizontal">
-                <TextView style="@style/text_small"
-                    android:text="Соков больших"/>
-                <TextView style="@style/text_small_orange"
-                    android:id="@+id/big_juice_count"
-                    tools:text="5"/>
-            </LinearLayout>
-            <LinearLayout style="@style/horizontal">
-                <TextView style="@style/text_small"
-                    android:text="Соков маленьких"/>
-                <TextView style="@style/text_small_orange"
-                    android:id="@+id/small_juice_count"
-                    tools:text="5"/>
-            </LinearLayout>
-            <LinearLayout style="@style/horizontal">
-                <TextView style="@style/text_small"
-                    android:text="Кефиров больших"/>
-                <TextView style="@style/text_small_orange"
-                    android:id="@+id/big_kefir_count"
-                    tools:text="5"/>
-            </LinearLayout>
-            <LinearLayout style="@style/horizontal">
-                <TextView style="@style/text_small"
-                    android:text="Кефиров маленьких"/>
-                <TextView style="@style/text_small_orange"
-                    android:id="@+id/small_kefir_count"
-                    tools:text="5"/>
-            </LinearLayout>
-            <LinearLayout style="@style/horizontal">
-                <TextView style="@style/text_small"
-                    android:text="Сумма в накладной"/>
-                <TextView style="@style/text_small_orange"
-                    android:id="@+id/invoice_total"
-                    tools:text="100"/>
-            </LinearLayout>
 
+                <LinearLayout style="@style/vertical" android:layout_weight="1">
+                    <LinearLayout style="@style/horizontal">
+                        <TextView style="@style/text_small" android:text="Рабочих дней" />
+                        <TextView android:id="@+id/working_day_count" style="@style/text_small_orange" tools:text="5" />
+                    </LinearLayout>
+
+<!--                    <View style="@style/line" android:layout_marginVertical="5dp"/>-->
+
+                    <LinearLayout style="@style/horizontal">
+                        <TextView style="@style/text_small" android:text="Соков больших" />
+                        <TextView android:id="@+id/big_juice_count" style="@style/text_small_orange" tools:text="5" />
+                    </LinearLayout>
+                    <LinearLayout style="@style/horizontal">
+                        <TextView style="@style/text_small" android:text="Соков маленьких" />
+                        <TextView android:id="@+id/small_juice_count" style="@style/text_small_orange" tools:text="5" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/vertical" android:layout_weight="1">
+                    <LinearLayout style="@style/horizontal">
+                        <TextView style="@style/text_small" android:text="Сумма в накладной" />
+                        <TextView android:id="@+id/invoice_total" style="@style/text_small_orange" tools:text="100" />
+                    </LinearLayout>
+
+<!--                    <View style="@style/line" android:layout_marginVertical="5dp"/>-->
+
+                    <LinearLayout style="@style/horizontal">
+                        <TextView style="@style/text_small" android:text="Кефиров больших" />
+                        <TextView android:id="@+id/big_kefir_count" style="@style/text_small_orange" tools:text="5" />
+                    </LinearLayout>
+                    <LinearLayout style="@style/horizontal">
+                        <TextView style="@style/text_small" android:text="Кефиров маленьких" />
+                        <TextView android:id="@+id/small_kefir_count" style="@style/text_small_orange" tools:text="5" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
-
     </LinearLayout>
-
 </LinearLayout>

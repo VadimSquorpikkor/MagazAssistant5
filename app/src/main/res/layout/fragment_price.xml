@@ -6,42 +6,33 @@
 
         <LinearLayout style="@style/vertical">
 
-        <TextView
-            style="@style/h2"
-            android:text="Цены на соки" />
+            <TextView style="@style/h2" android:text="Цены на соки" android:layout_marginBottom="5dp"/>
 
             <LinearLayout style="@style/horizontal">
-                <TextView style="@style/text_small"
-                    android:text="Сок большой"/>
-                <TextView style="@style/text_small_orange"
-                    android:id="@+id/juice_big_price"
-                    android:text="3.5"/>
-            </LinearLayout>
-            <LinearLayout style="@style/horizontal">
-                <TextView style="@style/text_small"
-                    android:text="Сок маленький"/>
-                <TextView style="@style/text_small_orange"
-                    android:id="@+id/juice_small_price"
-                    android:text="3.5"/>
-            </LinearLayout>
-            <LinearLayout style="@style/horizontal">
-                <TextView style="@style/text_small"
-                    android:text="Кефир большой"/>
-                <TextView style="@style/text_small_orange"
-                    android:id="@+id/kefir_big_price"
-                    android:text="3.5"/>
-            </LinearLayout>
-            <LinearLayout style="@style/horizontal">
-                <TextView style="@style/text_small"
-                    android:text="Кефир маленький"/>
-                <TextView style="@style/text_small_orange"
-                    android:id="@+id/kefir_small_price"
-                    android:text="3.5"/>
-            </LinearLayout>
 
+                <LinearLayout style="@style/vertical" android:layout_weight="1">
+                    <LinearLayout style="@style/horizontal">
+                        <TextView style="@style/text_small" android:text="Сок большой" />
+                        <TextView android:id="@+id/juice_big_price" style="@style/text_small_orange" android:text="3.5" />
+                    </LinearLayout>
+                    <LinearLayout style="@style/horizontal">
+                        <TextView style="@style/text_small" android:text="Сок маленький" />
+                        <TextView android:id="@+id/juice_small_price" style="@style/text_small_orange" android:text="3.5" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/vertical" android:layout_weight="1">
+                    <LinearLayout style="@style/horizontal">
+                        <TextView style="@style/text_small" android:text="Кефир большой" />
+                        <TextView android:id="@+id/kefir_big_price" style="@style/text_small_orange" android:text="3.5" />
+                    </LinearLayout>
+                    <LinearLayout style="@style/horizontal">
+                        <TextView style="@style/text_small" android:text="Кефир маленький" />
+                        <TextView android:id="@+id/kefir_small_price" style="@style/text_small_orange" android:text="3.5" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
-
     </LinearLayout>
-
 </LinearLayout>
