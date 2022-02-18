@@ -44,6 +44,7 @@ public class Employee extends Entity{
         return count;
     }
 
+    //TODO DEPRECATED вместо isPresent использовать if(getDays==0)
     public boolean isPresent() {
         return isPresent;
     }

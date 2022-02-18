@@ -1,5 +1,6 @@
 package com.squorpikkor.magazassistant5.ui.main.utils;
 
+import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Order;
 
 import java.util.ArrayList;
@@ -43,4 +44,22 @@ public class Utils {
       return arr[0].equals(arr[1]);
    }
 
+   /**Все ордера у только работников хотя бы с одним рабочим днем. Если у работника есть завершенный
+    * ордер (отмечен как купленный), то если этому работнику убрать все рабочие дни (человек не
+    * работал), то теперь сумма этих ордеров не будет учитываться при расчете общей суммы ордеров*/
+   public static ArrayList<Order> presentOrders(ArrayList<Order> allOrders, ArrayList<Employee> allEmployee, int daysInWeek) {
+      ArrayList<Order> orders = new ArrayList<>();
+      for (Order order:allOrders) {
+         Employee employee = getEmployeeById(order.getEmployeeId(), allEmployee);
+         if (employee!=null&&employee.getDays(daysInWeek)!=0) orders.add(order);
+      }
+      return orders;
+   }
+
+   public static Employee getEmployeeById(String id, ArrayList<Employee> employees) {
+      for (Employee employee:employees) {
+         if (employee.getId().equals(id)) return employee;
+      }
+      return null;
+   }
 }

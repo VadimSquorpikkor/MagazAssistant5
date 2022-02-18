@@ -175,8 +175,15 @@ public class MainViewModel extends ViewModel {
         this.invoiceTotal.setValue(totalPrice);
         this.employeeDayCount.setValue(totalDaysForAllEmployees);
 
-        invoiceLeft.setValue(Utils.calculateMoneyLeftByOrdersInt(getOrders().getValue(), invoiceTotal.getValue()));
+        //presentOrders -- это только те заказы, у которых работник проработал хотябы один день
+        // (если использовать calculateMoneyLeftByOrdersInt просто для всех ордеров, то может так
+        // получится, что ордер отмечен как куплен, а работник вообще не работает, при этом сумма
+        // ордера будет учитываться при расчете оставшийся суммы денег)
+        ArrayList<Order> presentOrders = Utils.presentOrders(orders.getValue(), employees.getValue(), workingDays.getValue());
+        invoiceLeft.setValue(Utils.calculateMoneyLeftByOrdersInt(presentOrders, invoiceTotal.getValue()));
+//        invoiceLeft.setValue(Utils.calculateMoneyLeftByOrdersInt(getOrders().getValue(), invoiceTotal.getValue()));
     }
+
 
 
 
@@ -186,6 +193,18 @@ public class MainViewModel extends ViewModel {
         if (employees.getValue()==null) return list;
         for (Employee employee:employees.getValue()) {
             if (employee.getLocationId().equals(location.getId())) {
+                list.add(employee);
+            }
+        }
+        return list;
+    }
+
+    /**Возвращает всех работников выбранной локации у которых есть хоть один рабочий день*/
+    public ArrayList<Employee> getPresentEmployeesByLocation(Location location) {
+        ArrayList<Employee> list = new ArrayList<>();
+        if (employees.getValue()==null) return list;
+        for (Employee employee:employees.getValue()) {
+            if (employee.getLocationId().equals(location.getId())&&employee.getDays(getWorkingDays().getValue())!=0) {
                 list.add(employee);
             }
         }
