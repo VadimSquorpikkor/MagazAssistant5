@@ -27,10 +27,12 @@ public class OrdersHead extends Fragment {
       TextView invoiceTotal = view.findViewById(R.id.invoice_total);
       TextView invoiceLeft = view.findViewById(R.id.invoice_left);
       TextView moneyPerDay = view.findViewById(R.id.money_per_day);
+      TextView employeeDay = view.findViewById(R.id.employee_day);
 
       mViewModel.getInvoiceTotal().observe(getViewLifecycleOwner(), total -> invoiceTotal.setText(Utils.integerToMoneyString(total)));
       mViewModel.getInvoiceLeft().observe(getViewLifecycleOwner(), left -> invoiceLeft.setText(Utils.integerToMoneyString(left)));
-      mViewModel.getMoneyForEmployeePerDay().observe(getViewLifecycleOwner(), day -> moneyPerDay.setText(Utils.integerToMoneyString(day)));
+      mViewModel.getMoneyForEmployeePerDay().observe(getViewLifecycleOwner(), day -> moneyPerDay.setText(Utils.integerToMoneyString(day.intValue())));
+      mViewModel.getEmployeeDayCount().observe(getViewLifecycleOwner(), employee -> employeeDay.setText(String.valueOf(employee)));
 
       return view;
    }

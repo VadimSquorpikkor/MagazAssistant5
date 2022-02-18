@@ -35,10 +35,10 @@ public class MainViewModel extends ViewModel {
     private final MutableLiveData<Integer> smallKefirCount;
     private final MutableLiveData<Integer> invoiceTotal;
     private final MutableLiveData<Integer> invoiceLeft;
-    private final MutableLiveData<Integer> moneyForEmployeePerDay;//сумма на человекодень
+    private final MutableLiveData<Double> moneyForEmployeePerDay;//сумма на человекодень
 
     public MainViewModel() {
-        moneyForEmployeePerDay = new MutableLiveData<>(0);
+        moneyForEmployeePerDay = new MutableLiveData<>(0.0);
         locations = new MutableLiveData<>();
         employees = new MutableLiveData<>();
         orders = new MutableLiveData<>();
@@ -107,8 +107,12 @@ public class MainViewModel extends ViewModel {
     /**На какую сумму купить товара пользоватедю. Считается, как сумма указанная в накладной
      * деленная на количество всех дней у всех пользователей умноженная на количество дней,
      * которые выбранный пользователь отработал*/
-    public MutableLiveData<Integer> getMoneyForEmployeePerDay() {
+    public MutableLiveData<Double> getMoneyForEmployeePerDay() {
         return moneyForEmployeePerDay;
+    }
+
+    public MutableLiveData<Integer> getEmployeeDayCount() {
+        return employeeDayCount;
     }
 
     public void update() {
@@ -157,7 +161,7 @@ public class MainViewModel extends ViewModel {
                 bigKefirCount*kefirPrice.getValue()+
                 smallKefirCount*kefirSmallPrice.getValue();
         Log.e(TAG, "calculateInvoice: JB-"+bigJuiceCount+" JS-"+smallJuiceCount+" KB-"+bigKefirCount+" KS-"+smallKefirCount);
-        if (totalDaysForAllEmployees!=0) moneyForEmployeePerDay.setValue(totalPrice/totalDaysForAllEmployees);
+        if (totalDaysForAllEmployees!=0) moneyForEmployeePerDay.setValue((double)totalPrice/(double)totalDaysForAllEmployees);
 
         //moneyForEmployeePerDay = JUICE_PER_DAY*juicePrice.getValue()+KEFIR_PER_DAY*kefirPrice.getValue();
         //это не совсем так: маленький сок не стоит четверть цены от большого, а значит при объеме
@@ -169,6 +173,7 @@ public class MainViewModel extends ViewModel {
         this.bigKefirCount.setValue(bigKefirCount);
         this.smallKefirCount.setValue(smallKefirCount);
         this.invoiceTotal.setValue(totalPrice);
+        this.employeeDayCount.setValue(totalDaysForAllEmployees);
 
         invoiceLeft.setValue(Utils.calculateMoneyLeftByOrdersInt(getOrders().getValue(), invoiceTotal.getValue()));
     }
@@ -198,7 +203,7 @@ public class MainViewModel extends ViewModel {
 
     /**На какую сумму работник может взять продуктов*/
     public int getMoneyLimit(Employee employee) {
-        return employee.getDays(workingDays.getValue())*moneyForEmployeePerDay.getValue();
+        return (int)(employee.getDays(workingDays.getValue())*moneyForEmployeePerDay.getValue());
     }
 
     //todo идея: реешние проблемы отображения обычного работника и объединенного:
