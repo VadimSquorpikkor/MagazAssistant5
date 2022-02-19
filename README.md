@@ -3,6 +3,6 @@
 
 [Список версий](./VERSION.md)
 
-[Скачать .apk последней версии - 1.15](./MagazAssistant5-v1.15.apk)
+[Скачать .apk последней версии - 1.16](./MagazAssistant5-v1.16.apk)
 
 ![alt tag](bg.png)

@@ -11,11 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
+import com.squorpikkor.magazassistant5.ui.main.dialog.OrderDialog;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Order;
 import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
@@ -30,10 +32,12 @@ import java.util.ArrayList;
  */
 public class OrderEmployeeAdapter extends RecyclerView.Adapter<OrderEmployeeAdapter.AdapterViewHolder>{
 
+    private final FragmentManager manager;
     private final MainViewModel mainViewModel;
 
-    public OrderEmployeeAdapter(MainViewModel mainViewModel) {
+    public OrderEmployeeAdapter(MainViewModel mainViewModel, FragmentManager manager) {
         this.mainViewModel = mainViewModel;
+        this.manager = manager;
     }
 
     private ArrayList<Employee> list;
@@ -77,7 +81,15 @@ public class OrderEmployeeAdapter extends RecyclerView.Adapter<OrderEmployeeAdap
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerView.setAdapter(adapter);
             adapter.setList(orders);
-        } else recyclerView.setVisibility(View.GONE);
+            adapter.setOnItemClickListener(order -> new OrderDialog(order, employee).show(manager, null));
+            if (orders.size()==0) holder.addOrder.setVisibility(View.VISIBLE);
+            else holder.addOrder.setVisibility(View.GONE);
+        } else {
+            recyclerView.setVisibility(View.GONE);
+            holder.addOrder.setVisibility(View.GONE);
+        }
+
+
     }
 
     @Override
@@ -92,6 +104,7 @@ public class OrderEmployeeAdapter extends RecyclerView.Adapter<OrderEmployeeAdap
         private final TextView textState;
         private final RecyclerView recyclerView;
         private final ImageView isChecked;
+        private final ImageView addOrder;
 
         @SuppressLint("NotifyDataSetChanged")
         public AdapterViewHolder(@NonNull View itemView) {
@@ -101,7 +114,12 @@ public class OrderEmployeeAdapter extends RecyclerView.Adapter<OrderEmployeeAdap
             textState = itemView.findViewById(R.id.text_state);
             recyclerView = itemView.findViewById(R.id.recycler);
             isChecked = itemView.findViewById(R.id.is_checked);
+            addOrder = itemView.findViewById(R.id.add_order);
 
+            addOrder.setOnClickListener(v -> {
+                Log.e("TAG", "onClick: " + list.get(getAdapterPosition()).getId());
+                new OrderDialog(list.get(getAdapterPosition())).show(manager, null);
+            });
 
             itemView.setOnClickListener(view -> {
                 Employee employee = list.get(getAdapterPosition());

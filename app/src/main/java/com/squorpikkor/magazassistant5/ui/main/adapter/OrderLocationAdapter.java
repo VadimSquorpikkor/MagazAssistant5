@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,11 +24,13 @@ import java.util.ArrayList;
 
 public class OrderLocationAdapter extends RecyclerView.Adapter<OrderLocationAdapter.AdapterViewHolder> {
 
+    private final FragmentManager manager;
     private final MainViewModel mainViewModel;
     private int workingDays;
 
-    public OrderLocationAdapter(MainViewModel mainViewModel) {
+    public OrderLocationAdapter(MainViewModel mainViewModel, FragmentManager manager) {
         this.mainViewModel = mainViewModel;
+        this.manager = manager;
     }
 
     private OnItemClickListener onItemClickListener;
@@ -76,7 +79,7 @@ public class OrderLocationAdapter extends RecyclerView.Adapter<OrderLocationAdap
         }
 
         RecyclerView recyclerView = holder.recyclerView;
-        OrderEmployeeAdapter adapter = new OrderEmployeeAdapter(mainViewModel);
+        OrderEmployeeAdapter adapter = new OrderEmployeeAdapter(mainViewModel, manager);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         adapter.setList(allEmployees);

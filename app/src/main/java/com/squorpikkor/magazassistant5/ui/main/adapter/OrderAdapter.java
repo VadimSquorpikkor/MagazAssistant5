@@ -14,12 +14,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
+import com.squorpikkor.magazassistant5.ui.main.entities.Location;
 import com.squorpikkor.magazassistant5.ui.main.entities.Order;
 import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
 
 import java.util.ArrayList;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AdapterViewHolder>{
+
+   private OnItemClickListener onItemClickListener;
+
+   public interface OnItemClickListener {
+      void onItemClick(Order order);
+   }
+
+   public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+      this.onItemClickListener = onItemClickListener;
+   }
 
    private ArrayList<Order> list;
    private final MainViewModel mainViewModel;
@@ -76,6 +87,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AdapterViewH
             Order order = list.get(getAdapterPosition());
             order.setChecked(checkBox.isChecked());
             mainViewModel.updateOrders();
+         });
+
+         itemView.setOnClickListener(view -> {
+            if (onItemClickListener != null)
+               onItemClickListener.onItemClick(list.get(getAdapterPosition()));
          });
 
       }

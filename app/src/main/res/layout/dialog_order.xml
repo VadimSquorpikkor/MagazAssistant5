@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView style="@style/text_medium"
+        android:id="@+id/employee_name"
+        tools:text="Employee"/>
+
+
+    <EditText
+        android:id="@+id/edit_name"
+        style="@style/dialogLinearEdit"
+        android:background="@drawable/edit_text_field"
+        android:inputType="textPersonName"
+        tools:text="12345"
+        android:minWidth="200dp"/>
+
+    <EditText
+        android:id="@+id/edit_price"
+        style="@style/dialogLinearEdit"
+        android:background="@drawable/edit_text_field"
+        android:inputType="numberDecimal"
+        tools:text="2.23"
+        android:minWidth="100dp"/>
+
+    <EditText
+        android:id="@+id/edit_count"
+        style="@style/dialogLinearEdit"
+        android:background="@drawable/edit_text_field"
+        android:inputType="number"
+        tools:text="2"
+        android:minWidth="50dp"/>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_margin="8dp"
+        android:background="@drawable/my_button_shape_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:text="Сохранить"/>
+
+</LinearLayout>

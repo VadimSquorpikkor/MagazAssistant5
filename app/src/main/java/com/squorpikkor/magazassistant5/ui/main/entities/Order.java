@@ -15,6 +15,15 @@ public class Order extends Entity{
         this.isChecked = isChecked;
     }
 
+    //используется в OrderDialog в варианте когда создается новый ордер
+    public Order(String id, String employeeId) {
+        super(id, "");
+        this.price = 0;
+        this.count = 0;
+        this.employeeId = employeeId;
+        this.isChecked = false;
+    }
+
     public String getEmployeeId() {
         return employeeId;
     }
