@@ -225,6 +225,15 @@ public class MainViewModel extends ViewModel {
         return (int)(employee.getDays(workingDays.getValue())*moneyForEmployeePerDay.getValue());
     }
 
+    public void addNewOrder(Order order) {
+        getOrders().getValue().add(order);
+        updateOrders();
+    }
+
+    public void deleteOrder(Order order) {
+
+    }
+
     //todo идея: реешние проблемы отображения обычного работника и объединенного:
     // можно сделать UnitedEmployee extends Employee (который будет собирать в себе несколько
     // работников) и из viewModel передавать каждой локации (в ресайклер) и вариант объединенного и

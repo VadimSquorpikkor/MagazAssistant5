@@ -23,13 +23,22 @@ import java.util.ArrayList;
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AdapterViewHolder>{
 
    private OnItemClickListener onItemClickListener;
+   private OnItemLongClickListener onItemLongClickListener;
 
    public interface OnItemClickListener {
       void onItemClick(Order order);
    }
 
+   public interface OnItemLongClickListener {
+      void onItemLongClick(Order order);
+   }
+
    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
       this.onItemClickListener = onItemClickListener;
+   }
+
+   public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+      this.onItemLongClickListener = onItemLongClickListener;
    }
 
    private ArrayList<Order> list;
@@ -92,6 +101,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AdapterViewH
          itemView.setOnClickListener(view -> {
             if (onItemClickListener != null)
                onItemClickListener.onItemClick(list.get(getAdapterPosition()));
+         });
+
+         itemView.setOnLongClickListener(view -> {
+            if (onItemLongClickListener != null)
+               onItemLongClickListener.onItemLongClick(list.get(getAdapterPosition()));
+            return false;
          });
 
       }

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
+import com.squorpikkor.magazassistant5.ui.main.dialog.OrderControlDialog;
 import com.squorpikkor.magazassistant5.ui.main.dialog.OrderDialog;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Order;
@@ -82,6 +83,7 @@ public class OrderEmployeeAdapter extends RecyclerView.Adapter<OrderEmployeeAdap
             recyclerView.setAdapter(adapter);
             adapter.setList(orders);
             adapter.setOnItemClickListener(order -> new OrderDialog(order, employee).show(manager, null));
+            adapter.setOnItemLongClickListener(order -> new OrderControlDialog(order, employee, manager).show(manager, null));
             if (orders.size()==0) holder.addOrder.setVisibility(View.VISIBLE);
             else holder.addOrder.setVisibility(View.GONE);
         } else {

@@ -46,7 +46,26 @@ public class OrderDialog extends BaseDialog {
         price.setText(""+order.getPrice());
         count.setText(""+order.getCount());
 
+        view.findViewById(R.id.update).setOnClickListener(v -> update());
+        view.findViewById(R.id.add).setOnClickListener(v -> add());
+
         return dialog;
+    }
+
+    private void setData() {
+        order.setName(name.getText().toString());
+        order.setPrice(Integer.parseInt(price.getText().toString()));
+        order.setCount(Integer.parseInt(count.getText().toString()));
+    }
+
+    private void add() {
+        setData();
+        mViewModel.addNewOrder(order);
+        dismiss();
+    }
+
+    private void update() {
+
     }
 
 }

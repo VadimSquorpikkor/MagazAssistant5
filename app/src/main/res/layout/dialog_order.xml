@@ -1,44 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/vertical"
+    android:background="@color/colorDarkGray">
 
-    <TextView style="@style/text_medium"
+    <TextView
         android:id="@+id/employee_name"
-        tools:text="Employee"/>
-
+        style="@style/text_giant_orange"
+        tools:text="Employee" />
 
     <EditText
         android:id="@+id/edit_name"
         style="@style/dialogLinearEdit"
         android:background="@drawable/edit_text_field"
         android:inputType="textPersonName"
-        tools:text="12345"
-        android:minWidth="200dp"/>
+        android:minWidth="200dp"
+        tools:text="12345" />
+
 
     <EditText
         android:id="@+id/edit_price"
         style="@style/dialogLinearEdit"
         android:background="@drawable/edit_text_field"
         android:inputType="numberDecimal"
-        tools:text="2.23"
-        android:minWidth="100dp"/>
+        android:minWidth="100dp"
+        tools:text="2.23" />
 
     <EditText
         android:id="@+id/edit_count"
         style="@style/dialogLinearEdit"
         android:background="@drawable/edit_text_field"
         android:inputType="number"
-        tools:text="2"
-        android:minWidth="50dp"/>
+        android:minWidth="50dp"
+        tools:text="2" />
 
-    <Button
-        android:id="@+id/save"
-        android:layout_margin="8dp"
-        android:background="@drawable/my_button_shape_selector"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="10dp"
-        android:text="Сохранить"/>
+    <LinearLayout style="@style/horizontal">
+
+        <TextView
+            android:id="@+id/add"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/my_button_shape_selector"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Добавить" />
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/my_button_shape_selector"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Обновить" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

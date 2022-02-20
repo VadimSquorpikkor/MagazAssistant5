@@ -3,7 +3,7 @@ package com.squorpikkor.magazassistant5.ui.main.entities;
 class Entity {
 
    private final String id;
-   private final String name;
+   private String name;
 
    public Entity(String id, String name) {
       this.id = id;
@@ -18,4 +18,7 @@ class Entity {
       return name;
    }
 
+   public void setName(String name) {
+      this.name = name;
+   }
 }

@@ -51,4 +51,6 @@ public class Order extends Entity{
     public void setChecked(boolean checked) {
         isChecked = checked;
     }
+
+
 }
