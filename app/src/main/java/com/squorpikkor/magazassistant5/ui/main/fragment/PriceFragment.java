@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
+import com.squorpikkor.magazassistant5.ui.main.dialog.SetPriceDialog;
 import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
 
 /**Фрагмент для отображения цен на сок и кефир*/
@@ -35,6 +36,8 @@ public class PriceFragment extends Fragment{
       mViewModel.getJuiceSmallPrice().observe(getViewLifecycleOwner(), jsp -> juiceSmallPrice.setText(Utils.integerToMoneyString(jsp)));
       mViewModel.getKefirPrice().observe(getViewLifecycleOwner(), kbp -> kefirBigPrice.setText(Utils.integerToMoneyString(kbp)));
       mViewModel.getKefirSmallPrice().observe(getViewLifecycleOwner(), ksp -> kefirSmallPrice.setText(Utils.integerToMoneyString(ksp)));
+
+      view.findViewById(R.id.set_price).setOnClickListener(v -> new SetPriceDialog().show(getParentFragmentManager(), null));
 
       return view;
    }

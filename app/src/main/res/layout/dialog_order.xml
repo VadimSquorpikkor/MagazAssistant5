@@ -11,8 +11,7 @@
 
     <EditText
         android:id="@+id/edit_name"
-        style="@style/dialogLinearEdit"
-        android:background="@drawable/edit_text_field"
+        style="@style/niceEdit"
         android:inputType="textPersonName"
         android:minWidth="200dp"
         tools:text="12345" />
@@ -20,16 +19,14 @@
 
     <EditText
         android:id="@+id/edit_price"
-        style="@style/dialogLinearEdit"
-        android:background="@drawable/edit_text_field"
+        style="@style/niceEdit"
         android:inputType="numberDecimal"
         android:minWidth="100dp"
         tools:text="2.23" />
 
     <EditText
         android:id="@+id/edit_count"
-        style="@style/dialogLinearEdit"
-        android:background="@drawable/edit_text_field"
+        style="@style/niceEdit"
         android:inputType="number"
         android:minWidth="50dp"
         tools:text="2" />

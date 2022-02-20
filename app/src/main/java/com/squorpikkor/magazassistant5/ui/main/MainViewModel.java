@@ -234,6 +234,10 @@ public class MainViewModel extends ViewModel {
 
     }
 
+    public void saveNewPrices(int bigJ, int smlJ, int bigK, int smlK) {
+
+    }
+
     //todo идея: реешние проблемы отображения обычного работника и объединенного:
     // можно сделать UnitedEmployee extends Employee (который будет собирать в себе несколько
     // работников) и из viewModel передавать каждой локации (в ресайклер) и вариант объединенного и

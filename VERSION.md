@@ -1,5 +1,7 @@
 # MagazAssistant5
 
+* <b>1.18 - 20/02/21</b>
+1. SetPriceDialog
 * <b>1.17 - 20/02/21</b>
 1. OrderControlDialog, открывается при longClick. Можно или удалить выбранный ордер или добавить новый
 * <b>1.16 - 19/02/21</b>

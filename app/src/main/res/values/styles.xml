@@ -97,13 +97,16 @@
     </style>
 
     <!--Красивый editText-->
-    <style name="dialogLinearEdit">
+    <style name="niceEdit">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_margin">7dp</item>
         <item name="android:gravity">center</item>
         <item name="elevation">6dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:background">@drawable/edit_text_field</item>
     </style>
 
 </resources>
