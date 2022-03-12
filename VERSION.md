@@ -1,5 +1,7 @@
 # MagazAssistant5
 
+* <b>1.19 - 12/03/21</b>
+1. Нахер Room, стал делать через SQLite
 * <b>1.18 - 20/02/21</b>
 1. SetPriceDialog
 * <b>1.17 - 20/02/21</b>

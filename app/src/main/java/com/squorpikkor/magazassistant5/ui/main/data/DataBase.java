@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  * */
 
-class DataBase {
+class DataBase implements Data{
 
    ArrayList<Location> locations;
    ArrayList<Employee> employees;
@@ -53,40 +53,49 @@ class DataBase {
    // (0, 1, 2)->(0, 2) size==2, но последний элемент уже с таким id
 
 
+   @Override
    public void saveEmployee(Employee employee) {
 
    }
 
+   @Override
    public void saveLocation(Location location) {
 
    }
 
+   @Override
    public void saveOrder(Order order) {
 
    }
 
+   @Override
    public void getAllLocations(MutableLiveData<ArrayList<Location>> locations) {
       locations.setValue(this.locations);
    }
 
+   @Override
    public void getAllEmployees(MutableLiveData<ArrayList<Employee>> employees) {
       employees.setValue(this.employees);
    }
 
+   @Override
    public void getAllOrders(MutableLiveData<ArrayList<Order>> orders) {
       orders.setValue(this.orders);
    }
 
+   @Override
    public ArrayList<Employee> getEmployeesByLocation(Location location) {
       String id = location.getId();
       return null;
    }
 
+   @Override
    public ArrayList<Order> getOrderByEmployee(Employee employee) {
       String name = employee.getName();
       return null;
    }
 
+   @Override
    public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice) {
       juicePrice.setValue(349);
       juiceSmallPrice.setValue(161);

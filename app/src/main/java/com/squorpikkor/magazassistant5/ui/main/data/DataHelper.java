@@ -10,18 +10,31 @@ import java.util.ArrayList;
 
 public class DataHelper {
 
-   private final DataBase db;
+   private final Data db;
    private final MutableLiveData<ArrayList<Location>> locations;
    private final MutableLiveData<ArrayList<Employee>> employees;
    private final MutableLiveData<ArrayList<Order>> orders;
+   private final MutableLiveData<Integer> juicePrice;
+   private final MutableLiveData<Integer> juiceSmallPrice;
+   private final MutableLiveData<Integer> kefirPrice;
+   private final MutableLiveData<Integer> kefirSmallPrice;
 
    public DataHelper(MutableLiveData<ArrayList<Location>> locations,
                      MutableLiveData<ArrayList<Employee>> employees,
-                     MutableLiveData<ArrayList<Order>> orders) {
+                     MutableLiveData<ArrayList<Order>> orders,
+                     MutableLiveData<Integer> juicePrice,
+                     MutableLiveData<Integer> juiceSmallPrice,
+                     MutableLiveData<Integer> kefirPrice,
+                     MutableLiveData<Integer> kefirSmallPrice
+   ) {
       db = new DataBase();
       this.locations = locations;
       this.employees = employees;
       this.orders = orders;
+      this.juicePrice = juicePrice;
+      this.juiceSmallPrice = juiceSmallPrice;
+      this.kefirPrice = kefirPrice;
+      this.kefirSmallPrice = kefirSmallPrice;
    }
 
    public void saveLocation(Location location) {
@@ -48,7 +61,7 @@ public class DataHelper {
       db.saveOrder(order);
    }
 
-   public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice) {
+   public void loadPrices() {
       db.loadPrices(juicePrice, juiceSmallPrice, kefirPrice, kefirSmallPrice);
    }
 }
