@@ -54,17 +54,32 @@ class DataBase implements Data{
 
 
    @Override
-   public void saveEmployee(Employee employee) {
+   public void updateEmployee(Employee employee) {
 
    }
 
    @Override
-   public void saveLocation(Location location) {
+   public void addEmployee(Employee employee) {
 
    }
 
    @Override
-   public void saveOrder(Order order) {
+   public void updateLocation(Location location) {
+
+   }
+
+   @Override
+   public void addLocation(Location location) {
+
+   }
+
+   @Override
+   public void updateOrder(Order order) {
+
+   }
+
+   @Override
+   public void addOrder(Order order) {
 
    }
 
@@ -101,5 +116,10 @@ class DataBase implements Data{
       juiceSmallPrice.setValue(161);
       kefirPrice.setValue(106);
       kefirSmallPrice.setValue(89);
+   }
+
+   @Override
+   public void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice) {
+
    }
 }

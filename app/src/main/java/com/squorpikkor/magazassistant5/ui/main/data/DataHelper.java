@@ -38,7 +38,7 @@ public class DataHelper {
    }
 
    public void saveLocation(Location location) {
-      db.saveLocation(location);
+      db.updateLocation(location);
    }
 
    public void getAllLocations() {
@@ -46,7 +46,7 @@ public class DataHelper {
    }
 
    public void saveEmployee(Employee employee) {
-      db.saveEmployee(employee);
+      db.updateEmployee(employee);
    }
 
    public void getAllEmployees() {
@@ -58,7 +58,7 @@ public class DataHelper {
    }
 
    public void saveOrder(Order order) {
-      db.saveOrder(order);
+      db.updateOrder(order);
    }
 
    public void loadPrices() {

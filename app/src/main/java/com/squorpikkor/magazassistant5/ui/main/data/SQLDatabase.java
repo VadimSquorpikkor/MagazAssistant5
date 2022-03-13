@@ -2,6 +2,7 @@ package com.squorpikkor.magazassistant5.ui.main.data;
 
 import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -50,7 +51,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    public void onCreate(SQLiteDatabase db) {
 
       //String id, String name, boolean isUnited
-      db.execSQL("CREATE TABLE " + TABLE_LOCATIONS + "("
+      db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_LOCATIONS + "("
               + COLUMN_LOCATION_ID + " INTEGER PRIMARY KEY,"
               + COLUMN_LOCATION_NAME + " TEXT, "
               + COLUMN_LOCATION_ISUNITED + " INTEGER"
@@ -59,7 +60,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       Log.e(TAG, "onCreate: " + "table locations created");
 
       //String id, String name, String locationId, String days, boolean isPresent
-      db.execSQL("CREATE TABLE " + TABLE_EMPLOYEES + "("
+      db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_EMPLOYEES + "("
               + COLUMN_EMPLOYEE_ID + " INTEGER PRIMARY KEY,"
               + COLUMN_EMPLOYEE_NAME + " TEXT, "
               + COLUMN_EMPLOYEE_DAYS + " TEXT,"
@@ -70,7 +71,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       Log.e(TAG, "onCreate: " + "table employees created");
 
       //String id, String name, int price, int count, String employeeId, boolean isChecked
-      db.execSQL("CREATE TABLE " + TABLE_ORDERS + "("
+      db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_ORDERS + "("
               + COLUMN_ORDER_ID + " INTEGER PRIMARY KEY,"
               + COLUMN_ORDER_NAME + " TEXT,"
               + COLUMN_ORDER_PRICE + " INTEGER,"
@@ -96,19 +97,71 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
 //--------------------------------------------------------------------------------------------------
 
+   private Cursor cursor;
+   private void setCursor(String query) {
+      SQLiteDatabase db = this.getWritableDatabase();
+      cursor = db.rawQuery(query, null);
+   }
+
+   private int cursorGetInt(int col) {
+      return Integer.parseInt(cursor.getString(col));
+   }
+
+   private String cursorGetString(int col) {
+      return cursor.getString(col);
+   }
+
+   private boolean cursorGetBoolean(int col){
+      return cursor.getString(col).equals("1");
+   }
+
 
    @Override
-   public void saveEmployee(Employee employee) {
+   public void updateEmployee(Employee employee) {
 
    }
 
    @Override
-   public void saveLocation(Location location) {
+   public void addEmployee(Employee employee) {
 
    }
 
    @Override
-   public void saveOrder(Order order) {
+   public void getAllEmployees(MutableLiveData<ArrayList<Employee>> employees) {
+      ArrayList<Employee> list = new ArrayList<>();
+      setCursor("SELECT * FROM " + TABLE_EMPLOYEES);
+      if (cursor.moveToFirst()) {
+         do {
+            int id = cursorGetInt(0);
+            String name = cursorGetString(1);
+            String days = cursorGetString(2);
+            boolean isPresent = cursorGetBoolean(3);
+            int location = cursorGetInt(4);
+            //Employee employee = new Employee(id, name, days, isPresent, location);
+            //list.add(employee);
+         } while (cursor.moveToNext());
+      }
+      cursor.close();
+      employees.setValue(list);
+   }
+
+   @Override
+   public void updateLocation(Location location) {
+
+   }
+
+   @Override
+   public void addLocation(Location location) {
+
+   }
+
+   @Override
+   public void updateOrder(Order order) {
+
+   }
+
+   @Override
+   public void addOrder(Order order) {
 
    }
 
@@ -117,10 +170,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
    }
 
-   @Override
-   public void getAllEmployees(MutableLiveData<ArrayList<Employee>> employees) {
 
-   }
 
    @Override
    public void getAllOrders(MutableLiveData<ArrayList<Order>> orders) {
@@ -139,6 +189,11 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
    @Override
    public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice) {
+
+   }
+
+   @Override
+   public void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice) {
 
    }
 

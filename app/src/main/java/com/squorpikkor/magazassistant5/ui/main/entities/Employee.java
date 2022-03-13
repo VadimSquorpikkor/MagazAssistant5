@@ -33,6 +33,10 @@ public class Employee extends Entity{
         Arrays.fill(workingDaysArray, true);
     }
 
+//    public Employee(int id, String name, String days, boolean isPresent, int location) {
+//        super(id, name, days, isPresent, location);
+//    }
+
     public String getLocationId() {
         return locationId;
     }

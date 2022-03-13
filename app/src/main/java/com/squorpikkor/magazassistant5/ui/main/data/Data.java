@@ -10,11 +10,17 @@ import java.util.ArrayList;
 
 interface Data {
 
-    public void saveEmployee(Employee employee);
+    public void updateEmployee(Employee employee);
 
-    public void saveLocation(Location location);
+    public void addEmployee(Employee employee);
 
-    public void saveOrder(Order order);
+    public void updateLocation(Location location);
+
+    public void addLocation(Location location);
+
+    public void updateOrder(Order order);
+
+    public void addOrder(Order order);
 
     public void getAllLocations(MutableLiveData<ArrayList<Location>> locations);
 
@@ -27,5 +33,7 @@ interface Data {
     public ArrayList<Order> getOrderByEmployee(Employee employee);
 
     public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice);
+
+    public void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice);
 
 }
