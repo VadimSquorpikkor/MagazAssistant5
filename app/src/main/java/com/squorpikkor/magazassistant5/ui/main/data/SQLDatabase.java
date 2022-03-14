@@ -125,14 +125,12 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    @Override
    public void updateEmployee(Employee employee) {
       SQLiteDatabase db = this.getWritableDatabase();
-
       ContentValues values = new ContentValues();
       values.put(COLUMN_EMPLOYEE_ID       , employee.getId());
       values.put(COLUMN_EMPLOYEE_NAME     , employee.getName());
       values.put(COLUMN_EMPLOYEE_DAYS     , employee.getWorkingDaysArray());
       values.put(COLUMN_EMPLOYEE_ISPRESENT, employee.isPresent()?1:0);
       values.put(COLUMN_EMPLOYEE_LOCATION , employee.getLocationId());
-
       //update возвращает int, можно отслеживать удалось записать или нет. Пока использую void
       db.update(TABLE_EMPLOYEES, values, COLUMN_EMPLOYEE_ID + " = ?",
               new String[]{String.valueOf(employee.getId())});
@@ -140,7 +138,15 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
    @Override
    public void addEmployee(Employee employee) {
-
+      SQLiteDatabase db = this.getWritableDatabase();
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_EMPLOYEE_ID       , employee.getId());
+      values.put(COLUMN_EMPLOYEE_NAME     , employee.getName());
+      values.put(COLUMN_EMPLOYEE_DAYS     , employee.getWorkingDaysArray());
+      values.put(COLUMN_EMPLOYEE_ISPRESENT, employee.isPresent()?1:0);
+      values.put(COLUMN_EMPLOYEE_LOCATION , employee.getLocationId());
+      db.insert(TABLE_EMPLOYEES, null, values);
+      db.close();
    }
 
    @Override
@@ -166,20 +172,41 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
    @Override
    public void updateLocation(Location location) {
-
+      SQLiteDatabase db = this.getWritableDatabase();
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_LOCATION_ID       ,location.getId());
+      values.put(COLUMN_LOCATION_NAME     ,location.getName());
+      values.put(COLUMN_LOCATION_ISUNITED ,location.isUnitedEmployees());
+      db.update(TABLE_LOCATIONS, values, COLUMN_LOCATION_ID + " = ?",
+              new String[]{String.valueOf(location.getId())});
    }
 
    @Override
    public void addLocation(Location location) {
-
-   }
-
-   @Override
-   public void updateOrder(Order order) {
-
+      SQLiteDatabase db = this.getWritableDatabase();
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_LOCATION_ID       ,location.getId());
+      values.put(COLUMN_LOCATION_NAME     ,location.getName());
+      values.put(COLUMN_LOCATION_ISUNITED ,location.isUnitedEmployees());
+      db.insert(TABLE_LOCATIONS, null, values);
+      db.close();
    }
 
 //--------------------------------------------------------------------------------------------------
+
+   @Override
+   public void updateOrder(Order order) {
+      SQLiteDatabase db = this.getWritableDatabase();
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_ORDER_ID       ,order.getId());
+      values.put(COLUMN_ORDER_NAME     ,order.getName());
+      values.put(COLUMN_ORDER_PRICE    ,order.getPrice());
+      values.put(COLUMN_ORDER_COUNT    ,order.getCount());
+      values.put(COLUMN_ORDER_ISCHECKED,order.isChecked());
+      values.put(COLUMN_ORDER_EMPLOYEE ,order.getEmployeeId());
+      db.update(TABLE_ORDERS, values, COLUMN_ORDER_ID + " = ?",
+              new String[]{String.valueOf(order.getId())});
+   }
 
    @Override
    public void addOrder(Order order) {
@@ -190,8 +217,6 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    public void getAllLocations(MutableLiveData<ArrayList<Location>> locations) {
 
    }
-
-
 
    @Override
    public void getAllOrders(MutableLiveData<ArrayList<Order>> orders) {
