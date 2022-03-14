@@ -26,19 +26,19 @@ class DataBase implements Data{
 
    public DataBase() {
       locations = new ArrayList<>();
-      locations.add(new Location("1","Монтаж", false));
-      locations.add(new Location("2","Сборка", false));
-      locations.add(new Location("3","Мнипи", true));
-      locations.add(new Location("4","1-й монтаж", false));
+      locations.add(new Location(1,"Монтаж", false));
+      locations.add(new Location(2,"Сборка", false));
+      locations.add(new Location(3,"Мнипи", true));
+      locations.add(new Location(4,"1-й монтаж", false));
 
       employees = DefaultData.employeesDefault();
 
 
 
       orders = new ArrayList<>();
-      orders.add(new Order("1", "Сок", 256, 2, "7", false));
-      orders.add(new Order("2", "Сок", 256, 1, "7", true));
-      orders.add(new Order("3", "Сок", 256, 3, "7", false));
+      orders.add(new Order(1, "Сок", 256, 2, 7, false));
+      orders.add(new Order(2, "Сок", 256, 1, 7, true));
+      orders.add(new Order(3, "Сок", 256, 3, 7, false));
 
    }
 
@@ -100,7 +100,7 @@ class DataBase implements Data{
 
    @Override
    public ArrayList<Employee> getEmployeesByLocation(Location location) {
-      String id = location.getId();
+      int id = location.getId();
       return null;
    }
 

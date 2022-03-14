@@ -32,7 +32,7 @@ public class OrderDialog extends BaseDialog {
         initializeWithVM(R.layout.dialog_order);
 
         if (order==null) {
-            String newOrderId = String.valueOf(mViewModel.getOrders().getValue().size());
+            int newOrderId = mViewModel.getOrders().getValue().size();
             this.order = new Order(newOrderId, employee.getId());
         }
 

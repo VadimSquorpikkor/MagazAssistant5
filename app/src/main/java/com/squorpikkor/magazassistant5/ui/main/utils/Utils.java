@@ -72,9 +72,9 @@ public class Utils {
       return orders;
    }
 
-   public static Employee getEmployeeById(String id, ArrayList<Employee> employees) {
+   public static Employee getEmployeeById(int id, ArrayList<Employee> employees) {
       for (Employee employee:employees) {
-         if (employee.getId().equals(id)) return employee;
+         if (employee.getId()==id) return employee;
       }
       return null;
    }

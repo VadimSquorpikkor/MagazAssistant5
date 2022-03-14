@@ -4,13 +4,13 @@ import java.util.Arrays;
 
 public class Employee extends Entity{
 
-    private final String locationId;
+    private final int locationId;
     private boolean isPresent;//присутствует на работе
     private final boolean[] workingDaysArray;
     private static final int MAX_DAYS_COUNT = 9;
     private boolean show;
 
-    public Employee(String id, String name, String locationId, String days) {
+    public Employee(int id, String name, int locationId, String days) {
         super(id, name);
         this.locationId = locationId;
         this.isPresent = true;
@@ -25,7 +25,7 @@ public class Employee extends Entity{
     }
 
     //не паблик, этот констоуктор использует только EmployeeUnion
-    Employee(String id, String name, String locationId, int workingDaysAtWeek) {
+    Employee(int id, String name, int locationId, int workingDaysAtWeek) {
         super(id, name);
         this.locationId = locationId;
         this.isPresent = true;
@@ -33,11 +33,21 @@ public class Employee extends Entity{
         Arrays.fill(workingDaysArray, true);
     }
 
-//    public Employee(int id, String name, String days, boolean isPresent, int location) {
-//        super(id, name, days, isPresent, location);
-//    }
+    public Employee(int id, String name, String days, boolean isPresent, int location) {
+        super(id, name);
+        this.workingDaysArray = new boolean[MAX_DAYS_COUNT];
+        for (int i = 0; i < workingDaysArray.length; i++) {//todo одинаковый кусок кода for (выше)
+            if (days.length() > i) {
+                if (days.charAt(i) == '1') workingDaysArray[i] = true;
+            } else {
+                workingDaysArray[i] = false;
+            }
+        }
+        this.isPresent = isPresent;
+        this.locationId = location;
+    }
 
-    public String getLocationId() {
+    public int getLocationId() {
         return locationId;
     }
 
@@ -81,6 +91,15 @@ public class Employee extends Entity{
 
     public void setShow(boolean show) {
         this.show = show;
+    }
+
+    public String getWorkingDaysArray() {
+        StringBuilder sb = new StringBuilder();
+        for (boolean b : workingDaysArray) {
+            if (b) sb.append("1");
+            else sb.append("0");
+        }
+        return String.valueOf(sb);
     }
 
 }

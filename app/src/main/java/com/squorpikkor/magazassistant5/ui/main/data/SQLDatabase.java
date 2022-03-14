@@ -2,6 +2,7 @@ package com.squorpikkor.magazassistant5.ui.main.data;
 
 import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -115,10 +116,26 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       return cursor.getString(col).equals("1");
    }
 
+   private void selectAllFrom(String table) {
+      setCursor("SELECT * FROM " + table);
+   }
+
+//--------------------------------------------------------------------------------------------------
 
    @Override
    public void updateEmployee(Employee employee) {
+      SQLiteDatabase db = this.getWritableDatabase();
 
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_EMPLOYEE_ID       , employee.getId());
+      values.put(COLUMN_EMPLOYEE_NAME     , employee.getName());
+      values.put(COLUMN_EMPLOYEE_DAYS     , employee.getWorkingDaysArray());
+      values.put(COLUMN_EMPLOYEE_ISPRESENT, employee.isPresent()?1:0);
+      values.put(COLUMN_EMPLOYEE_LOCATION , employee.getLocationId());
+
+      //update возвращает int, можно отслеживать удалось записать или нет. Пока использую void
+      db.update(TABLE_EMPLOYEES, values, COLUMN_EMPLOYEE_ID + " = ?",
+              new String[]{String.valueOf(employee.getId())});
    }
 
    @Override
@@ -129,7 +146,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    @Override
    public void getAllEmployees(MutableLiveData<ArrayList<Employee>> employees) {
       ArrayList<Employee> list = new ArrayList<>();
-      setCursor("SELECT * FROM " + TABLE_EMPLOYEES);
+      selectAllFrom(TABLE_EMPLOYEES);
       if (cursor.moveToFirst()) {
          do {
             int id = cursorGetInt(0);
@@ -137,13 +154,15 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
             String days = cursorGetString(2);
             boolean isPresent = cursorGetBoolean(3);
             int location = cursorGetInt(4);
-            //Employee employee = new Employee(id, name, days, isPresent, location);
-            //list.add(employee);
+            Employee employee = new Employee(id, name, days, isPresent, location);
+            list.add(employee);
          } while (cursor.moveToNext());
       }
       cursor.close();
       employees.setValue(list);
    }
+
+//--------------------------------------------------------------------------------------------------
 
    @Override
    public void updateLocation(Location location) {
@@ -159,6 +178,8 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    public void updateOrder(Order order) {
 
    }
+
+//--------------------------------------------------------------------------------------------------
 
    @Override
    public void addOrder(Order order) {
@@ -176,6 +197,8 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    public void getAllOrders(MutableLiveData<ArrayList<Order>> orders) {
 
    }
+
+//--------------------------------------------------------------------------------------------------
 
    @Override
    public ArrayList<Employee> getEmployeesByLocation(Location location) {

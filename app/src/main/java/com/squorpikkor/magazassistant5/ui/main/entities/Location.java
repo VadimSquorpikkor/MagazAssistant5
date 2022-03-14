@@ -2,7 +2,7 @@ package com.squorpikkor.magazassistant5.ui.main.entities;
 
 public class Location extends Entity{
 
-   public Location(String id, String name, boolean isUnited) {
+   public Location(int id, String name, boolean isUnited) {
       super(id, name);
       this.isUnitedEmployees = isUnited;
    }

@@ -2,12 +2,12 @@ package com.squorpikkor.magazassistant5.ui.main.entities;
 
 public class Order extends Entity{
 
-    private final String employeeId;
+    private final int employeeId;
     private int price;
     private int count;
     private boolean isChecked;
 
-    public Order(String id, String name, int price, int count, String employeeId, boolean isChecked) {
+    public Order(int id, String name, int price, int count, int employeeId, boolean isChecked) {
         super(id, name);
         this.price = price;
         this.count = count;
@@ -16,7 +16,7 @@ public class Order extends Entity{
     }
 
     //используется в OrderDialog в варианте когда создается новый ордер
-    public Order(String id, String employeeId) {
+    public Order(int id, int employeeId) {
         super(id, "");
         this.price = 0;
         this.count = 0;
@@ -24,7 +24,7 @@ public class Order extends Entity{
         this.isChecked = false;
     }
 
-    public String getEmployeeId() {
+    public int getEmployeeId() {
         return employeeId;
     }
 

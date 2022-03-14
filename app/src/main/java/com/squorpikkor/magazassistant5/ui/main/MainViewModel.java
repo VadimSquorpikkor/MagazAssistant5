@@ -192,7 +192,7 @@ public class MainViewModel extends ViewModel {
         ArrayList<Employee> list = new ArrayList<>();
         if (employees.getValue()==null) return list;
         for (Employee employee:employees.getValue()) {
-            if (employee.getLocationId().equals(location.getId())) {
+            if (employee.getLocationId()==location.getId()) {
                 list.add(employee);
             }
         }
@@ -204,7 +204,7 @@ public class MainViewModel extends ViewModel {
         ArrayList<Employee> list = new ArrayList<>();
         if (employees.getValue()==null) return list;
         for (Employee employee:employees.getValue()) {
-            if (employee.getLocationId().equals(location.getId())&&employee.getDays(getWorkingDays().getValue())!=0) {
+            if (employee.getLocationId()==location.getId()&&employee.getDays(getWorkingDays().getValue())!=0) {
                 list.add(employee);
             }
         }
@@ -215,7 +215,7 @@ public class MainViewModel extends ViewModel {
         ArrayList<Order> list = new ArrayList<>();
         if (orders.getValue()==null) return list;
         for (Order order:orders.getValue()) {
-            if (order.getEmployeeId().equals(employee.getId())) list.add(order);
+            if (order.getEmployeeId()==employee.getId()) list.add(order);
         }
         return list;
     }

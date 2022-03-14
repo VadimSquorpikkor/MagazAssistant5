@@ -2,15 +2,15 @@ package com.squorpikkor.magazassistant5.ui.main.entities;
 
 class Entity {
 
-   private final String id;
+   private final int id;
    private String name;
 
-   public Entity(String id, String name) {
+   public Entity(int id, String name) {
       this.id = id;
       this.name = name;
    }
 
-   public String getId() {
+   public int getId() {
       return id;
    }
 
