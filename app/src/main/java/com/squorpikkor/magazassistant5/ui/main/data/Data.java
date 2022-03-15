@@ -10,30 +10,34 @@ import java.util.ArrayList;
 
 interface Data {
 
-    public void updateEmployee(Employee employee);
+    void updateEmployee(Employee employee);
 
-    public void addEmployee(Employee employee);
+    void addEmployee(Employee employee);
 
-    public void updateLocation(Location location);
+    void updateLocation(Location location);
 
-    public void addLocation(Location location);
+    void addLocation(Location location);
 
-    public void updateOrder(Order order);
+    void updateOrder(Order order);
 
-    public void addOrder(Order order);
+    void addOrder(Order order);
 
-    public void getAllLocations(MutableLiveData<ArrayList<Location>> locations);
+    void getAllLocations(MutableLiveData<ArrayList<Location>> locations);
 
-    public void getAllEmployees(MutableLiveData<ArrayList<Employee>> employees);
+    void getAllEmployees(MutableLiveData<ArrayList<Employee>> employees);
 
-    public void getAllOrders(MutableLiveData<ArrayList<Order>> orders);
+    void getAllOrders(MutableLiveData<ArrayList<Order>> orders);
 
-    public ArrayList<Employee> getEmployeesByLocation(Location location);
+    void getEmployeesByLocation(Location location, MutableLiveData<ArrayList<Employee>> selectedEmployees);
 
-    public ArrayList<Order> getOrderByEmployee(Employee employee);
+    void getOrderByEmployee(Employee employee, MutableLiveData<ArrayList<Order>> selectedOrders);
 
-    public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice);
+    void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice);
 
-    public void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice);
+    void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice);
+
+    void addAllEmployees();
+
+    void addAllLocations();
 
 }

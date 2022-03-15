@@ -17,6 +17,15 @@ import com.squorpikkor.magazassistant5.ui.main.entities.Order;
 
 import java.util.ArrayList;
 
+/**
+ *    ____      ____      ____
+ *    |  |      |  |      |  |
+ *    |  |-----<|  |-----<|  |
+ *    |  |      |  |      |  |
+ * Locations  Employees  Orders
+ *
+ * */
+
 class SQLDatabase extends SQLiteOpenHelper implements Data{
 
    private static final int DATABASE_VERSION = 1;
@@ -159,13 +168,32 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
             String name = cursorGetString(1);
             String days = cursorGetString(2);
             boolean isPresent = cursorGetBoolean(3);
-            int location = cursorGetInt(4);
-            Employee employee = new Employee(id, name, days, isPresent, location);
+            int locationId = cursorGetInt(4);
+            Employee employee = new Employee(id, name, days, isPresent, locationId);
             list.add(employee);
          } while (cursor.moveToNext());
       }
       cursor.close();
       employees.setValue(list);
+   }
+
+   @Override
+   public void getEmployeesByLocation(Location location, MutableLiveData<ArrayList<Employee>> selectedEmployees) {
+      ArrayList<Employee> list = new ArrayList<>();
+      selectAllFrom(TABLE_EMPLOYEES + " WHERE " + COLUMN_EMPLOYEE_LOCATION + "="+location.getId());
+      if (cursor.moveToFirst()) {
+         do {
+            int id = cursorGetInt(0);
+            String name = cursorGetString(1);
+            String days = cursorGetString(2);
+            boolean isPresent = cursorGetBoolean(3);
+            int locationId = cursorGetInt(4);
+            Employee employee = new Employee(id, name, days, isPresent, locationId);
+            list.add(employee);
+         } while (cursor.moveToNext());
+      }
+      cursor.close();
+      selectedEmployees.setValue(list);
    }
 
 //--------------------------------------------------------------------------------------------------
@@ -192,6 +220,24 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       db.close();
    }
 
+
+   @Override
+   public void getAllLocations(MutableLiveData<ArrayList<Location>> locations) {
+      ArrayList<Location> list = new ArrayList<>();
+      selectAllFrom(TABLE_LOCATIONS);
+      if (cursor.moveToFirst()) {
+         do {
+            int id = cursorGetInt(0);
+            String name = cursorGetString(1);
+            boolean isUnitedEmployees = cursorGetBoolean(2);
+            Location location = new Location(id, name, isUnitedEmployees);
+            list.add(location);
+         } while (cursor.moveToNext());
+      }
+      cursor.close();
+      locations.setValue(list);
+   }
+
 //--------------------------------------------------------------------------------------------------
 
    @Override
@@ -210,30 +256,60 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
    @Override
    public void addOrder(Order order) {
-
+      SQLiteDatabase db = this.getWritableDatabase();
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_ORDER_ID       ,order.getId());
+      values.put(COLUMN_ORDER_NAME     ,order.getName());
+      values.put(COLUMN_ORDER_PRICE    ,order.getPrice());
+      values.put(COLUMN_ORDER_COUNT    ,order.getCount());
+      values.put(COLUMN_ORDER_ISCHECKED,order.isChecked());
+      values.put(COLUMN_ORDER_EMPLOYEE ,order.getEmployeeId());
+      db.insert(TABLE_ORDERS, null, values);
+      db.close();
    }
 
-   @Override
-   public void getAllLocations(MutableLiveData<ArrayList<Location>> locations) {
-
-   }
 
    @Override
    public void getAllOrders(MutableLiveData<ArrayList<Order>> orders) {
+      ArrayList<Order> list = new ArrayList<>();
+      selectAllFrom(TABLE_ORDERS);
+      if (cursor.moveToFirst()) {
+         do {
+            int id = cursorGetInt(0);
+            String name = cursorGetString(1);
+            int price = cursorGetInt(2);
+            int count = cursorGetInt(3);
+            boolean isChecked = cursorGetBoolean(4);
+            int orderEmployee = cursorGetInt(5);
+            Order order = new Order(id, name, price, count, orderEmployee, isChecked);
+            list.add(order);
+         } while (cursor.moveToNext());
+      }
+      cursor.close();
+      orders.setValue(list);
+   }
 
+   @Override
+   public void getOrderByEmployee(Employee employee, MutableLiveData<ArrayList<Order>> selectedOrders) {
+      ArrayList<Order> list = new ArrayList<>();
+      selectAllFrom(TABLE_ORDERS + " WHERE " + COLUMN_ORDER_EMPLOYEE + "="+employee.getId());
+      if (cursor.moveToFirst()) {
+         do {
+            int id = cursorGetInt(0);
+            String name = cursorGetString(1);
+            int price = cursorGetInt(2);
+            int count = cursorGetInt(3);
+            boolean isChecked = cursorGetBoolean(4);
+            int orderEmployee = cursorGetInt(5);
+            Order order = new Order(id, name, price, count, orderEmployee, isChecked);
+            list.add(order);
+         } while (cursor.moveToNext());
+      }
+      cursor.close();
+      selectedOrders.setValue(list);
    }
 
 //--------------------------------------------------------------------------------------------------
-
-   @Override
-   public ArrayList<Employee> getEmployeesByLocation(Location location) {
-      return null;
-   }
-
-   @Override
-   public ArrayList<Order> getOrderByEmployee(Employee employee) {
-      return null;
-   }
 
    @Override
    public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice) {
@@ -243,6 +319,22 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    @Override
    public void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice) {
 
+   }
+
+//--------------------------------------------------------------------------------------------------
+
+   @Override
+   public void addAllEmployees() {
+      for (Employee employee: DefaultData.employeesDefault()) {
+         addEmployee(employee);
+      }
+   }
+
+   @Override
+   public void addAllLocations() {
+      for (Location location: DefaultData.locationsDefault()) {
+         addLocation(location);
+      }
    }
 
 }

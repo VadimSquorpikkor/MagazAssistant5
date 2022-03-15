@@ -99,15 +99,13 @@ class DataBase implements Data{
    }
 
    @Override
-   public ArrayList<Employee> getEmployeesByLocation(Location location) {
+   public void getEmployeesByLocation(Location location, MutableLiveData<ArrayList<Employee>> selectedEmployees) {
       int id = location.getId();
-      return null;
    }
 
    @Override
-   public ArrayList<Order> getOrderByEmployee(Employee employee) {
+   public void getOrderByEmployee(Employee employee, MutableLiveData<ArrayList<Order>> selectedOrders) {
       String name = employee.getName();
-      return null;
    }
 
    @Override
@@ -122,4 +120,17 @@ class DataBase implements Data{
    public void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice) {
 
    }
+
+//--------------------------------------------------------------------------------------------------
+
+   @Override
+   public void addAllEmployees() {
+
+   }
+
+   @Override
+   public void addAllLocations() {
+
+   }
+
 }

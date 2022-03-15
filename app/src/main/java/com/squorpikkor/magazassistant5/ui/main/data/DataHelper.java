@@ -27,7 +27,8 @@ public class DataHelper {
                      MutableLiveData<Integer> kefirPrice,
                      MutableLiveData<Integer> kefirSmallPrice
    ) {
-      db = new DataBase();
+//      db = new DataBase();
+      db = new SQLDatabase();
       this.locations = locations;
       this.employees = employees;
       this.orders = orders;

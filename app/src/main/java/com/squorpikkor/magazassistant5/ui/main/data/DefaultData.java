@@ -1,6 +1,7 @@
 package com.squorpikkor.magazassistant5.ui.main.data;
 
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
+import com.squorpikkor.magazassistant5.ui.main.entities.Location;
 
 import java.util.ArrayList;
 
@@ -52,6 +53,15 @@ class DefaultData {
        employees.add(new Employee(39, "Антонова О.Н.", 4, "11111"));
 
        return employees;
+   }
+
+   static ArrayList<Location> locationsDefault() {
+       ArrayList<Location> locations = new ArrayList<>();
+       locations.add(new Location(1,"Монтаж", false));
+       locations.add(new Location(2,"Сборка", false));
+       locations.add(new Location(3,"Мнипи", true));
+       locations.add(new Location(4,"1-й монтаж", false));
+       return locations;
    }
 
 }
