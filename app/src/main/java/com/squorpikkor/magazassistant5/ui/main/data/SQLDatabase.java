@@ -252,6 +252,8 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       values.put(COLUMN_ORDER_EMPLOYEE ,order.getEmployeeId());
       db.update(TABLE_ORDERS, values, COLUMN_ORDER_ID + " = ?",
               new String[]{String.valueOf(order.getId())});
+
+
    }
 
    @Override
@@ -268,6 +270,13 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       db.close();
    }
 
+   @Override
+   public void removeOrder(Order order) {
+      //delete from tablename where id='1'
+      SQLiteDatabase db = this.getWritableDatabase();
+      db.execSQL("DELETE FROM " + TABLE_LOCATIONS + " WHERE " + COLUMN_ORDER_ID + "=" + order.getId());
+      db.close();
+   }
 
    @Override
    public void getAllOrders(MutableLiveData<ArrayList<Order>> orders) {
@@ -324,14 +333,14 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 //--------------------------------------------------------------------------------------------------
 
    @Override
-   public void addAllEmployees() {
+   public void addAllEmployeesDefault() {
       for (Employee employee: DefaultData.employeesDefault()) {
          addEmployee(employee);
       }
    }
 
    @Override
-   public void addAllLocations() {
+   public void addAllLocationsDefault() {
       for (Location location: DefaultData.locationsDefault()) {
          addLocation(location);
       }

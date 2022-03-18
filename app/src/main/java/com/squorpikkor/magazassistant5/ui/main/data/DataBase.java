@@ -84,6 +84,11 @@ class DataBase implements Data{
    }
 
    @Override
+   public void removeOrder(Order order) {
+
+   }
+
+   @Override
    public void getAllLocations(MutableLiveData<ArrayList<Location>> locations) {
       locations.setValue(this.locations);
    }
@@ -124,12 +129,12 @@ class DataBase implements Data{
 //--------------------------------------------------------------------------------------------------
 
    @Override
-   public void addAllEmployees() {
+   public void addAllEmployeesDefault() {
 
    }
 
    @Override
-   public void addAllLocations() {
+   public void addAllLocationsDefault() {
 
    }
 
