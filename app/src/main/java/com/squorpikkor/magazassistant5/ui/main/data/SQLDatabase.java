@@ -91,6 +91,9 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
               + ")"
       );
       Log.e(TAG, "onCreate: " + "table orders created");
+
+      addAllEmployeesDefault(db);
+      addAllLocationsDefault(db);
    }
 
    @Override
@@ -149,6 +152,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    public void addEmployee(Employee employee) {
       SQLiteDatabase db = this.getWritableDatabase();
       ContentValues values = new ContentValues();
+      Log.e(TAG, "updateEmployee: id="+employee.getId()+" name="+employee.getName()+" days="+employee.getWorkingDaysArray()+" isPresent="+employee.isPresent()+" locationId="+employee.getLocationId());
       values.put(COLUMN_EMPLOYEE_ID       , employee.getId());
       values.put(COLUMN_EMPLOYEE_NAME     , employee.getName());
       values.put(COLUMN_EMPLOYEE_DAYS     , employee.getWorkingDaysArray());
@@ -156,6 +160,19 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       values.put(COLUMN_EMPLOYEE_LOCATION , employee.getLocationId());
       db.insert(TABLE_EMPLOYEES, null, values);
       db.close();
+   }
+
+   /**Только для добавления данных по умолчанию при создании БД*/
+   private void addEmployee(Employee employee, SQLiteDatabase db) {
+      ContentValues values = new ContentValues();
+      Log.e(TAG, "updateEmployee: id="+employee.getId()+" name="+employee.getName()+" days="+employee.getWorkingDaysArray()+" isPresent="+employee.isPresent()+" locationId="+employee.getLocationId());
+      values.put(COLUMN_EMPLOYEE_ID       , employee.getId());
+      values.put(COLUMN_EMPLOYEE_NAME     , employee.getName());
+      values.put(COLUMN_EMPLOYEE_DAYS     , employee.getWorkingDaysArray());
+      values.put(COLUMN_EMPLOYEE_ISPRESENT, employee.isPresent()?1:0);
+      values.put(COLUMN_EMPLOYEE_LOCATION , employee.getLocationId());
+      db.insert(TABLE_EMPLOYEES, null, values);
+      //db.close();
    }
 
    @Override
@@ -220,6 +237,15 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       db.close();
    }
 
+   /**Только для добавления данных по умолчанию при создании БД*/
+   private void addLocation(Location location, SQLiteDatabase db) {
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_LOCATION_ID       ,location.getId());
+      values.put(COLUMN_LOCATION_NAME     ,location.getName());
+      values.put(COLUMN_LOCATION_ISUNITED ,location.isUnitedEmployees());
+      db.insert(TABLE_LOCATIONS, null, values);
+      //db.close();
+   }
 
    @Override
    public void getAllLocations(MutableLiveData<ArrayList<Location>> locations) {
@@ -332,6 +358,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
 //--------------------------------------------------------------------------------------------------
 
+   /**Не используется*/
    @Override
    public void addAllEmployeesDefault() {
       for (Employee employee: DefaultData.employeesDefault()) {
@@ -339,10 +366,23 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       }
    }
 
+   private void addAllEmployeesDefault(SQLiteDatabase db) {
+      for (Employee employee: DefaultData.employeesDefault()) {
+         addEmployee(employee, db);
+      }
+   }
+
+   /**Не используется*/
    @Override
    public void addAllLocationsDefault() {
       for (Location location: DefaultData.locationsDefault()) {
          addLocation(location);
+      }
+   }
+
+   private void addAllLocationsDefault(SQLiteDatabase db) {
+      for (Location location: DefaultData.locationsDefault()) {
+         addLocation(location, db);
       }
    }
 
