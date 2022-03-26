@@ -38,7 +38,7 @@ public class DataHelper {
       this.kefirSmallPrice = kefirSmallPrice;
    }
 
-   public void saveLocation(Location location) {
+   public void updateLocation(Location location) {
       db.updateLocation(location);
    }
 
@@ -46,7 +46,7 @@ public class DataHelper {
       db.getAllLocations(locations);
    }
 
-   public void saveEmployee(Employee employee) {
+   public void updateEmployee(Employee employee) {
       db.updateEmployee(employee);
    }
 
@@ -58,8 +58,12 @@ public class DataHelper {
       db.getAllOrders(orders);
    }
 
-   public void saveOrder(Order order) {
+   public void updateOrder(Order order) {
       db.updateOrder(order);
+   }
+
+   public void createOrder(Order order) {
+      db.addOrder(order);
    }
 
    public void loadPrices() {

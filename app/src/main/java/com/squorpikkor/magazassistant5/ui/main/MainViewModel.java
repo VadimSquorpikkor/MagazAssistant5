@@ -226,7 +226,13 @@ public class MainViewModel extends ViewModel {
     }
 
     public void addNewOrder(Order order) {
+        data.createOrder(order);
         getOrders().getValue().add(order);
+        updateOrders();
+    }
+
+    public void updateOrder(Order order) {
+        data.updateOrder(order);
         updateOrders();
     }
 

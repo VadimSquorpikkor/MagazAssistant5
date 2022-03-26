@@ -10,11 +10,7 @@ public class Employee extends Entity{
     private static final int MAX_DAYS_COUNT = 9;
     private boolean show;
 
-    public Employee(int id, String name, int locationId, String days) {
-        super(id, name);
-        this.locationId = locationId;
-        this.isPresent = true;
-        this.workingDaysArray = new boolean[MAX_DAYS_COUNT];
+    private void daysToDaysArray(String days) {
         for (int i = 0; i < workingDaysArray.length; i++) {
             if (days.length() > i) {
                 if (days.charAt(i) == '1') workingDaysArray[i] = true;
@@ -22,6 +18,23 @@ public class Employee extends Entity{
                 workingDaysArray[i] = false;
             }
         }
+    }
+
+    //Если id не задан, то он автоматом приравнивается -1 и не записывается в БД при сохранении
+    public Employee(String name, int locationId) {
+        super(-1, name);
+        this.locationId = locationId;
+        this.isPresent = true;
+        this.workingDaysArray = new boolean[MAX_DAYS_COUNT];
+        daysToDaysArray("11111");
+    }
+
+    public Employee(int id, String name, int locationId) {
+        super(id, name);
+        this.locationId = locationId;
+        this.isPresent = true;
+        this.workingDaysArray = new boolean[MAX_DAYS_COUNT];
+        daysToDaysArray("11111");
     }
 
     //не паблик, этот констоуктор использует только EmployeeUnion
@@ -33,18 +46,13 @@ public class Employee extends Entity{
         Arrays.fill(workingDaysArray, true);
     }
 
+    /**Для БД*/
     public Employee(int id, String name, String days, boolean isPresent, int location) {
         super(id, name);
-        this.workingDaysArray = new boolean[MAX_DAYS_COUNT];
-        for (int i = 0; i < workingDaysArray.length; i++) {//todo одинаковый кусок кода for (выше)
-            if (days.length() > i) {
-                if (days.charAt(i) == '1') workingDaysArray[i] = true;
-            } else {
-                workingDaysArray[i] = false;
-            }
-        }
-        this.isPresent = isPresent;
         this.locationId = location;
+        this.isPresent = isPresent;
+        this.workingDaysArray = new boolean[MAX_DAYS_COUNT];
+        daysToDaysArray(days);
     }
 
     public int getLocationId() {

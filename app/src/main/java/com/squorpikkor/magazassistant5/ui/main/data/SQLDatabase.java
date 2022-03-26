@@ -92,6 +92,10 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       );
       Log.e(TAG, "onCreate: " + "table orders created");
 
+      //Именно так: при создании БД (но не открытии!) срабатывает колбэк onCreate, который
+      // возвращает экземпляр класса БД, и именно этот экземпляр передаем в метод загрузки данных
+      // по умолчанию. Если просто вызвать метод добавления в БД, этот метод сам создает новый
+      // экземпляр класса БД и срабатывает exception (что-то типа "рекурсивный вызов БД")
       addAllEmployeesDefault(db);
       addAllLocationsDefault(db);
    }
@@ -134,6 +138,20 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
 //--------------------------------------------------------------------------------------------------
 
+   //Из ActivityCalculator
+   // По поводу ID: при создании нового RA_Source ID у него ещё нет, как только создается
+   //экземпляр класса, он сразу же заносится в БД. ID объекта ещё нет, в базе ID уже есть
+   //как же загрузить конкретный объект класса, если для этого нужно знать его ID?
+   //Очень просто. После того, как объект загружается в БД, вызывается метод getAll
+   //Все объекты загружаются в лист, а адаптер обновляет ListView, таким образом только что
+   //созданный объект класса появляется в активити как элемент списка. При этом в момент загрузки
+   //из БД методом getAll объект получает свой ID. Voila
+
+   //Поэтому при добавлении новых сущностей в БД не используется id (кроме варианта по умолчанию:
+   // так как надо добавить и employee и location, которых ещё нет в БД, при этом у employee уже
+   // должен быть locationId, значит этот id нужно заранее задать), а применяется только при чтении
+   // или при update (редактировании уже существующей записи)
+
    @Override
    public void updateEmployee(Employee employee) {
       SQLiteDatabase db = this.getWritableDatabase();
@@ -153,7 +171,8 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       SQLiteDatabase db = this.getWritableDatabase();
       ContentValues values = new ContentValues();
       Log.e(TAG, "updateEmployee: id="+employee.getId()+" name="+employee.getName()+" days="+employee.getWorkingDaysArray()+" isPresent="+employee.isPresent()+" locationId="+employee.getLocationId());
-      values.put(COLUMN_EMPLOYEE_ID       , employee.getId());
+//      if (employee.getId()!=-1)
+//         values.put(COLUMN_EMPLOYEE_ID    , employee.getId());
       values.put(COLUMN_EMPLOYEE_NAME     , employee.getName());
       values.put(COLUMN_EMPLOYEE_DAYS     , employee.getWorkingDaysArray());
       values.put(COLUMN_EMPLOYEE_ISPRESENT, employee.isPresent()?1:0);
@@ -230,7 +249,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    public void addLocation(Location location) {
       SQLiteDatabase db = this.getWritableDatabase();
       ContentValues values = new ContentValues();
-      values.put(COLUMN_LOCATION_ID       ,location.getId());
+//      values.put(COLUMN_LOCATION_ID       ,location.getId());
       values.put(COLUMN_LOCATION_NAME     ,location.getName());
       values.put(COLUMN_LOCATION_ISUNITED ,location.isUnitedEmployees());
       db.insert(TABLE_LOCATIONS, null, values);
@@ -286,7 +305,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    public void addOrder(Order order) {
       SQLiteDatabase db = this.getWritableDatabase();
       ContentValues values = new ContentValues();
-      values.put(COLUMN_ORDER_ID       ,order.getId());
+//      values.put(COLUMN_ORDER_ID       ,order.getId());
       values.put(COLUMN_ORDER_NAME     ,order.getName());
       values.put(COLUMN_ORDER_PRICE    ,order.getPrice());
       values.put(COLUMN_ORDER_COUNT    ,order.getCount());

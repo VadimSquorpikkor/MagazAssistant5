@@ -32,8 +32,8 @@ public class OrderDialog extends BaseDialog {
         initializeWithVM(R.layout.dialog_order);
 
         if (order==null) {
-            int newOrderId = mViewModel.getOrders().getValue().size();
-            this.order = new Order(newOrderId, employee.getId());
+//            int newOrderId = mViewModel.getOrders().getValue().size();
+            this.order = new Order(employee.getId());
         }
 
         name = view.findViewById(R.id.edit_name);
@@ -65,7 +65,9 @@ public class OrderDialog extends BaseDialog {
     }
 
     private void update() {
-
+        setData();
+        mViewModel.updateOrder(order);
+        dismiss();
     }
 
 }
