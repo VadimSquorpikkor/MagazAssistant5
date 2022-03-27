@@ -34,6 +34,7 @@ interface Data {
 
     void getOrderByEmployee(Employee employee, MutableLiveData<ArrayList<Order>> selectedOrders);
 
+    void uncheckAllOrders();
 
 
 

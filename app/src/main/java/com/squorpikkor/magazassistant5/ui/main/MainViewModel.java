@@ -42,10 +42,10 @@ public class MainViewModel extends ViewModel {
         locations = new MutableLiveData<>();
         employees = new MutableLiveData<>();
         orders = new MutableLiveData<>();
-        juicePrice = new MutableLiveData<>();
-        juiceSmallPrice = new MutableLiveData<>();
-        kefirPrice = new MutableLiveData<>();
-        kefirSmallPrice = new MutableLiveData<>();
+        juicePrice = new MutableLiveData<>(0);
+        juiceSmallPrice = new MutableLiveData<>(0);
+        kefirPrice = new MutableLiveData<>(0);
+        kefirSmallPrice = new MutableLiveData<>(0);
         workingDays = new MutableLiveData<>(5);
         employeeDayCount = new MutableLiveData<>(0);
         bigJuiceCount = new MutableLiveData<>(0);
@@ -224,7 +224,7 @@ public class MainViewModel extends ViewModel {
     public int getMoneyLimit(Employee employee) {
         return (int)(employee.getDays(workingDays.getValue())*moneyForEmployeePerDay.getValue());
     }
-
+//--------------------------------------------------------------------------------------------------
     public void addNewOrder(Order order) {
         data.createOrder(order);
         getOrders().getValue().add(order);
@@ -237,13 +237,22 @@ public class MainViewModel extends ViewModel {
     }
 
     public void deleteOrder(Order order) {
-
+        data.deleteOrder(order);
+        updateOrders();
     }
-
+//--------------------------------------------------------------------------------------------------
     public void saveNewPrices(int bigJ, int smlJ, int bigK, int smlK) {
-
+        juicePrice.setValue(bigJ);
+        juiceSmallPrice.setValue(smlJ);
+        kefirPrice.setValue(bigK);
+        kefirSmallPrice.setValue(smlK);
+        data.savePrices();
     }
+//--------------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
     //todo идея: реешние проблемы отображения обычного работника и объединенного:
     // можно сделать UnitedEmployee extends Employee (который будет собирать в себе несколько
     // работников) и из viewModel передавать каждой локации (в ресайклер) и вариант объединенного и

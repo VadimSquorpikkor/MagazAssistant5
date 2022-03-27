@@ -50,6 +50,13 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    private static final String COLUMN_ORDER_COUNT = "quantity";
    private static final String COLUMN_ORDER_ISCHECKED = "purchased";
    private static final String COLUMN_ORDER_EMPLOYEE = "customer";
+//--------------------------------------------------------------------------------------------------
+   private static final String TABLE_PRICES = "table_prices";
+   private static final String COLUMN_PRICE_ID = "id";
+   private static final String COLUMN_PRICE_JUICE_BIG = "price_juice_big";
+   private static final String COLUMN_PRICE_JUICE_SMALL = "price_juice_small";
+   private static final String COLUMN_PRICE_KEFIR_BIG = "price_kefir_big";
+   private static final String COLUMN_PRICE_KEFIR_SMALL = "price_kefir_small";
 
    public SQLDatabase() {
       super(App.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
@@ -67,7 +74,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
               + COLUMN_LOCATION_ISUNITED + " INTEGER"
               + ")"
       );
-      Log.e(TAG, "onCreate: " + "table locations created");
+      Log.e(TAG, "table locations created");
 
       //String id, String name, String locationId, String days, boolean isPresent
       db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_EMPLOYEES + "("
@@ -78,7 +85,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
               + COLUMN_EMPLOYEE_LOCATION + " INTEGER"
               + ")"
       );
-      Log.e(TAG, "onCreate: " + "table employees created");
+      Log.e(TAG, "table employees created");
 
       //String id, String name, int price, int count, String employeeId, boolean isChecked
       db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_ORDERS + "("
@@ -90,7 +97,16 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
               + COLUMN_ORDER_EMPLOYEE + " INTEGER"
               + ")"
       );
-      Log.e(TAG, "onCreate: " + "table orders created");
+      Log.e(TAG, "table orders created");
+      db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_PRICES + "("
+              + COLUMN_PRICE_ID + " INTEGER PRIMARY KEY,"
+              + COLUMN_PRICE_JUICE_BIG + " INTEGER,"
+              + COLUMN_PRICE_JUICE_SMALL + " INTEGER,"
+              + COLUMN_PRICE_KEFIR_BIG + " INTEGER,"
+              + COLUMN_PRICE_KEFIR_SMALL + " INTEGER"
+              + ")"
+      );
+      Log.e(TAG, "table juices created");
 
       //Именно так: при создании БД (но не открытии!) срабатывает колбэк onCreate, который
       // возвращает экземпляр класса БД, и именно этот экземпляр передаем в метод загрузки данных
@@ -363,16 +379,37 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       selectedOrders.setValue(list);
    }
 
+   @Override
+   public void uncheckAllOrders() {
+
+   }
+
 //--------------------------------------------------------------------------------------------------
 
    @Override
    public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice) {
-
+      ArrayList<Order> list = new ArrayList<>();
+      selectAllFrom(TABLE_PRICES + " WHERE " + COLUMN_PRICE_ID + "="+"1");//todo сократить селект
+      if (cursor.moveToFirst()) {
+         juicePrice.setValue(cursorGetInt(1));
+         juiceSmallPrice.setValue(cursorGetInt(2));
+         kefirPrice.setValue(cursorGetInt(3));
+         kefirSmallPrice.setValue(cursorGetInt(4));
+      }
+      cursor.close();
    }
 
    @Override
    public void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice) {
-
+      SQLiteDatabase db = this.getWritableDatabase();
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_PRICE_ID,            1);
+      values.put(COLUMN_PRICE_JUICE_BIG,     juicePrice);
+      values.put(COLUMN_PRICE_JUICE_SMALL,   juiceSmallPrice);
+      values.put(COLUMN_PRICE_KEFIR_BIG,     kefirPrice);
+      values.put(COLUMN_PRICE_KEFIR_SMALL,   kefirSmallPrice);
+      db.update(TABLE_PRICES, values, COLUMN_ORDER_ID + " = ?",
+              new String[]{String.valueOf(1)});
    }
 
 //--------------------------------------------------------------------------------------------------

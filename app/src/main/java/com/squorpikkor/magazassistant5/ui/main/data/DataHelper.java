@@ -66,7 +66,19 @@ public class DataHelper {
       db.addOrder(order);
    }
 
+   public void deleteOrder(Order order) {
+      db.removeOrder(order);
+   }
+
    public void loadPrices() {
       db.loadPrices(juicePrice, juiceSmallPrice, kefirPrice, kefirSmallPrice);
+   }
+
+   public void savePrices() {
+      db.savePrices(juicePrice.getValue(), juiceSmallPrice.getValue(), kefirPrice.getValue(), kefirSmallPrice.getValue());
+   }
+
+   public void uncheckAllOrders() {
+
    }
 }

@@ -114,6 +114,11 @@ class DataBase implements Data{
    }
 
    @Override
+   public void uncheckAllOrders() {
+
+   }
+
+   @Override
    public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice) {
       juicePrice.setValue(349);
       juiceSmallPrice.setValue(161);
