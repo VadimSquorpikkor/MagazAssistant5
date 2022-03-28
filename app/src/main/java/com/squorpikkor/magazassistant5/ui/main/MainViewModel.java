@@ -35,25 +35,25 @@ public class MainViewModel extends ViewModel {
     private final MutableLiveData<Integer> smallKefirCount;
     private final MutableLiveData<Integer> invoiceTotal;
     private final MutableLiveData<Integer> invoiceLeft;
-    private final MutableLiveData<Double> moneyForEmployeePerDay;//сумма на человекодень
+    private final MutableLiveData<Double>  moneyForEmployeePerDay;//сумма на человекодень
 
     public MainViewModel() {
-        moneyForEmployeePerDay = new MutableLiveData<>(0.0);
-        locations = new MutableLiveData<>();
-        employees = new MutableLiveData<>();
-        orders = new MutableLiveData<>();
-        juicePrice = new MutableLiveData<>(0);
-        juiceSmallPrice = new MutableLiveData<>(0);
-        kefirPrice = new MutableLiveData<>(0);
-        kefirSmallPrice = new MutableLiveData<>(0);
-        workingDays = new MutableLiveData<>(5);
-        employeeDayCount = new MutableLiveData<>(0);
-        bigJuiceCount = new MutableLiveData<>(0);
-        smallJuiceCount = new MutableLiveData<>(0);
-        bigKefirCount = new MutableLiveData<>(0);
-        smallKefirCount = new MutableLiveData<>(0);
-        invoiceTotal = new MutableLiveData<>(0);
-        invoiceLeft = new MutableLiveData<>(0);
+        moneyForEmployeePerDay  = new MutableLiveData<>(0.0);
+        locations               = new MutableLiveData<>();
+        employees               = new MutableLiveData<>();
+        orders                  = new MutableLiveData<>();
+        juicePrice              = new MutableLiveData<>(0);
+        juiceSmallPrice         = new MutableLiveData<>(0);
+        kefirPrice              = new MutableLiveData<>(0);
+        kefirSmallPrice         = new MutableLiveData<>(0);
+        workingDays             = new MutableLiveData<>(5);
+        employeeDayCount        = new MutableLiveData<>(0);
+        bigJuiceCount           = new MutableLiveData<>(0);
+        smallJuiceCount         = new MutableLiveData<>(0);
+        bigKefirCount           = new MutableLiveData<>(0);
+        smallKefirCount         = new MutableLiveData<>(0);
+        invoiceTotal            = new MutableLiveData<>(0);
+        invoiceLeft             = new MutableLiveData<>(0);
         data = new DataHelper(locations, employees, orders, juicePrice, juiceSmallPrice, kefirPrice, kefirSmallPrice);
         data.getAllLocations();
         data.getAllEmployees();

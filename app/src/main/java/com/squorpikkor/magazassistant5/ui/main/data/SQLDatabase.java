@@ -126,6 +126,9 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
       db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDERS);
       onCreate(db);
+
+      db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRICES);
+      onCreate(db);
    }
 
 //--------------------------------------------------------------------------------------------------
@@ -388,9 +391,8 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
    @Override
    public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice) {
-      ArrayList<Order> list = new ArrayList<>();
-      selectAllFrom(TABLE_PRICES + " WHERE " + COLUMN_PRICE_ID + "="+"1");//todo сократить селект
-      if (cursor.moveToFirst()) {
+      selectAllFrom(TABLE_PRICES);
+      if (cursor.moveToFirst()) {//всегда загружается только самая первая запись (а других там и не будет)
          juicePrice.setValue(cursorGetInt(1));
          juiceSmallPrice.setValue(cursorGetInt(2));
          kefirPrice.setValue(cursorGetInt(3));
@@ -403,13 +405,16 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    public void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice) {
       SQLiteDatabase db = this.getWritableDatabase();
       ContentValues values = new ContentValues();
-      values.put(COLUMN_PRICE_ID,            1);
+      values.put(COLUMN_PRICE_ID,            0);
       values.put(COLUMN_PRICE_JUICE_BIG,     juicePrice);
       values.put(COLUMN_PRICE_JUICE_SMALL,   juiceSmallPrice);
       values.put(COLUMN_PRICE_KEFIR_BIG,     kefirPrice);
       values.put(COLUMN_PRICE_KEFIR_SMALL,   kefirSmallPrice);
-      db.update(TABLE_PRICES, values, COLUMN_ORDER_ID + " = ?",
-              new String[]{String.valueOf(1)});
+      //если получилось обновить данные в БД, завершаем работу, если не получилось — значит этих
+      // данных ещё не было в БД и тогда добавляем эти данные в БД
+      int success = db.update(TABLE_PRICES, values, COLUMN_ORDER_ID + " = ?", new String[]{String.valueOf(0)});
+      if (success==0) db.insert(TABLE_PRICES, null, values);
+      db.close();
    }
 
 //--------------------------------------------------------------------------------------------------
