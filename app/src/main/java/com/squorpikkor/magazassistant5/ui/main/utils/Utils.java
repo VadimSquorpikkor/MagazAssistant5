@@ -14,23 +14,12 @@ public class Utils {
       int rub = money/100;
       int kop = money%100;
       String kopS = kop<10?"0"+kop:""+kop;
-      return ""+rub+". "+kopS;
+      return ""+rub+"."+kopS;
    }
 
    public static int stringMoneyToInteger(String value) {
-      int rub, kop;
       if (value.equals("")) return 0;
-      value = value.replace(" ", "");
-      String[] s;
-      if (value.contains(".")) s = value.split("\\."); //"2.54" -> {"2", "54"}
-      else s = value.split(","); //"2,54" -> {"2", "54"} // "34" -> "34"
-      String rubS = s[0];
-      String kopS = "0";
-      if (s.length>1) kopS = s[1];
-      kopS = kopS.substring(0,2);//todo проверить
-      rub = Integer.parseInt(rubS)*100;
-      kop = Integer.parseInt(kopS);
-      return rub+kop;
+      return (int)(Float.parseFloat(value)*100);
    }
 
    public static String getOrdersStatusString(ArrayList<Order> orders) {

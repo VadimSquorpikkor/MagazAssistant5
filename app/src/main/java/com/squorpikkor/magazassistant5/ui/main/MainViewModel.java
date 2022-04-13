@@ -247,6 +247,8 @@ public class MainViewModel extends ViewModel {
         kefirPrice.setValue(bigK);
         kefirSmallPrice.setValue(smlK);
         data.savePrices();
+        calculateInvoice();
+        updateOrders();
     }
 //--------------------------------------------------------------------------------------------------
 
