@@ -64,4 +64,14 @@ class DefaultData {
        return locations;
    }
 
+    static ArrayList<Integer> settingsDefault() {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);//
+        list.add(1);//
+        list.add(1);//
+        list.add(1);//
+        list.add(5);//кол-во рабочих дней
+        return list;
+    }
+
 }

@@ -54,11 +54,12 @@ public class MainViewModel extends ViewModel {
         smallKefirCount         = new MutableLiveData<>(0);
         invoiceTotal            = new MutableLiveData<>(0);
         invoiceLeft             = new MutableLiveData<>(0);
-        data = new DataHelper(locations, employees, orders, juicePrice, juiceSmallPrice, kefirPrice, kefirSmallPrice);
+        data = new DataHelper(locations, employees, orders, juicePrice, juiceSmallPrice, kefirPrice, kefirSmallPrice, workingDays);
         data.getAllLocations();
         data.getAllEmployees();
         data.getAllOrders();
         data.loadPrices();
+        data.getWorkingDaysCount();
         calculateInvoice();
     }
 
@@ -251,7 +252,12 @@ public class MainViewModel extends ViewModel {
         updateOrders();
     }
 //--------------------------------------------------------------------------------------------------
-
+    public void saveWorkingDays(int days) {
+        workingDays.setValue(days);
+        data.updateWorkingDaysCount();
+        calculateInvoice();
+        updateOrders();
+    }
 //--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------

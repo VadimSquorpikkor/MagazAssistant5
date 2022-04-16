@@ -18,6 +18,7 @@ public class DataHelper {
    private final MutableLiveData<Integer> juiceSmallPrice;
    private final MutableLiveData<Integer> kefirPrice;
    private final MutableLiveData<Integer> kefirSmallPrice;
+   private final MutableLiveData<Integer> workDaysCount;
 
    public DataHelper(MutableLiveData<ArrayList<Location>> locations,
                      MutableLiveData<ArrayList<Employee>> employees,
@@ -25,7 +26,8 @@ public class DataHelper {
                      MutableLiveData<Integer> juicePrice,
                      MutableLiveData<Integer> juiceSmallPrice,
                      MutableLiveData<Integer> kefirPrice,
-                     MutableLiveData<Integer> kefirSmallPrice
+                     MutableLiveData<Integer> kefirSmallPrice,
+                     MutableLiveData<Integer> workDaysCount
    ) {
 //      db = new DataBase();
       db = new SQLDatabase();
@@ -36,6 +38,7 @@ public class DataHelper {
       this.juiceSmallPrice = juiceSmallPrice;
       this.kefirPrice = kefirPrice;
       this.kefirSmallPrice = kefirSmallPrice;
+      this.workDaysCount = workDaysCount;
    }
 
    public void updateLocation(Location location) {
@@ -76,6 +79,14 @@ public class DataHelper {
 
    public void savePrices() {
       db.savePrices(juicePrice.getValue(), juiceSmallPrice.getValue(), kefirPrice.getValue(), kefirSmallPrice.getValue());
+   }
+
+   public void updateWorkingDaysCount() {
+      db.saveWorkingDays(workDaysCount.getValue());
+   }
+
+   public void getWorkingDaysCount() {
+      db.getWorkingDays(workDaysCount);
    }
 
    public void uncheckAllOrders() {

@@ -51,12 +51,13 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    private static final String COLUMN_ORDER_ISCHECKED = "purchased";
    private static final String COLUMN_ORDER_EMPLOYEE = "customer";
 //--------------------------------------------------------------------------------------------------
-   private static final String TABLE_PRICES = "table_prices";
-   private static final String COLUMN_PRICE_ID = "id";
+   private static final String TABLE_SETTINGS = "table_settings";
+   private static final String COLUMN_SETTINGS_ID = "id";
    private static final String COLUMN_PRICE_JUICE_BIG = "price_juice_big";
    private static final String COLUMN_PRICE_JUICE_SMALL = "price_juice_small";
    private static final String COLUMN_PRICE_KEFIR_BIG = "price_kefir_big";
    private static final String COLUMN_PRICE_KEFIR_SMALL = "price_kefir_small";
+   private static final String COLUMN_WORKING_DAYS_COUNT = "working_days_count";
 
    public SQLDatabase() {
       super(App.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
@@ -98,12 +99,13 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
               + ")"
       );
       Log.e(TAG, "table orders created");
-      db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_PRICES + "("
-              + COLUMN_PRICE_ID + " INTEGER PRIMARY KEY,"
+      db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SETTINGS + "("
+              + COLUMN_SETTINGS_ID + " INTEGER PRIMARY KEY,"
               + COLUMN_PRICE_JUICE_BIG + " INTEGER,"
               + COLUMN_PRICE_JUICE_SMALL + " INTEGER,"
               + COLUMN_PRICE_KEFIR_BIG + " INTEGER,"
-              + COLUMN_PRICE_KEFIR_SMALL + " INTEGER"
+              + COLUMN_PRICE_KEFIR_SMALL + " INTEGER,"
+              + COLUMN_WORKING_DAYS_COUNT + " INTEGER"
               + ")"
       );
       Log.e(TAG, "table juices created");
@@ -114,6 +116,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       // экземпляр класса БД и срабатывает exception (что-то типа "рекурсивный вызов БД")
       addAllEmployeesDefault(db);
       addAllLocationsDefault(db);
+      addSettingsDefault(db);
    }
 
    @Override
@@ -127,7 +130,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDERS);
       onCreate(db);
 
-      db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRICES);
+      db.execSQL("DROP TABLE IF EXISTS " + TABLE_SETTINGS);
       onCreate(db);
    }
 
@@ -338,7 +341,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    public void removeOrder(Order order) {
       //delete from tablename where id='1'
       SQLiteDatabase db = this.getWritableDatabase();
-      db.execSQL("DELETE FROM " + TABLE_LOCATIONS + " WHERE " + COLUMN_ORDER_ID + "=" + order.getId());
+      db.execSQL("DELETE FROM " + TABLE_ORDERS + " WHERE " + COLUMN_ORDER_ID + "=" + order.getId());
       db.close();
    }
 
@@ -391,7 +394,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
    @Override
    public void loadPrices(MutableLiveData<Integer> juicePrice, MutableLiveData<Integer> juiceSmallPrice, MutableLiveData<Integer> kefirPrice, MutableLiveData<Integer> kefirSmallPrice) {
-      selectAllFrom(TABLE_PRICES);
+      selectAllFrom(TABLE_SETTINGS);
       if (cursor.moveToFirst()) {//всегда загружается только самая первая запись (а других там и не будет)
          juicePrice.setValue(cursorGetInt(1));
          juiceSmallPrice.setValue(cursorGetInt(2));
@@ -405,16 +408,52 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
    public void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice) {
       SQLiteDatabase db = this.getWritableDatabase();
       ContentValues values = new ContentValues();
-      values.put(COLUMN_PRICE_ID,            0);
+      values.put(COLUMN_SETTINGS_ID,            0);
       values.put(COLUMN_PRICE_JUICE_BIG,     juicePrice);
       values.put(COLUMN_PRICE_JUICE_SMALL,   juiceSmallPrice);
       values.put(COLUMN_PRICE_KEFIR_BIG,     kefirPrice);
       values.put(COLUMN_PRICE_KEFIR_SMALL,   kefirSmallPrice);
       //если получилось обновить данные в БД, завершаем работу, если не получилось — значит этих
       // данных ещё не было в БД и тогда добавляем эти данные в БД
-      int success = db.update(TABLE_PRICES, values, COLUMN_ORDER_ID + " = ?", new String[]{String.valueOf(0)});
-      if (success==0) db.insert(TABLE_PRICES, null, values);
+      int success = db.update(TABLE_SETTINGS, values, COLUMN_ORDER_ID + " = ?", new String[]{String.valueOf(0)});
+      if (success==0) db.insert(TABLE_SETTINGS, null, values);
       db.close();
+   }
+
+   @Override
+   public void getWorkingDays(MutableLiveData<Integer> days) {
+      selectAllFrom(TABLE_SETTINGS);
+      if (cursor.moveToFirst()) {//всегда загружается только самая первая запись (а других там и не будет)
+         days.setValue(cursorGetInt(5));
+      }
+      cursor.close();
+   }
+
+   @Override
+   public void saveWorkingDays(int days) {
+      SQLiteDatabase db = this.getWritableDatabase();
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_SETTINGS_ID,            0);
+      values.put(COLUMN_WORKING_DAYS_COUNT,     days);
+      //если получилось обновить данные в БД, завершаем работу, если не получилось — значит этих
+      // данных ещё не было в БД и тогда добавляем эти данные в БД
+      int success = db.update(TABLE_SETTINGS, values, COLUMN_ORDER_ID + " = ?", new String[]{String.valueOf(0)});
+      if (success==0) db.insert(TABLE_SETTINGS, null, values);
+      db.close();
+   }
+
+   /**Только для добавления данных по умолчанию при создании БД*/
+   private void addSettings(int JB, int JS, int KB, int KS, int days, SQLiteDatabase db) {
+      Log.e(TAG, "addSettings: "+JB+" "+JS+" "+KB+" "+KS+" "+days);
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_SETTINGS_ID       ,0);
+      values.put(COLUMN_PRICE_JUICE_BIG   ,JB);
+      values.put(COLUMN_PRICE_JUICE_SMALL ,JS);
+      values.put(COLUMN_PRICE_KEFIR_BIG   ,KB);
+      values.put(COLUMN_PRICE_KEFIR_SMALL ,KS);
+      values.put(COLUMN_WORKING_DAYS_COUNT,days);
+      db.insert(TABLE_SETTINGS, null, values);
+      //db.close();
    }
 
 //--------------------------------------------------------------------------------------------------
@@ -446,5 +485,12 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
          addLocation(location, db);
       }
    }
+
+   private void addSettingsDefault(SQLiteDatabase db) {
+      ArrayList<Integer> set = DefaultData.settingsDefault();
+      addSettings(set.get(0), set.get(1), set.get(2), set.get(3), set.get(4), db);
+   }
+
+
 
 }

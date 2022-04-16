@@ -131,6 +131,16 @@ class DataBase implements Data{
 
    }
 
+   @Override
+   public void getWorkingDays(MutableLiveData<Integer> days) {
+
+   }
+
+   @Override
+   public void saveWorkingDays(int days) {
+
+   }
+
 //--------------------------------------------------------------------------------------------------
 
    @Override

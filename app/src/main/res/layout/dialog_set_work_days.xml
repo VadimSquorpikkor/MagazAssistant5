@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/vertical"
+    android:background="@color/colorDarkGray">
+
+    <TextView
+        style="@style/text_giant_orange"
+        android:layout_marginBottom="10dp"
+        android:text="Количество рабочих дней" />
+
+
+    <EditText
+        android:id="@+id/days_count"
+        style="@style/niceEdit"
+        android:inputType="number"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/my_button_shape_selector"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Сохранить" />
+
+</LinearLayout>

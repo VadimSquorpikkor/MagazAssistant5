@@ -42,6 +42,10 @@ interface Data {
 
     void savePrices(int juicePrice, int juiceSmallPrice, int kefirPrice, int kefirSmallPrice);
 
+    void getWorkingDays(MutableLiveData<Integer> days);
+
+    void saveWorkingDays(int days);
+
     void addAllEmployeesDefault();
 
     void addAllLocationsDefault();

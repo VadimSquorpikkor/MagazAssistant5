@@ -19,19 +19,22 @@ public class OrderDialog extends BaseDialog {
     private final Employee employee;
     private EditText name, price, count;
     private TextView employeeName;
-    private Button btnUpdate, btnAddNew;
+    private TextView btnUpdate, btnAddNew;
+    private boolean isNew;
 
     /**Открыть существующий ордер*/
     public OrderDialog(Order order, Employee employee) {
         this.order = order;
         this.employee = employee;
-        setAsNew(false);
+        this.isNew = false;
+        //setAsNew(false);
     }
 
     /**Создать новый ордер*/
     public OrderDialog(Employee employee) {
         this.employee = employee;
-        setAsNew(true);
+        this.isNew = true;
+        //setAsNew(true);
     }
 
     private void setAsNew(boolean isNew) {
@@ -50,7 +53,13 @@ public class OrderDialog extends BaseDialog {
         super.onCreate(savedInstanceState);
         initializeWithVM(R.layout.dialog_order);
 
-        if (order==null) this.order = new Order(employee.getId());
+        btnUpdate = view.findViewById(R.id.update);
+        btnAddNew = view.findViewById(R.id.add);
+
+        if (order==null) {
+            this.order = new Order(employee.getId());
+            setAsNew(true);
+        } else setAsNew(false);
 
         name = view.findViewById(R.id.edit_name);
         price = view.findViewById(R.id.edit_price);
@@ -62,11 +71,12 @@ public class OrderDialog extends BaseDialog {
         price.setText(""+order.getPrice());
         count.setText(""+order.getCount());
 
-        btnUpdate = view.findViewById(R.id.update);
-        btnAddNew = view.findViewById(R.id.add);
+
 
         btnUpdate.setOnClickListener(v -> update());
         btnAddNew.setOnClickListener(v -> addNew());
+
+
 
         return dialog;
     }
