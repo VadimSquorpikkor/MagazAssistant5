@@ -70,8 +70,11 @@ public class OrderLocationAdapter extends RecyclerView.Adapter<OrderLocationAdap
         if (location.isUnitedEmployees()) {
             Log.e(TAG, ""+location.getName()+" (united)");
             allEmployees = new ArrayList<>();
-            allEmployees.add(UniteEmployees.unitedEmployeesInOne(mainViewModel.getPresentEmployeesByLocation(location), location.getName(), workingDays));
-            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays(workingDays));
+            Employee united = UniteEmployees.unitedEmployeesInOne(mainViewModel.getPresentEmployeesByLocation(location), location.getName(), workingDays);
+            if (united!=null) {
+                allEmployees.add(united);
+                for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays(workingDays));
+            }
         } else {
             Log.e(TAG, ""+location.getName());
             allEmployees = mainViewModel.getPresentEmployeesByLocation(location);

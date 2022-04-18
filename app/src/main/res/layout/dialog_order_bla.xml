@@ -13,7 +13,7 @@
         <TextView
             style="@style/text_small_orange"
             android:layout_width="wrap_content"
-            android:text="Добавить" />
+            android:text="Добавить ордер" />
         <ImageView
             android:id="@+id/add_order"
             android:layout_width="48dp"
@@ -32,7 +32,7 @@
         <TextView
             style="@style/text_small_orange"
             android:layout_width="wrap_content"
-            android:text="Удалить" />
+            android:text="Удалить ордер" />
 
         <ImageView
             android:id="@+id/delete_order"
@@ -40,6 +40,26 @@
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_baseline_delete_outline_24" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/vertical"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content">
+
+        <TextView
+            style="@style/text_small_orange"
+            android:layout_width="wrap_content"
+            android:text="Инфо работника" />
+
+        <ImageView
+            android:id="@+id/open_employee"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_person_outline_24" />
 
 
     </LinearLayout>

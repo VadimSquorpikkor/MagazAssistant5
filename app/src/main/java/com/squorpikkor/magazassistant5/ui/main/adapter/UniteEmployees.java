@@ -16,6 +16,7 @@ class UniteEmployees {
          list.add(employee.getId());
          days+=employee.getDays(workingDays);
       }
+      if (employees.size()==0)return null;
       return new EmployeeUnion(list, name, employees.get(0).getLocationId(), days);
    }
 }

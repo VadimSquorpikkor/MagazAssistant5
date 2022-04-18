@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/vertical"
+    android:background="@color/colorDarkGray">
+
+    <EditText
+        android:id="@+id/edit_name"
+        style="@style/niceEdit.orange"
+        android:inputType="textPersonName"
+        android:minWidth="200dp"
+
+        tools:text="Имя Работника" />
+
+    <Spinner android:id="@+id/location_spinner" style="@style/dialogLinearSpinner"
+        />
+
+    <EditText
+        android:id="@+id/edit_name1"
+        style="@style/niceEdit"
+        android:inputType="textPersonName"
+        android:minWidth="200dp"
+        tools:text="12345" />
+
+
+    <LinearLayout style="@style/horizontalCenter">
+        <CheckBox style="@style/check_box.small" android:id="@+id/check_employee"/>
+        <TextView style="@style/text_medium" android:text="На работе"/>
+    </LinearLayout>
+
+    <LinearLayout style="@style/horizontalCenter">
+        <CheckBox style="@style/check_box.small" android:id="@+id/check1"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check2"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check3"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check4"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check5"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check6"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check7"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check8"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check9"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/vertical"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content">
+
+        <TextView
+            style="@style/text_small_orange"
+            android:layout_width="wrap_content"
+            android:text="Добавить ордер" />
+        <ImageView
+            android:id="@+id/add_order"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_add_shopping_cart_24" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout style="@style/horizontal">
+
+        <TextView
+            android:id="@+id/add"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/my_button_shape_selector"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Добавить" />
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/my_button_shape_selector"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Обновить" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

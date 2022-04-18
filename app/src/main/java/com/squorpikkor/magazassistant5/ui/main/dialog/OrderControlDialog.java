@@ -28,8 +28,14 @@ public class OrderControlDialog extends BaseDialog{
 
       view.findViewById(R.id.add_order).setOnClickListener(v->addOrder());
       view.findViewById(R.id.delete_order).setOnClickListener(v->deleteOrder());
+      view.findViewById(R.id.open_employee).setOnClickListener(v->openInfo());
 
       return dialog;
+   }
+
+   private void openInfo() {
+      new EmployeeDialog(employee).show(manager, null);
+      dismiss();
    }
 
    private void deleteOrder() {

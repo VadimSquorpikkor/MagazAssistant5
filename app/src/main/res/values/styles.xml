@@ -109,4 +109,19 @@
         <item name="android:background">@drawable/edit_text_field</item>
     </style>
 
+    <style name="niceEdit.orange" parent="niceEdit">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorOrange</item>
+    </style>
+
+    <style name="dialogLinearSpinner">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:layout_margin">7dp</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:scrollbarSize">22dp</item>
+        <item name="android:minWidth">200dp</item>
+<!--        <item name="android:spinnerMode">dialog</item>-->
+    </style>
 </resources>
