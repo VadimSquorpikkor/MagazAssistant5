@@ -49,8 +49,16 @@ public class DataHelper {
       db.getAllLocations(locations);
    }
 
+   public void createEmployee(Employee employee) {
+      db.addEmployee(employee);
+   }
+
    public void updateEmployee(Employee employee) {
       db.updateEmployee(employee);
+   }
+
+   public void deleteEmployee(Employee employee) {
+      db.removeEmployee(employee);
    }
 
    public void getAllEmployees() {

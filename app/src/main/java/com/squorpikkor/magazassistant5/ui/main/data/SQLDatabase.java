@@ -176,6 +176,7 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
 
    @Override
    public void updateEmployee(Employee employee) {
+      Log.e(TAG, "updateEmployee: "+employee.getName());
       SQLiteDatabase db = this.getWritableDatabase();
       ContentValues values = new ContentValues();
       values.put(COLUMN_EMPLOYEE_ID       , employee.getId());
@@ -252,6 +253,14 @@ class SQLDatabase extends SQLiteOpenHelper implements Data{
       }
       cursor.close();
       selectedEmployees.setValue(list);
+   }
+
+   @Override
+   public void removeEmployee(Employee employee) {
+      //delete from tablename where id='1'
+      SQLiteDatabase db = this.getWritableDatabase();
+      db.execSQL("DELETE FROM " + TABLE_EMPLOYEES + " WHERE " + COLUMN_ORDER_ID + "=" + employee.getId());
+      db.close();
    }
 
 //--------------------------------------------------------------------------------------------------

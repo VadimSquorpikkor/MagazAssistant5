@@ -17,6 +17,8 @@ import java.util.ArrayList;
  *
  * */
 
+//НЕ ИСПОЛЬЗУЕТСЯ
+
 class DataBase implements Data{
 
    ArrayList<Location> locations;
@@ -106,6 +108,11 @@ class DataBase implements Data{
    @Override
    public void getEmployeesByLocation(Location location, MutableLiveData<ArrayList<Employee>> selectedEmployees) {
       int id = location.getId();
+   }
+
+   @Override
+   public void removeEmployee(Employee employee) {
+
    }
 
    @Override

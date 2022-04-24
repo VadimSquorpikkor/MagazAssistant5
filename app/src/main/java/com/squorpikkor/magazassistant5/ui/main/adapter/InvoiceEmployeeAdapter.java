@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
+import com.squorpikkor.magazassistant5.ui.main.dialog.EmployeeDialog;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 
 import java.util.ArrayList;
@@ -81,13 +82,21 @@ public class InvoiceEmployeeAdapter extends RecyclerView.Adapter<InvoiceEmployee
             check.setOnClickListener(view -> {
                Employee employee = list.get(getAdapterPosition());
                CheckBoxSwitcher.setDaysByCheckboxes(checks, employee);
+               mainViewModel.updateEmployee(employee);
                mainViewModel.update();
             });
          }
          mainCheck.setOnClickListener(v -> {
             Employee employee = list.get(getAdapterPosition());
             CheckBoxSwitcher.toggleCheckBoxes(checks, mainCheck.isChecked(), employee);
+            mainViewModel.updateEmployee(employee);
             mainViewModel.update();
+         });
+
+         name.setOnClickListener(view -> {
+            Employee employee = list.get(getAdapterPosition());
+//            new EmployeeDialog(employee).show(, null);
+            mainViewModel.getOpenEmployeeDialog().setValue(employee);
          });
       }
 

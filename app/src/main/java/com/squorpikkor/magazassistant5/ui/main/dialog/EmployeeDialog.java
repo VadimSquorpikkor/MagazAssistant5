@@ -20,13 +20,37 @@ import java.util.ArrayList;
 
 public class EmployeeDialog extends BaseDialog {
 
-    Spinner spinner;
 
-    public EmployeeDialog() {
+    private EmployeeDialog() {
     }
 
-    public EmployeeDialog(Employee employee) {
+    private static class EmployeeDialogHolder {
+//        public static final EmployeeDialog HOLDER_INSTANCE = new EmployeeDialog();
 
+//        public static final EmployeeDialog HOLDER_INSTANCE(Employee employee) {
+//            return new EmployeeDialog(employee);
+//        }
+    }
+
+//    public static EmployeeDialog getInstance(Employee e) {
+//        return EmployeeDialogHolder.HOLDER_INSTANCE(e);
+//    }
+
+//    private static final EmployeeDialog INSTANCE = new EmployeeDialog();
+//
+//    public static EmployeeDialog getInstance(Employee employee) {
+//
+//    }
+
+    Spinner spinner;
+
+    Employee employee;
+
+    EditText name;
+
+
+    public EmployeeDialog(Employee employee) {
+        this.employee = employee;
     }
 
     @NonNull
@@ -48,8 +72,10 @@ public class EmployeeDialog extends BaseDialog {
 
             }
         });
-        mViewModel.getLocations().observe(getViewLifecycleOwner(), this::updateCatList);
+//        mViewModel.getLocations().observe(getViewLifecycleOwner(), this::updateCatList);
 
+        name = view.findViewById(R.id.edit_name);
+        name.setText(employee.getName());
 
         return dialog;
     }

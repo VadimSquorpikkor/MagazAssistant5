@@ -34,7 +34,7 @@ public class Employee extends Entity{
         this.locationId = locationId;
         this.isPresent = true;
         this.workingDaysArray = new boolean[MAX_DAYS_COUNT];
-        daysToDaysArray("11111");
+        daysToDaysArray("111111111");
     }
 
     //не паблик, этот констоуктор использует только EmployeeUnion

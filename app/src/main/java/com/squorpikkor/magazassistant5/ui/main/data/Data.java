@@ -18,6 +18,8 @@ interface Data {
 
     void getEmployeesByLocation(Location location, MutableLiveData<ArrayList<Employee>> selectedEmployees);
 
+    void removeEmployee(Employee employee);
+
     void updateLocation(Location location);
 
     void addLocation(Location location);

@@ -37,6 +37,9 @@ public class MainViewModel extends ViewModel {
     private final MutableLiveData<Integer> invoiceLeft;
     private final MutableLiveData<Double>  moneyForEmployeePerDay;//сумма на человекодень
 
+    //Диалоги
+    private final MutableLiveData<Employee> openEmployeeDialog;
+
     public MainViewModel() {
         moneyForEmployeePerDay  = new MutableLiveData<>(0.0);
         locations               = new MutableLiveData<>();
@@ -54,6 +57,7 @@ public class MainViewModel extends ViewModel {
         smallKefirCount         = new MutableLiveData<>(0);
         invoiceTotal            = new MutableLiveData<>(0);
         invoiceLeft             = new MutableLiveData<>(0);
+        openEmployeeDialog      = new MutableLiveData<>();
         data = new DataHelper(locations, employees, orders, juicePrice, juiceSmallPrice, kefirPrice, kefirSmallPrice, workingDays);
         data.getAllLocations();
         data.getAllEmployees();
@@ -111,9 +115,12 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<Double> getMoneyForEmployeePerDay() {
         return moneyForEmployeePerDay;
     }
-
     public MutableLiveData<Integer> getEmployeeDayCount() {
         return employeeDayCount;
+    }
+
+    public MutableLiveData<Employee> getOpenEmployeeDialog() {
+        return openEmployeeDialog;
     }
 
     public void update() {
@@ -259,7 +266,21 @@ public class MainViewModel extends ViewModel {
         updateOrders();
     }
 //--------------------------------------------------------------------------------------------------
+public void addNewEmployee(Employee employee) {
+    data.createEmployee(employee);
+//    getOrders().getValue().add(order);
+//    updateOrders();
+}
 
+    public void updateEmployee(Employee employee) {
+        data.updateEmployee(employee);
+//        updateOrders();
+    }
+
+    public void deleteEmployee(Employee employee) {
+        data.deleteEmployee(employee);
+//        updateOrders();
+    }
 //--------------------------------------------------------------------------------------------------
     //todo идея: реешние проблемы отображения обычного работника и объединенного:
     // можно сделать UnitedEmployee extends Employee (который будет собирать в себе несколько
