@@ -1,4 +1,4 @@
-# MagazAssistant5
+# MagazAssistant5 1.27
 ###
 
 [Список версий](./VERSION.md)
