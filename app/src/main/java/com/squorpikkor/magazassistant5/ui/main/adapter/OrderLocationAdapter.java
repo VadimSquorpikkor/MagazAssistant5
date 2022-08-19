@@ -1,10 +1,10 @@
 package com.squorpikkor.magazassistant5.ui.main.adapter;
 
-import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
 import static com.squorpikkor.magazassistant5.ui.main.App.getContext;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squorpikkor.magazassistant5.ui.main.pager.InfoActivity;
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
@@ -24,13 +25,16 @@ import java.util.ArrayList;
 
 public class OrderLocationAdapter extends RecyclerView.Adapter<OrderLocationAdapter.AdapterViewHolder> {
 
+    public static final String EXTRA_POSITION = "extra_position";
+
     private final FragmentManager manager;
     private final MainViewModel mainViewModel;
-    private int workingDays;
+    private final Context context;
 
-    public OrderLocationAdapter(MainViewModel mainViewModel, FragmentManager manager) {
+    public OrderLocationAdapter(MainViewModel mainViewModel, FragmentManager manager, Context context) {
         this.mainViewModel = mainViewModel;
         this.manager = manager;
+        this.context = context;
     }
 
     private OnItemClickListener onItemClickListener;
@@ -47,7 +51,6 @@ public class OrderLocationAdapter extends RecyclerView.Adapter<OrderLocationAdap
 
     @SuppressLint("NotifyDataSetChanged")
     public void setList(ArrayList<Location> list) {
-        workingDays = mainViewModel.getWorkingDays().getValue();
         if (list == null)
             list = new ArrayList<>();//Если list == null, то в ресайклер будет передан пустой лист
         this.list = list;
@@ -67,26 +70,15 @@ public class OrderLocationAdapter extends RecyclerView.Adapter<OrderLocationAdap
         holder.textName.setText(location.getName());
         ArrayList<Employee> allEmployees;
 
-        if (location.isUnitedEmployees()) {
-            Log.e(TAG, ""+location.getName()+" (united)");
-            allEmployees = new ArrayList<>();
-            Employee united = UniteEmployees.unitedEmployeesInOne(mainViewModel.getPresentEmployeesByLocation(location), location.getName(), workingDays);
-            if (united!=null) {
-                allEmployees.add(united);
-                for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays(workingDays));
-            }
-        } else {
-            Log.e(TAG, ""+location.getName());
-            allEmployees = mainViewModel.getPresentEmployeesByLocation(location);
-            for (Employee employee:allEmployees) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays(workingDays));
-        }
+        mainViewModel.getPresentEmployeesByAllLocationsWithUnited();//todo по тупому: чтобы пронумеровать список всех работников нужно получить список. пронумеровывание нужно сделать не в getPresentEmployeesByAllLocationsWithUnited, са где-то в другом месте
+        allEmployees = mainViewModel.getPresentEmployeesByLocationWithUnited(location);
 
         RecyclerView recyclerView = holder.recyclerView;
         OrderEmployeeAdapter adapter = new OrderEmployeeAdapter(mainViewModel, manager);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         adapter.setList(allEmployees);
-
+        adapter.setOnItemLongClickListener(this::openInfo);
     }
 
     @Override
@@ -109,5 +101,11 @@ public class OrderLocationAdapter extends RecyclerView.Adapter<OrderLocationAdap
                     onItemClickListener.onItemClick(list.get(getAdapterPosition()));
             });
         }
+    }
+
+    private void openInfo(int position) {
+        Intent intent = new Intent(context, InfoActivity.class);
+        intent.putExtra(EXTRA_POSITION, position);
+        context.startActivity(intent);
     }
 }

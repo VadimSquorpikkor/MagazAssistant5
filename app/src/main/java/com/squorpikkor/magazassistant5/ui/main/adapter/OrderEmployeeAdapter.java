@@ -3,6 +3,7 @@ package com.squorpikkor.magazassistant5.ui.main.adapter;
 import static com.squorpikkor.magazassistant5.ui.main.App.getContext;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,16 @@ public class OrderEmployeeAdapter extends RecyclerView.Adapter<OrderEmployeeAdap
 
     private final FragmentManager manager;
     private final MainViewModel mainViewModel;
+
+    private OnItemLongClickListener onItemLongClickListener;
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(int position);
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
 
     public OrderEmployeeAdapter(MainViewModel mainViewModel, FragmentManager manager) {
         this.mainViewModel = mainViewModel;
@@ -128,8 +139,13 @@ public class OrderEmployeeAdapter extends RecyclerView.Adapter<OrderEmployeeAdap
                 employee.setShow(!employee.isShow());
                 notifyDataSetChanged();
             });
-        }
+            itemView.setOnLongClickListener(view -> {
+                if (onItemLongClickListener != null) onItemLongClickListener.onItemLongClick(list.get(getAdapterPosition()).getCountInList());
+                return true;
+            });
 
+
+        }
 
     }
 

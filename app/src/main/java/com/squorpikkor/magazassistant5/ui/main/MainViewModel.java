@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.squorpikkor.magazassistant5.ui.main.adapter.UniteEmployees;
 import com.squorpikkor.magazassistant5.ui.main.data.DataHelper;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Location;
@@ -40,6 +41,11 @@ public class MainViewModel extends ViewModel {
     //Диалоги
     private final MutableLiveData<Employee> openEmployeeDialog;
 
+    private static MainViewModel instance;
+    public static MainViewModel getInstance() {
+        return instance;
+    }
+
     public MainViewModel() {
         moneyForEmployeePerDay  = new MutableLiveData<>(0.0);
         locations               = new MutableLiveData<>();
@@ -65,6 +71,7 @@ public class MainViewModel extends ViewModel {
         data.loadPrices();
         data.getWorkingDaysCount();
         calculateInvoice();
+        instance = this;
     }
 
     public MutableLiveData<ArrayList<Location>> getLocations() {
@@ -215,6 +222,48 @@ public class MainViewModel extends ViewModel {
             if (employee.getLocationId()==location.getId()&&employee.getDays(getWorkingDays().getValue())!=0) {
                 list.add(employee);
             }
+        }
+        return list;
+    }
+
+    /**Возвращает всех работников выбранной локации у которых есть хоть один рабочий день.
+     * Если локация united, добавляет всех работников этой локации в один объединенный*/
+    public ArrayList<Employee> getPresentEmployeesByLocationWithUnited(Location location) {
+        ArrayList<Employee> list = new ArrayList<>();
+
+        if (location.isUnitedEmployees()) {
+            Log.e(TAG, ""+location.getName()+" (united)");
+            Employee united = UniteEmployees.unitedEmployeesInOne(getPresentEmployeesByLocation(location), location.getName(), workingDays.getValue());
+            if (united!=null) {
+                list.add(united);
+                for (Employee employee:list) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays(workingDays.getValue()));
+            }
+        } else {
+            Log.e(TAG, ""+location.getName());
+            if (employees.getValue()==null) return list;
+            for (Employee employee:employees.getValue()) {
+                if (employee.getLocationId()==location.getId()&&employee.getDays(getWorkingDays().getValue())!=0) {
+                    list.add(employee);
+                }
+            }
+            for (Employee employee:list) Log.e(TAG, ": "+employee.getName()+" всего дней: "+employee.getDays(workingDays.getValue()));
+        }
+
+        return list;
+    }
+
+    /**Возвращает всех работников всех локаций. Если есть объединенные, то добавляет, как объединенные*/
+    public ArrayList<Employee> getPresentEmployeesByAllLocationsWithUnited() {
+        ArrayList<Employee> list = new ArrayList<>();
+        if (locations.getValue()==null) return list;
+        for (Location location: locations.getValue()) {
+            Log.e(TAG, "♦ getPresentEmployeesByAllLocationsWithUnited: "+location.getName());
+            list.addAll(getPresentEmployeesByLocationWithUnited(location));
+        }
+        //пронумеровываю работников в списке по порядку. нужно для вызова по номеру в списке для запуска в каруселе
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setCountInList(i);
+            Log.e(TAG, "♦♦ : "+list.get(i).getName()+" "+list.get(i).getCountInList());
         }
         return list;
     }

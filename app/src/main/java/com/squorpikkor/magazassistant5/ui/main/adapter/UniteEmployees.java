@@ -5,11 +5,11 @@ import com.squorpikkor.magazassistant5.ui.main.entities.EmployeeUnion;
 
 import java.util.ArrayList;
 
-class UniteEmployees {
+public class UniteEmployees {
 
    //TODO вместо листа можно просто передавать id локации (она одинакова у всех employees этой локации)
 
-   static Employee unitedEmployeesInOne(ArrayList<Employee> employees, String name, int workingDays) {
+   public static Employee unitedEmployeesInOne(ArrayList<Employee> employees, String name, int workingDays) {
       ArrayList<Integer> list = new ArrayList<>();
       int days = 0;
       for (Employee employee:employees) {

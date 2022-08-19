@@ -6,9 +6,9 @@
     <LinearLayout style="@style/inner_block">
 
 
-            <TextView
-                style="@style/h2"
-                android:text="Название" />
+<!--            <TextView-->
+<!--                style="@style/h2"-->
+<!--                android:text="Название" />-->
 
         <LinearLayout style="@style/horizontal">
 

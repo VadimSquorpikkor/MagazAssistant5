@@ -9,6 +9,14 @@ public class Employee extends Entity{
     private final boolean[] workingDaysArray;
     private static final int MAX_DAYS_COUNT = 9;
     private boolean show;
+    private int countInList;
+
+    public int getCountInList() {
+        return countInList;
+    }
+    public void setCountInList(int countInList) {
+        this.countInList = countInList;
+    }
 
     private void daysToDaysArray(String days) {
         for (int i = 0; i < workingDaysArray.length; i++) {

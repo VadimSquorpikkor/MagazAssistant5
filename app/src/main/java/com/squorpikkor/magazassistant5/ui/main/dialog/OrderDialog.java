@@ -69,7 +69,7 @@ public class OrderDialog extends BaseDialog {
 
         employeeName.setText(employee.getName());
         name.setText(order.getName());
-        price.setText(""+order.getPrice());
+        price.setText(Utils.integerToMoneyString(order.getPrice()));
         count.setText(""+order.getCount());
 
         view.findViewById(R.id.edit_price_dec).setOnClickListener(v->decreaseIfCorrect(price, 0f));

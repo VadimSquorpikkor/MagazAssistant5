@@ -3,13 +3,16 @@
     package="com.squorpikkor.magazassistant5">
 
     <application
-        android:allowBackup="true"
         android:name=".ui.main.App"
+        android:allowBackup="true"
         android:icon="@drawable/magaz_assistant"
         android:label="@string/app_name"
         android:roundIcon="@drawable/magaz_assistant"
         android:supportsRtl="true"
         android:theme="@style/Theme.MagazAssistant5">
+        <activity
+            android:name=".ui.main.pager.InfoActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
