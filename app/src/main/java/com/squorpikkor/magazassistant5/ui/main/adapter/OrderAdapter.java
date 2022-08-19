@@ -1,6 +1,7 @@
 package com.squorpikkor.magazassistant5.ui.main.adapter;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,6 +94,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AdapterViewH
          textCount = itemView.findViewById(R.id.text_count);
 
          checkBox.setOnClickListener(view -> {
+            Log.e("TAG", "♦♦♦♦ AdapterViewHolder: ");
             Order order = list.get(getAdapterPosition());
             order.setChecked(checkBox.isChecked());
             mainViewModel.updateOrders();

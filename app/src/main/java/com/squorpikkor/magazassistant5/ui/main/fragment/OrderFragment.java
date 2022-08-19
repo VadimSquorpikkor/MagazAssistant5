@@ -31,7 +31,7 @@ public class OrderFragment  extends Fragment {
       View view = inflater.inflate(R.layout.fragment_order, container, false);
       MainViewModel mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
-      mViewModel.getPresentEmployeesByAllLocationsWithUnited();//todo по тупому: чтобы пронумеровать список всех работников нужно получить список. пронумеровывание нужно сделать не в getPresentEmployeesByAllLocationsWithUnited, са где-то в другом месте
+      //mViewModel.getPresentEmployeesByAllLocationsWithUnited();//todo по тупому: чтобы пронумеровать список всех работников нужно получить список. пронумеровывание нужно сделать не в getPresentEmployeesByAllLocationsWithUnited, са где-то в другом месте
       RecyclerView locationRecyclerView = view.findViewById(R.id.recycler_locations);
       OrderLocationAdapter locationAdapter = new OrderLocationAdapter(mViewModel, getParentFragmentManager(), requireActivity());
       locationRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));

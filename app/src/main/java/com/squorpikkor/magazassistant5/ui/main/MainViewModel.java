@@ -4,6 +4,7 @@ import static com.squorpikkor.magazassistant5.ui.main.App.TAG;
 
 import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.squorpikkor.magazassistant5.ui.main.adapter.UniteEmployees;
@@ -71,7 +72,29 @@ public class MainViewModel extends ViewModel {
         data.loadPrices();
         data.getWorkingDaysCount();
         calculateInvoice();
+        employees.observeForever(new Observer<ArrayList<Employee>>() {
+            @Override
+            public void onChanged(ArrayList<Employee> employees) {
+                setPresentEmployeesByAllLocationsWithUnited(employees);
+            }
+        });
         instance = this;
+    }
+
+    private ArrayList<Employee> presentEmployees;
+
+    private void setPresentEmployeesByAllLocationsWithUnited(ArrayList<Employee> employees) {
+        if (locations.getValue()==null) return;
+        presentEmployees = new ArrayList<>();
+        for (Location location: locations.getValue()) {
+            Log.e(TAG, "♦ presentEmployees: "+location.getName());
+            presentEmployees.addAll(getPresentEmployeesByLocationWithUnited(location));
+        }
+        //пронумеровываю работников в списке по порядку. нужно для вызова по номеру в списке для запуска в каруселе
+        for (int i = 0; i < presentEmployees.size(); i++) {
+            presentEmployees.get(i).setCountInList(i);
+            Log.e(TAG, "♦♦ : "+presentEmployees.get(i).getName()+" "+presentEmployees.get(i).getCountInList());
+        }
     }
 
     public MutableLiveData<ArrayList<Location>> getLocations() {
@@ -129,6 +152,8 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<Employee> getOpenEmployeeDialog() {
         return openEmployeeDialog;
     }
+
+
 
     public void update() {
         calculateInvoice();
@@ -254,18 +279,7 @@ public class MainViewModel extends ViewModel {
 
     /**Возвращает всех работников всех локаций. Если есть объединенные, то добавляет, как объединенные*/
     public ArrayList<Employee> getPresentEmployeesByAllLocationsWithUnited() {
-        ArrayList<Employee> list = new ArrayList<>();
-        if (locations.getValue()==null) return list;
-        for (Location location: locations.getValue()) {
-            Log.e(TAG, "♦ getPresentEmployeesByAllLocationsWithUnited: "+location.getName());
-            list.addAll(getPresentEmployeesByLocationWithUnited(location));
-        }
-        //пронумеровываю работников в списке по порядку. нужно для вызова по номеру в списке для запуска в каруселе
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).setCountInList(i);
-            Log.e(TAG, "♦♦ : "+list.get(i).getName()+" "+list.get(i).getCountInList());
-        }
-        return list;
+        return presentEmployees;
     }
 
     public ArrayList<Order> getOrdersByEmployee(Employee employee) {

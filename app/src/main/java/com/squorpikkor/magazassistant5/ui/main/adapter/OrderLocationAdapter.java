@@ -70,7 +70,6 @@ public class OrderLocationAdapter extends RecyclerView.Adapter<OrderLocationAdap
         holder.textName.setText(location.getName());
         ArrayList<Employee> allEmployees;
 
-        mainViewModel.getPresentEmployeesByAllLocationsWithUnited();//todo по тупому: чтобы пронумеровать список всех работников нужно получить список. пронумеровывание нужно сделать не в getPresentEmployeesByAllLocationsWithUnited, са где-то в другом месте
         allEmployees = mainViewModel.getPresentEmployeesByLocationWithUnited(location);
 
         RecyclerView recyclerView = holder.recyclerView;

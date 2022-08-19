@@ -4,9 +4,9 @@ import android.view.View;
 import android.widget.CheckBox;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 
-class CheckBoxSwitcher {
+public class CheckBoxSwitcher {
 
-    static void setCheckboxesByEmployee(CheckBox[] checks, Employee employee, int workingDays) {
+    public static void setCheckboxesByEmployee(CheckBox[] checks, Employee employee, int workingDays) {
         boolean[] eDays = employee.getWorkingDaysArray(workingDays);
         for (int i = 0; i < checks.length; i++) {
             if (eDays.length > i) {
@@ -18,7 +18,7 @@ class CheckBoxSwitcher {
         }
     }
 
-    static void setDaysByCheckboxes(CheckBox[] checks, Employee employee) {
+    public static void setDaysByCheckboxes(CheckBox[] checks, Employee employee) {
         boolean[] arr = new boolean[checks.length];
         for (int i = 0; i < checks.length; i++) arr[i] = checks[i].isChecked();
         employee.setWorkingDaysArray(arr);

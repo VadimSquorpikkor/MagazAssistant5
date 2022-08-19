@@ -1,16 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    style="@style/vertical"
+    android:padding="8dp">
+
+    <LinearLayout style="@style/horizontal">
 
     <TextView
         android:id="@+id/name"
+        style="@style/orange_h1"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:text="Карпук И.Н."/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/page_num"
+            style="@style/orange_h1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2/10"/>
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/horizontal">
+        <TextView
+            android:layout_margin="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Денег осталось:" />
+        <TextView
+            android:id="@+id/money_left"
+            style="@style/orange_h1"
+            android:layout_margin="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="7.23"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Список заказов:" />
+
+
+
+    <LinearLayout
+        style="@style/vertical"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавить ордер" />
+        <ImageView
+            android:id="@+id/add_order"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_add_shopping_cart_24" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_weight="1"
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+<!--    <LinearLayout style="@style/horizontalCenter">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="На работе: " />-->
+<!--        <CheckBox style="@style/check_box" android:id="@+id/main_check"/>-->
+<!--    </LinearLayout>-->
+
+
+
+    <LinearLayout style="@style/horizontalCenter">
+        <CheckBox style="@style/check_box.small" android:id="@+id/check1"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check2"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check3"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check4"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check5"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check6"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check7"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check8"/>
+        <CheckBox style="@style/check_box.small" android:id="@+id/check9"/>
+    </LinearLayout>
+
+</LinearLayout>
