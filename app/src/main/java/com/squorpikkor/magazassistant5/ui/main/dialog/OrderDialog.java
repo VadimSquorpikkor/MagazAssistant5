@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Order;
+import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
 
 public class OrderDialog extends BaseDialog {
 
@@ -71,19 +72,21 @@ public class OrderDialog extends BaseDialog {
         price.setText(""+order.getPrice());
         count.setText(""+order.getCount());
 
-
+        view.findViewById(R.id.edit_price_dec).setOnClickListener(v->decreaseIfCorrect(price, 0f));
+        view.findViewById(R.id.edit_price_inc).setOnClickListener(v->increaseIfCorrect(price, 1000f));
+        view.findViewById(R.id.edit_count_dec).setOnClickListener(v->decreaseIfCorrect(count, 0));
+        view.findViewById(R.id.edit_count_inc).setOnClickListener(v->increaseIfCorrect(count, 100));
 
         btnUpdate.setOnClickListener(v -> update());
         btnAddNew.setOnClickListener(v -> addNew());
-
-
+        view.findViewById(R.id.cancel).setOnClickListener(v->dismiss());
 
         return dialog;
     }
 
     private void setData() {
         order.setName(name.getText().toString());
-        order.setPrice(Integer.parseInt(price.getText().toString()));
+        order.setPrice(Utils.stringMoneyToInteger(price));
         order.setCount(Integer.parseInt(count.getText().toString()));
     }
 

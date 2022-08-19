@@ -1,80 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/vertical"
-    android:background="@color/colorDarkGray"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <TextView style="@style/text_giant_orange" android:text="Задать цену" android:layout_marginBottom="10dp"/>
-
-    <LinearLayout style="@style/horizontal">
-
-        <TextView style="@style/text_small_orange"
-            android:text="Сок большой"
-            android:gravity="right"
-            android:layout_weight="1"/>
-
-        <EditText style="@style/niceEdit"
-            android:id="@+id/big_juice"
-            android:text="dssd"
-            android:inputType="numberDecimal"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
-    <LinearLayout style="@style/horizontal">
-
-        <TextView style="@style/text_small_orange"
-            android:text="Сок маленький"
-            android:gravity="right"
-            android:layout_weight="1"/>
-
-        <EditText style="@style/niceEdit"
-            android:id="@+id/small_juice"
-            android:text="dssd"
-            android:inputType="numberDecimal"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
-    <LinearLayout style="@style/horizontal">
-
-        <TextView style="@style/text_small_orange"
-            android:text="Кефир большой"
-            android:gravity="right"
-            android:layout_weight="1"/>
-
-        <EditText style="@style/niceEdit"
-            android:id="@+id/big_kefir"
-            android:text="dssd"
-            android:inputType="numberDecimal"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
-    <LinearLayout style="@style/horizontal">
-
-        <TextView style="@style/text_small_orange"
-            android:text="Кефир маленький"
-            android:gravity="right"
-            android:layout_weight="1"/>
-
-        <EditText style="@style/niceEdit"
-            android:id="@+id/small_kefir"
-            android:text="dssd"
-            android:inputType="numberDecimal"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/vertical"
+    android:background="@color/colorMidGray">
 
     <TextView
-        android:layout_weight="1"
-        android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@drawable/my_button_shape_selector"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="Сохранить" />
+        style="@style/text_giant_orange"
+        android:layout_marginBottom="10dp"
+        android:text="Задать цену" />
+
+    <TextView
+        style="@style/text_medium"
+        android:layout_gravity="center"
+        android:text="Сок большой" />
+    <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
+        <LinearLayout style="@style/horizontalCenter">
+            <TextView android:id="@+id/big_juice_dec" style="@style/dialogLinearEditLeft" />
+            <EditText android:id="@+id/big_juice" style="@style/dialogLinearEditDecimal" tools:text="6.34" />
+            <TextView android:id="@+id/big_juice_inc" style="@style/dialogLinearEditRight" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        style="@style/text_medium"
+        android:layout_gravity="center"
+        android:text="Сок маленький" />
+    <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
+        <LinearLayout style="@style/horizontalCenter">
+            <TextView android:id="@+id/small_juice_dec" style="@style/dialogLinearEditLeft" />
+            <EditText android:id="@+id/small_juice" style="@style/dialogLinearEditDecimal" tools:text="6.34" />
+            <TextView android:id="@+id/small_juice_inc" style="@style/dialogLinearEditRight" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        style="@style/text_medium"
+        android:layout_gravity="center"
+        android:text="Кефир большой" />
+    <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
+        <LinearLayout style="@style/horizontalCenter">
+            <TextView android:id="@+id/big_kefir_dec" style="@style/dialogLinearEditLeft" />
+            <EditText android:id="@+id/big_kefir" style="@style/dialogLinearEditDecimal" tools:text="6.34" />
+            <TextView android:id="@+id/big_kefir_inc" style="@style/dialogLinearEditRight" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        style="@style/text_medium"
+        android:layout_gravity="center"
+        android:text="Кефир маленький" />
+    <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
+        <LinearLayout style="@style/horizontalCenter">
+            <TextView android:id="@+id/small_kefir_dec" style="@style/dialogLinearEditLeft" />
+            <EditText android:id="@+id/small_kefir" style="@style/dialogLinearEditDecimal" tools:text="6.34" />
+            <TextView android:id="@+id/small_kefir_inc" style="@style/dialogLinearEditRight" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/horizontalCenter">
+        <TextView android:id="@+id/cancel"
+            style="@style/DialogButton"
+            android:text="Отмена" />
+
+        <TextView android:id="@+id/save"
+            style="@style/DialogButton"
+            android:text="Сохранить" />
+    </LinearLayout>
 
 </LinearLayout>

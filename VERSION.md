@@ -1,5 +1,7 @@
 # MagazAssistant5
 
+* <b>1.28 - 19/08/21</b>
+1. Переделаны диалоги OrderDialog, SetPriceDialog, SetWorkDaysDialog. Добавлены надписи, поля переделаны под красивый edittext с +- по краям для изменения значения 
 * <b>1.27 - 24/04/21</b>
 1. Добавлен removeEmployee в интерфейс (и наследующие классы)
 2. В DataHelper добавлен create/deleteEmployee

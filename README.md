@@ -1,8 +1,8 @@
-# MagazAssistant5 1.27
+# MagazAssistant5 1.28
 ###
 
 [Список версий](./VERSION.md)
 
-[Скачать .apk последней версии - 1.25](./MagazAssistant5-v1.25.apk)
+[Скачать .apk последней версии - 1.28](./MagazAssistant5-v1.28.apk)
 
 ![alt tag](bg.png)

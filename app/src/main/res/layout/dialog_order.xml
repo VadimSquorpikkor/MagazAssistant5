@@ -2,60 +2,58 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/vertical"
-    android:background="@color/colorDarkGray">
+    android:background="@color/colorMidGray">
 
     <TextView
         android:id="@+id/employee_name"
         style="@style/text_giant_orange"
         tools:text="Employee" />
 
-    <EditText
-        android:id="@+id/edit_name"
-        style="@style/niceEdit"
-        android:inputType="textPersonName"
-        android:minWidth="200dp"
-        tools:text="12345" />
 
-
-    <EditText
-        android:id="@+id/edit_price"
-        style="@style/niceEdit"
-        android:inputType="numberDecimal"
-        android:minWidth="100dp"
-        tools:text="2.23" />
-
-    <EditText
-        android:id="@+id/edit_count"
-        style="@style/niceEdit"
-        android:inputType="number"
-        android:minWidth="50dp"
-        tools:text="2" />
-
-    <LinearLayout style="@style/horizontal">
-
-        <TextView
-            android:id="@+id/add"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/my_button_shape_selector"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Добавить" />
-
-        <TextView
-            android:layout_weight="1"
-            android:id="@+id/update"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/my_button_shape_selector"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Обновить" />
-
+    <TextView
+        style="@style/text_medium"
+        android:layout_gravity="center"
+        android:text="Название" />
+    <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
+        <EditText android:id="@+id/edit_name" style="@style/niceEdit.dark" tools:text="Название" />
     </LinearLayout>
 
+    <TextView
+        style="@style/text_medium"
+        android:layout_gravity="center"
+        android:text="Цена" />
+    <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
+        <LinearLayout style="@style/horizontalCenter">
+            <TextView android:id="@+id/edit_price_dec" style="@style/dialogLinearEditLeft" />
+            <EditText android:id="@+id/edit_price" style="@style/dialogLinearEditDecimal" tools:text="2.31" />
+            <TextView android:id="@+id/edit_price_inc" style="@style/dialogLinearEditRight" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        style="@style/text_medium"
+        android:layout_gravity="center"
+        android:text="Количество" />
+    <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
+        <LinearLayout style="@style/horizontalCenter">
+            <TextView android:id="@+id/edit_count_dec" style="@style/dialogLinearEditLeft" />
+            <EditText android:id="@+id/edit_count" style="@style/dialogLinearEditSquare" tools:text="5" />
+            <TextView android:id="@+id/edit_count_inc" style="@style/dialogLinearEditRight" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/horizontalCenter">
+        <TextView android:id="@+id/cancel"
+            style="@style/DialogButton"
+            android:text="Отмена" />
+
+        <TextView android:id="@+id/add"
+            style="@style/DialogButton"
+            android:text="Добавить" />
+
+        <TextView android:id="@+id/update"
+            style="@style/DialogButton"
+            android:text="Обновить" />
+    </LinearLayout>
 
 </LinearLayout>

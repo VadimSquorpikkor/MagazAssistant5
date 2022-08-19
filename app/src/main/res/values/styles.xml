@@ -124,4 +124,55 @@
         <item name="android:minWidth">200dp</item>
 <!--        <item name="android:spinnerMode">dialog</item>-->
     </style>
+
+    <style name="DialogButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/my_button_shape_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:text">OK</item>
+    </style>
+
+    <!--*********************************************************************************************-->
+    <!--Для ввода значений, когда по бокам EditText ещё две кнопки "+" "-"-->
+    <style name="niceEdit.dark" parent="niceEdit">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/value_edit_text_field_rounded</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="dialogLinearEditSquare">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/value_edit_text_field_rect</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:inputType">number</item>
+    </style>
+    <style name="dialogLinearEditLeft" parent="dialogLinearEditSquare">
+        <item name="android:text">-</item>
+        <item name="android:background">@drawable/value_edit_button_left_selector</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+    </style>
+    <style name="dialogLinearEditRight" parent="dialogLinearEditLeft">
+        <item name="android:text">+</item>
+        <item name="android:background">@drawable/value_edit_button_right_selector</item>
+    </style>
+    <style name="dialogLinearEditDecimal" parent="dialogLinearEditSquare">
+        <item name="android:inputType">numberDecimal</item>
+    </style>
 </resources>

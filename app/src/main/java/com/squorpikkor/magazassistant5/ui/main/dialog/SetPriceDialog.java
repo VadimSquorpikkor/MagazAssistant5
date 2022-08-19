@@ -31,6 +31,17 @@ public class SetPriceDialog extends BaseDialog {
                 Utils.stringMoneyToInteger(kefirSmall.getText().toString())
         ));
 
+        view.findViewById(R.id.cancel).setOnClickListener(v->dismiss());
+
+        view.findViewById(R.id.big_juice_dec).setOnClickListener(v->decreaseIfCorrect(juiceBig, 0f));
+        view.findViewById(R.id.big_juice_inc).setOnClickListener(v->increaseIfCorrect(juiceBig, 1000f));
+        view.findViewById(R.id.small_juice_dec).setOnClickListener(v->decreaseIfCorrect(juiceSmall, 0f));
+        view.findViewById(R.id.small_juice_inc).setOnClickListener(v->increaseIfCorrect(juiceSmall, 1000f));
+        view.findViewById(R.id.big_kefir_dec).setOnClickListener(v->decreaseIfCorrect(kefirBig, 0f));
+        view.findViewById(R.id.big_kefir_inc).setOnClickListener(v->increaseIfCorrect(kefirBig, 1000f));
+        view.findViewById(R.id.small_kefir_dec).setOnClickListener(v->decreaseIfCorrect(kefirSmall, 0f));
+        view.findViewById(R.id.small_kefir_inc).setOnClickListener(v->increaseIfCorrect(kefirSmall, 1000f));
+
         return dialog;
     }
 
@@ -38,5 +49,6 @@ public class SetPriceDialog extends BaseDialog {
         mViewModel.saveNewPrices(bigJ, smlJ, bigK, smlK);
         dismiss();
     }
+
 
 }

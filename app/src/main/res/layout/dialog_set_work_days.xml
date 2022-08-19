@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/vertical"
-    android:background="@color/colorDarkGray">
+    android:background="@color/colorMidGray">
 
     <TextView
         style="@style/text_giant_orange"
         android:layout_marginBottom="10dp"
         android:text="Количество рабочих дней" />
 
+    <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
+        <LinearLayout style="@style/horizontalCenter">
+            <TextView android:id="@+id/days_count_dec" style="@style/dialogLinearEditLeft" />
+            <EditText android:id="@+id/days_count" style="@style/dialogLinearEditSquare" tools:text="5" />
+            <TextView android:id="@+id/days_count_inc" style="@style/dialogLinearEditRight" />
+        </LinearLayout>
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/days_count"
-        style="@style/niceEdit"
-        android:inputType="number"
-        android:text="0" />
+    <LinearLayout style="@style/horizontalCenter">
+        <TextView android:id="@+id/cancel"
+            style="@style/DialogButton"
+            android:text="Отмена" />
 
-    <TextView
-        android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/my_button_shape_selector"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="Сохранить" />
+        <TextView android:id="@+id/save"
+            style="@style/DialogButton"
+            android:text="Сохранить" />
+    </LinearLayout>
 
 </LinearLayout>

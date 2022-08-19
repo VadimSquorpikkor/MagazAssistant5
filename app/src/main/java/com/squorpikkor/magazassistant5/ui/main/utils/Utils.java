@@ -1,5 +1,7 @@
 package com.squorpikkor.magazassistant5.ui.main.utils;
 
+import android.widget.EditText;
+
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Order;
 
@@ -15,6 +17,11 @@ public class Utils {
       int kop = money%100;
       String kopS = kop<10?"0"+kop:""+kop;
       return ""+rub+"."+kopS;
+   }
+
+   public static int stringMoneyToInteger(EditText edit) {
+      String value = edit.getText().toString();
+      return stringMoneyToInteger(value);
    }
 
    public static int stringMoneyToInteger(String value) {

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.squorpikkor.magazassistant5.R;
-import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
 
 public class SetWorkDaysDialog extends BaseDialog {
 
@@ -16,7 +15,12 @@ public class SetWorkDaysDialog extends BaseDialog {
 
         EditText daysText = view.findViewById(R.id.days_count);
         daysText.setText(mViewModel.getWorkingDays().getValue().toString());
-        view.findViewById(R.id.save).setOnClickListener(v->save(Integer.parseInt(daysText.getText().toString())));//todo проверка, еще сделать ввод не клавиатурой а кнопками или крутелкой
+
+        view.findViewById(R.id.days_count_dec).setOnClickListener(v->decreaseIfCorrect(daysText, 0));
+        view.findViewById(R.id.days_count_inc).setOnClickListener(v->increaseIfCorrect(daysText, 7));
+
+        view.findViewById(R.id.save).setOnClickListener(v->save(Integer.parseInt(daysText.getText().toString())));
+        view.findViewById(R.id.cancel).setOnClickListener(v->dismiss());
 
         return dialog;
     }
