@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
 import com.squorpikkor.magazassistant5.ui.main.adapter.InvoiceEmployeeAdapter;
+import com.squorpikkor.magazassistant5.ui.main.dialog.EmployeeDialog;
 import com.squorpikkor.magazassistant5.ui.main.pager.InfoActivity;
 
 public class EmployeesFragment extends Fragment{
@@ -38,6 +39,9 @@ public class EmployeesFragment extends Fragment{
       mViewModel.getEmployees().observe(getViewLifecycleOwner(), adapter::setList);
       mViewModel.getWorkingDays().observe(getViewLifecycleOwner(), list ->
               adapter.setList(mViewModel.getEmployees().getValue()));
+
+      view.findViewById(R.id.add_employee).setOnClickListener(v->
+              new EmployeeDialog().show(getActivity().getSupportFragmentManager(), null));
 
       return view;
    }

@@ -107,7 +107,7 @@ public class SelectedEmployeeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         recyclerView.setAdapter(adapter);
         adapter.setList(orders);
-//        adapter.setOnItemClickListener(order -> new OrderDialog(order, employee).show(getParentFragmentManager(), null));
+//        adapter.setOnItemClickListener(order -> new OrderDialog(order, employee, MainViewModel.getInstance()).show(getParentFragmentManager(), null));
 
         return view;
     }

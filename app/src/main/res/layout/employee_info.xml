@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/vertical"
+
+    android:background="@color/colorMidGray">
+
+<!--    <ImageView-->
+<!--        android:id="@+id/add_order"-->
+<!--        android:layout_width="48dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_margin="8dp"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:src="@drawable/ic_baseline_add_shopping_cart_24" />-->
+
+    <TextView
+        android:layout_marginTop="8dp"
+        style="@style/text_medium"
+        android:layout_gravity="center"
+        android:text="Имя" />
+    <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
+        <EditText android:id="@+id/edit_name" style="@style/niceEdit.dark" tools:text="Сериков В.А." />
+    </LinearLayout>
+
+    <TextView
+        style="@style/text_medium"
+        android:layout_gravity="center"
+        android:text="Локация" />
+    <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
+        <Spinner android:id="@+id/edit_location" style="@style/dialogNiceSpinner" tools:text="Сериков В.А." />
+    </LinearLayout>
+
+    <LinearLayout style="@style/horizontalCenter">
+        <TextView android:id="@+id/cancel"
+            style="@style/DialogButton"
+            android:text="Отмена" />
+
+        <TextView android:id="@+id/save"
+            style="@style/DialogButton"
+            android:text="Сохранить" />
+
+        <TextView android:id="@+id/create"
+            style="@style/DialogButton"
+            android:text="Создать" />
+
+        <TextView android:id="@+id/delete"
+            style="@style/DialogButton"
+            android:text="Удалить" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -15,6 +15,10 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
+        //TODO !!!!!!!! нужно брать не по позиции, а по ID работника!
+        // (соответственно сделать метод выбора работника для пейджера не по позиции....)
+        // Тогда при любой сортировке списка сотрудника будет выбираться нужный работник.
+        // С другой стороны, всё как-то и так работает, пока не буду трогать
         int position = getIntent().getIntExtra(EXTRA_POSITION, 0);
 
         if (savedInstanceState == null) {

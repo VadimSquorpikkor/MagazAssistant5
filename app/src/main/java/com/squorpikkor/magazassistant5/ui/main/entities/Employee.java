@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Employee extends Entity{
 
-    private final int locationId;
+    private int locationId;
     private boolean isPresent;//присутствует на работе
     private final boolean[] workingDaysArray;
     private static final int MAX_DAYS_COUNT = 9;
@@ -118,4 +118,7 @@ public class Employee extends Entity{
         return String.valueOf(sb);
     }
 
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
+    }
 }

@@ -8,8 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.squorpikkor.magazassistant5.MainActivity;
 import com.squorpikkor.magazassistant5.R;
+import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Order;
 import com.squorpikkor.magazassistant5.ui.main.utils.Utils;
@@ -22,6 +26,17 @@ public class OrderDialog extends BaseDialog {
     private TextView employeeName;
     private TextView btnUpdate, btnAddNew;
     private boolean isNew;
+
+    /**Открыть существующий ордер*/
+    public OrderDialog(Order order, Employee employee, ViewModel model) {
+        this.order = order;
+        this.employee = employee;
+        this.isNew = false;
+        //setAsNew(false);
+
+        initialize(R.layout.dialog_order);
+        mViewModel = (MainViewModel) model;
+    }
 
     /**Открыть существующий ордер*/
     public OrderDialog(Order order, Employee employee) {

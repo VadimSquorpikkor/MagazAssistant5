@@ -329,19 +329,25 @@ public class MainViewModel extends ViewModel {
         updateOrders();
     }
 //--------------------------------------------------------------------------------------------------
-public void addNewEmployee(Employee employee) {
-    data.createEmployee(employee);
+    public void addNewEmployee(Employee employee) {
+        data.createEmployee(employee);
+        data.getAllEmployees();
+        //employees.setValue(employees.getValue());
 //    getOrders().getValue().add(order);
 //    updateOrders();
 }
 
     public void updateEmployee(Employee employee) {
         data.updateEmployee(employee);
+//        data.getAllEmployees();
+        employees.setValue(employees.getValue());
 //        updateOrders();
     }
 
     public void deleteEmployee(Employee employee) {
         data.deleteEmployee(employee);
+        data.getAllEmployees();
+//        employees.setValue(employees.getValue());
 //        updateOrders();
     }
 //--------------------------------------------------------------------------------------------------
