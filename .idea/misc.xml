@@ -10,6 +10,7 @@
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/drawable/ic_baseline_delete_outline_24.xml" value="0.115" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/drawable/ic_baseline_person_add_alt_1_24.xml" value="0.188" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1575" />
+        <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/drawable/ic_reset_shopping.xml" value="0.188" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/drawable/my_button_shape.xml" value="0.1985" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/drawable/my_button_shape_pressed.xml" value="0.1985" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/drawable/my_button_shape_selector.xml" value="0.1985" />
@@ -18,6 +19,7 @@
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/drawable/sliding_tab_color.xml" value="0.148" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/activity_main.xml" value="0.3546875" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/dialog_ask_delete.xml" value="0.20416666666666666" />
+        <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/dialog_ask_reset.xml" value="0.20416666666666666" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/dialog_order.xml" value="0.25" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/dialog_order_bla.xml" value="0.33" />
         <entry key="..\:/GitHub/MagazAssistant5/app/src/main/res/layout/dialog_set_price.xml" value="0.21614583333333334" />

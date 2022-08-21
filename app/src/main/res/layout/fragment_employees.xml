@@ -6,6 +6,12 @@
 
         <LinearLayout style="@style/horizontal">
 
+            <ImageView
+                android:id="@+id/reset_shopping"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_baseline_add_shopping_cart_24"/>
+
         <TextView
             style="@style/h2"
             android:layout_weight="1"

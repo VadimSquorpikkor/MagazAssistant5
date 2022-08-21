@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/vertical"
+    android:background="@color/colorMidGray">
+
+    <TextView
+        android:id="@+id/text"
+        android:text="Начать новую покупку?"
+        style="@style/text_giant_orange"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        style="@style/text_medium"
+        android:layout_gravity="center"
+        android:text="Будут отмечены все сотрудники,\nотмечены все дни,\nвсе ордеры будут выключены" />
+
+    <LinearLayout style="@style/horizontalCenter">
+        <TextView android:id="@+id/cancel"
+            style="@style/DialogButton"
+            android:text="Отмена" />
+
+        <TextView android:id="@+id/ok"
+            style="@style/DialogButton"
+            android:text="Продолжить" />
+    </LinearLayout>
+
+
+</LinearLayout>

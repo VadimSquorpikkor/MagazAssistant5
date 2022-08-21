@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
+import com.squorpikkor.magazassistant5.ui.main.adapter.CheckBoxSwitcher;
 import com.squorpikkor.magazassistant5.ui.main.adapter.UniteEmployees;
 import com.squorpikkor.magazassistant5.ui.main.data.DataHelper;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
@@ -294,6 +295,21 @@ public class MainViewModel extends ViewModel {
     /**На какую сумму работник может взять продуктов*/
     public int getMoneyLimit(Employee employee) {
         return (int)(employee.getDays(workingDays.getValue())*moneyForEmployeePerDay.getValue());
+    }
+
+    /**Анчек всех ордеров (но не удаление), чек всех работников*/
+    public void resetShopping() {
+        for (Employee employee:employees.getValue()) {
+            employee.setPresent(true);
+            employee.setAllDaysToValue(true);
+            data.updateEmployee(employee);
+        }
+        employees.setValue(employees.getValue());
+        for (Order order:orders.getValue()) {
+            order.setChecked(false);
+            data.updateOrder(order);
+        }
+        updateOrders();
     }
 //--------------------------------------------------------------------------------------------------
     public void addNewOrder(Order order) {

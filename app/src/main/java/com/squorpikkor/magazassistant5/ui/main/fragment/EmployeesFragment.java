@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
 import com.squorpikkor.magazassistant5.ui.main.adapter.InvoiceEmployeeAdapter;
+import com.squorpikkor.magazassistant5.ui.main.dialog.AskResetShopping;
 import com.squorpikkor.magazassistant5.ui.main.dialog.EmployeeDialog;
 import com.squorpikkor.magazassistant5.ui.main.pager.InfoActivity;
 
@@ -42,6 +43,9 @@ public class EmployeesFragment extends Fragment{
 
       view.findViewById(R.id.add_employee).setOnClickListener(v->
               new EmployeeDialog().show(getActivity().getSupportFragmentManager(), null));
+
+      view.findViewById(R.id.reset_shopping).setOnClickListener(v->
+              new AskResetShopping().show(getParentFragmentManager(), null));
 
       return view;
    }
