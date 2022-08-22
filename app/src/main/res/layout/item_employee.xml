@@ -43,9 +43,13 @@
 
     </LinearLayout>
 
+    <LinearLayout style="@style/horizontal">
+
+
     <ImageView
         android:id="@+id/add_order"
-        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:padding="4dp"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:src="@drawable/ic_baseline_add_shopping_cart_24"/>
@@ -54,5 +58,7 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </LinearLayout>

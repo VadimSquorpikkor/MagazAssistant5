@@ -37,7 +37,7 @@ public class PriceFragment extends Fragment{
       mViewModel.getKefirPrice().observe(getViewLifecycleOwner(), kbp -> kefirBigPrice.setText(Utils.integerToMoneyString(kbp)));
       mViewModel.getKefirSmallPrice().observe(getViewLifecycleOwner(), ksp -> kefirSmallPrice.setText(Utils.integerToMoneyString(ksp)));
 
-      view.findViewById(R.id.set_price).setOnClickListener(v -> new SetPriceDialog().show(getParentFragmentManager(), null));
+//      view.findViewById(R.id.set_price).setOnClickListener(v -> new SetPriceDialog().show(getParentFragmentManager(), null));
 
       return view;
    }

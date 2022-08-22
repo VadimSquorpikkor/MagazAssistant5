@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/outer_block">
+
+    <LinearLayout style="@style/inner_block">
+
+            <LinearLayout style="@style/horizontal">
+
+                <LinearLayout
+                    style="@style/vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content">
+                    <TextView
+                        style="@style/text_small_orange"
+                        android:layout_width="wrap_content"
+                        android:text="Сброс" />
+                    <ImageView
+                        android:id="@+id/reset_shopping"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_baseline_add_shopping_cart_24" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content">
+                    <TextView
+                        style="@style/text_small_orange"
+                        android:layout_width="wrap_content"
+                        android:text="Цены" />
+                    <ImageView
+                        android:id="@+id/change_price"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_baseline_price_change_24" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content">
+                    <TextView
+                        style="@style/text_small_orange"
+                        android:layout_width="wrap_content"
+                        android:text="Дни" />
+                    <ImageView
+                        android:id="@+id/set_days"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_baseline_calendar_month_24" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content">
+                    <TextView
+                        style="@style/text_small_orange"
+                        android:layout_width="wrap_content"
+                        android:text="Добавить" />
+                    <ImageView
+                        android:id="@+id/add_employee"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_baseline_person_add_alt_1_24" />
+                </LinearLayout>
+
+            </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

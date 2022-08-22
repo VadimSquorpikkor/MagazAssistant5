@@ -41,7 +41,7 @@ public class InvoiceFragment extends Fragment {
         mViewModel.getWorkingDays().observe(getViewLifecycleOwner(), wdays -> workingDayCount.setText(""+wdays));
         mViewModel.getInvoiceTotal().observe(getViewLifecycleOwner(), invoice -> invoiceTotal.setText(Utils.integerToMoneyString(invoice)));
 
-        view.findViewById(R.id.set_days_button).setOnClickListener(v -> new SetWorkDaysDialog().show(getParentFragmentManager(), null));
+//        view.findViewById(R.id.set_days_button).setOnClickListener(v -> new SetWorkDaysDialog().show(getParentFragmentManager(), null));
 
         return view;
     }

@@ -41,11 +41,11 @@ public class EmployeesFragment extends Fragment{
       mViewModel.getWorkingDays().observe(getViewLifecycleOwner(), list ->
               adapter.setList(mViewModel.getEmployees().getValue()));
 
-      view.findViewById(R.id.add_employee).setOnClickListener(v->
-              new EmployeeDialog().show(getActivity().getSupportFragmentManager(), null));
+//      view.findViewById(R.id.add_employee).setOnClickListener(v->
+//              new EmployeeDialog().show(getActivity().getSupportFragmentManager(), null));
 
-      view.findViewById(R.id.reset_shopping).setOnClickListener(v->
-              new AskResetShopping().show(getParentFragmentManager(), null));
+//      view.findViewById(R.id.reset_shopping).setOnClickListener(v->
+//              new AskResetShopping().show(getParentFragmentManager(), null));
 
       return view;
    }

@@ -7,7 +7,7 @@
 
         <LinearLayout style="@style/vertical">
 
-            <TextView android:id="@+id/set_days_button" style="@style/h2" android:text="Количество соков и итоговая цена" android:layout_marginBottom="5dp"/>
+<!--            <TextView android:id="@+id/set_days_button" style="@style/h2" android:text="Количество соков и итоговая цена" android:layout_marginBottom="5dp"/>-->
 
             <LinearLayout style="@style/horizontal">
 

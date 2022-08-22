@@ -6,9 +6,9 @@
 
         <LinearLayout style="@style/vertical">
 
-            <TextView style="@style/h2"
-                android:id="@+id/set_price"
-                android:text="Цены на соки" android:layout_marginBottom="5dp"/>
+<!--            <TextView style="@style/h2"-->
+<!--                android:id="@+id/set_price"-->
+<!--                android:text="Цены на соки" android:layout_marginBottom="5dp"/>-->
 
             <LinearLayout style="@style/horizontal">
 
