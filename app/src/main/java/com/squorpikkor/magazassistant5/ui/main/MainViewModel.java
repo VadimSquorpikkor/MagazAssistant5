@@ -325,6 +325,7 @@ public class MainViewModel extends ViewModel {
 
     public void deleteOrder(Order order) {
         data.deleteOrder(order);
+        data.getAllOrders();
         updateOrders();
     }
 //--------------------------------------------------------------------------------------------------

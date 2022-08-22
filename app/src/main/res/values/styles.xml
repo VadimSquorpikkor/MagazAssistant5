@@ -168,6 +168,16 @@
         <item name="android:paddingStart">15dp</item>
         <item name="android:paddingEnd">15dp</item>
     </style>
+    <style name="dialogLinearEditLeftRub" parent="dialogLinearEditSquare">
+        <item name="android:text">-</item>
+        <item name="android:background">@drawable/value_edit_text_field_rect</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+    </style>
+    <style name="dialogLinearEditRightRub" parent="dialogLinearEditLeftRub">
+        <item name="android:text">+</item>
+    </style>
     <style name="dialogLinearEditRight" parent="dialogLinearEditLeft">
         <item name="android:text">+</item>
         <item name="android:background">@drawable/value_edit_button_right_selector</item>

@@ -94,4 +94,20 @@ class BaseDialog extends DialogFragment {
             view.setText(String.valueOf((float)(ii + 1) /100));
         }
     }
+
+    public void decreaseIfCorrect(EditText view, float min, float step) {
+        float i = Float.parseFloat(view.getText().toString());
+        if (i >= min+step) {
+            int ii = (int)(i*100);
+            view.setText(String.valueOf((float)(ii - step*100) /100));
+        }
+    }
+
+    public void increaseIfCorrect(EditText view, float max, float step) {
+        float i = Float.parseFloat(view.getText().toString());
+        if (i <= max-step) {
+            int ii = (int)(i*100);
+            view.setText(String.valueOf((float)(ii + step*100) /100));
+        }
+    }
 }

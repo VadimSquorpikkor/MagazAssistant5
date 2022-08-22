@@ -94,7 +94,7 @@ public class OrderEmployeeAdapter extends RecyclerView.Adapter<OrderEmployeeAdap
             recyclerView.setAdapter(adapter);
             adapter.setList(orders);
             adapter.setOnItemClickListener(order -> new OrderDialog(order, employee).show(manager, null));
-            adapter.setOnItemLongClickListener(order -> new OrderControlDialog(order, employee, manager).show(manager, null));
+            //adapter.setOnItemLongClickListener(order -> new OrderControlDialog(order, employee, manager).show(manager, null));
 
             holder.addOrder.setVisibility(View.VISIBLE);
 //            if (orders.size()==0) holder.addOrder.setVisibility(View.VISIBLE);

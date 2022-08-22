@@ -1,13 +1,11 @@
 package com.squorpikkor.magazassistant5.ui.main.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.MainViewModel;
 import com.squorpikkor.magazassistant5.ui.main.adapter.InvoiceEmployeeAdapter;
-import com.squorpikkor.magazassistant5.ui.main.dialog.AskResetShopping;
-import com.squorpikkor.magazassistant5.ui.main.dialog.EmployeeDialog;
-import com.squorpikkor.magazassistant5.ui.main.pager.InfoActivity;
+import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class EmployeesFragment extends Fragment{
 
@@ -26,6 +26,7 @@ public class EmployeesFragment extends Fragment{
    }
 
    private MainViewModel mViewModel;
+   InvoiceEmployeeAdapter adapter;
 
    @Override
    public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,26 +35,33 @@ public class EmployeesFragment extends Fragment{
       mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
       RecyclerView recyclerView = view.findViewById(R.id.recycler);
-      InvoiceEmployeeAdapter adapter = new InvoiceEmployeeAdapter(mViewModel);
+      adapter = new InvoiceEmployeeAdapter(mViewModel);
       recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
       recyclerView.setAdapter(adapter);
-      mViewModel.getEmployees().observe(getViewLifecycleOwner(), adapter::setList);
+      mViewModel.getEmployees().observe(getViewLifecycleOwner(), list1 -> setListAndSort(list1));
       mViewModel.getWorkingDays().observe(getViewLifecycleOwner(), list ->
-              adapter.setList(mViewModel.getEmployees().getValue()));
-
-//      view.findViewById(R.id.add_employee).setOnClickListener(v->
-//              new EmployeeDialog().show(getActivity().getSupportFragmentManager(), null));
-
-//      view.findViewById(R.id.reset_shopping).setOnClickListener(v->
-//              new AskResetShopping().show(getParentFragmentManager(), null));
+              setListAndSort(mViewModel.getEmployees().getValue()));
 
       return view;
    }
 
-   //todo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//   private void openInfo(int position) {
-//      Intent intent = new Intent(context, InfoActivity.class);
-//      intent.putExtra(EXTRA_POSITION, position);
-//      context.startActivity(intent);
-//   }
+   private void setListAndSort(ArrayList<Employee> list) {
+//      list.sort(Comparator.comparing(Employee::getLocationId).thenComparing(Employee::getName));//нужен sdk24, но гораздо компактнее и понятнее
+
+      Collections.sort(list, new Comparator() {
+         public int compare(Object o1, Object o2) {
+            Integer x1 = ((Employee) o1).getLocationId();
+            Integer x2 = ((Employee) o2).getLocationId();
+            int sComp = x1.compareTo(x2);
+
+            if (sComp != 0) {
+               return sComp;
+            }
+
+            String x3 = ((Employee) o1).getName();
+            String x4 = ((Employee) o2).getName();
+            return x3.compareTo(x4);
+         }});
+      adapter.setList(list);
+   }
 }

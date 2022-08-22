@@ -9,6 +9,7 @@ import com.squorpikkor.magazassistant5.R;
 import com.squorpikkor.magazassistant5.ui.main.entities.Employee;
 import com.squorpikkor.magazassistant5.ui.main.entities.Order;
 
+//todo deprecated
 public class OrderControlDialog extends BaseDialog{
 
    Order order;

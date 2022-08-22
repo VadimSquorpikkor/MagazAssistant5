@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.squorpikkor.magazassistant5.R;
 
+//todo deprecated
 public class InfoActivity extends AppCompatActivity {
 
     @Override

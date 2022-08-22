@@ -24,7 +24,7 @@ public class OrderDialog extends BaseDialog {
     private final Employee employee;
     private EditText name, price, count;
     private TextView employeeName;
-    private TextView btnUpdate, btnAddNew;
+    private TextView btnUpdate, btnAddNew, btnDelete;
     private boolean isNew;
 
     /**Открыть существующий ордер*/
@@ -57,9 +57,11 @@ public class OrderDialog extends BaseDialog {
         if (isNew) {
             btnAddNew.setVisibility(View.VISIBLE);
             btnUpdate.setVisibility(View.GONE);
+            btnDelete.setVisibility(View.GONE);
         } else {
             btnAddNew.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
+            btnDelete.setVisibility(View.VISIBLE);
         }
     }
 
@@ -71,6 +73,7 @@ public class OrderDialog extends BaseDialog {
 
         btnUpdate = view.findViewById(R.id.update);
         btnAddNew = view.findViewById(R.id.add);
+        btnDelete = view.findViewById(R.id.delete);
 
         if (order==null) {
             this.order = new Order(employee.getId());
@@ -91,12 +94,20 @@ public class OrderDialog extends BaseDialog {
         view.findViewById(R.id.edit_price_inc).setOnClickListener(v->increaseIfCorrect(price, 1000f));
         view.findViewById(R.id.edit_count_dec).setOnClickListener(v->decreaseIfCorrect(count, 0));
         view.findViewById(R.id.edit_count_inc).setOnClickListener(v->increaseIfCorrect(count, 100));
+        view.findViewById(R.id.edit_price_dec_rub).setOnClickListener(v->decreaseIfCorrect(price, 0f, 1f));
+        view.findViewById(R.id.edit_price_inc_rub).setOnClickListener(v->increaseIfCorrect(price, 1000f, 1f));
 
         btnUpdate.setOnClickListener(v -> update());
         btnAddNew.setOnClickListener(v -> addNew());
+        btnDelete.setOnClickListener(v -> delete());
         view.findViewById(R.id.cancel).setOnClickListener(v->dismiss());
 
         return dialog;
+    }
+
+    private void delete() {
+        new AskDeleteOrderDialog(order).show(getParentFragmentManager(), null);
+        dismiss();
     }
 
     private void setData() {

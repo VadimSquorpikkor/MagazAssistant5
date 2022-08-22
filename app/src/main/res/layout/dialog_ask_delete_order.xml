@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/vertical"
+    android:background="@color/colorMidGray">
+
+    <TextView
+        android:id="@+id/text"
+        style="@style/text_giant_orange"
+        android:layout_gravity="center"/>
+
+    <LinearLayout style="@style/horizontalCenter">
+        <TextView android:id="@+id/cancel"
+            style="@style/DialogButton"
+            android:text="Отмена" />
+
+        <TextView android:id="@+id/delete"
+            style="@style/DialogButton"
+            android:text="Удалить" />
+    </LinearLayout>
+
+</LinearLayout>

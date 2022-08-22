@@ -16,7 +16,9 @@
     <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
         <LinearLayout style="@style/horizontalCenter">
             <TextView android:id="@+id/big_juice_dec" style="@style/dialogLinearEditLeft" />
+            <TextView android:id="@+id/big_juice_dec_rub" style="@style/dialogLinearEditLeftRub"/>
             <EditText android:id="@+id/big_juice" style="@style/dialogLinearEditDecimal" tools:text="6.34" />
+            <TextView android:id="@+id/big_juice_inc_rub" style="@style/dialogLinearEditRightRub" />
             <TextView android:id="@+id/big_juice_inc" style="@style/dialogLinearEditRight" />
         </LinearLayout>
     </LinearLayout>
@@ -28,7 +30,9 @@
     <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
         <LinearLayout style="@style/horizontalCenter">
             <TextView android:id="@+id/small_juice_dec" style="@style/dialogLinearEditLeft" />
+            <TextView android:id="@+id/small_juice_dec_rub" style="@style/dialogLinearEditLeftRub"/>
             <EditText android:id="@+id/small_juice" style="@style/dialogLinearEditDecimal" tools:text="6.34" />
+            <TextView android:id="@+id/small_juice_inc_rub" style="@style/dialogLinearEditRightRub" />
             <TextView android:id="@+id/small_juice_inc" style="@style/dialogLinearEditRight" />
         </LinearLayout>
     </LinearLayout>
@@ -40,7 +44,9 @@
     <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
         <LinearLayout style="@style/horizontalCenter">
             <TextView android:id="@+id/big_kefir_dec" style="@style/dialogLinearEditLeft" />
+            <TextView android:id="@+id/big_kefir_dec_rub" style="@style/dialogLinearEditLeftRub"/>
             <EditText android:id="@+id/big_kefir" style="@style/dialogLinearEditDecimal" tools:text="6.34" />
+            <TextView android:id="@+id/big_kefir_inc_rub" style="@style/dialogLinearEditRightRub" />
             <TextView android:id="@+id/big_kefir_inc" style="@style/dialogLinearEditRight" />
         </LinearLayout>
     </LinearLayout>
@@ -52,7 +58,9 @@
     <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
         <LinearLayout style="@style/horizontalCenter">
             <TextView android:id="@+id/small_kefir_dec" style="@style/dialogLinearEditLeft" />
+            <TextView android:id="@+id/small_kefir_dec_rub" style="@style/dialogLinearEditLeftRub"/>
             <EditText android:id="@+id/small_kefir" style="@style/dialogLinearEditDecimal" tools:text="6.34" />
+            <TextView android:id="@+id/small_kefir_inc_rub" style="@style/dialogLinearEditRightRub" />
             <TextView android:id="@+id/small_kefir_inc" style="@style/dialogLinearEditRight" />
         </LinearLayout>
     </LinearLayout>

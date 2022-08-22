@@ -62,10 +62,12 @@ public class EmployeeDialog extends BaseDialog {
             view.findViewById(R.id.save).setVisibility(View.GONE);
             view.findViewById(R.id.create).setVisibility(View.VISIBLE);
             view.findViewById(R.id.delete).setVisibility(View.GONE);
+            view.findViewById(R.id.text).setVisibility(View.VISIBLE);
         } else {
             view.findViewById(R.id.save).setVisibility(View.VISIBLE);
             view.findViewById(R.id.create).setVisibility(View.GONE);
             view.findViewById(R.id.delete).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.text).setVisibility(View.GONE);
         }
 
         view.findViewById(R.id.cancel).setOnClickListener(v->dismiss());

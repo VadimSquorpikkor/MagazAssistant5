@@ -42,6 +42,15 @@ public class SetPriceDialog extends BaseDialog {
         view.findViewById(R.id.small_kefir_dec).setOnClickListener(v->decreaseIfCorrect(kefirSmall, 0f));
         view.findViewById(R.id.small_kefir_inc).setOnClickListener(v->increaseIfCorrect(kefirSmall, 1000f));
 
+        view.findViewById(R.id.big_juice_dec_rub).setOnClickListener(v->decreaseIfCorrect(juiceBig, 0f, 1f));
+        view.findViewById(R.id.big_juice_inc_rub).setOnClickListener(v->increaseIfCorrect(juiceBig, 1000f, 1f));
+        view.findViewById(R.id.small_juice_dec_rub).setOnClickListener(v->decreaseIfCorrect(juiceSmall, 0f, 1f));
+        view.findViewById(R.id.small_juice_inc_rub).setOnClickListener(v->increaseIfCorrect(juiceSmall, 1000f, 1f));
+        view.findViewById(R.id.big_kefir_dec_rub).setOnClickListener(v->decreaseIfCorrect(kefirBig, 0f, 1f));
+        view.findViewById(R.id.big_kefir_inc_rub).setOnClickListener(v->increaseIfCorrect(kefirBig, 1000f, 1f));
+        view.findViewById(R.id.small_kefir_dec_rub).setOnClickListener(v->decreaseIfCorrect(kefirSmall, 0f, 1f));
+        view.findViewById(R.id.small_kefir_inc_rub).setOnClickListener(v->increaseIfCorrect(kefirSmall, 1000f, 1f));
+
         return dialog;
     }
 

@@ -25,7 +25,9 @@
     <LinearLayout style="@style/horizontal" android:layout_margin="8dp">
         <LinearLayout style="@style/horizontalCenter">
             <TextView android:id="@+id/edit_price_dec" style="@style/dialogLinearEditLeft" />
+            <TextView android:id="@+id/edit_price_dec_rub" style="@style/dialogLinearEditLeftRub"/>
             <EditText android:id="@+id/edit_price" style="@style/dialogLinearEditDecimal" tools:text="2.31" />
+            <TextView android:id="@+id/edit_price_inc_rub" style="@style/dialogLinearEditRightRub" />
             <TextView android:id="@+id/edit_price_inc" style="@style/dialogLinearEditRight" />
         </LinearLayout>
     </LinearLayout>
@@ -54,6 +56,11 @@
         <TextView android:id="@+id/update"
             style="@style/DialogButton"
             android:text="Обновить" />
+
+        <TextView android:id="@+id/delete"
+            style="@style/DialogButton"
+            android:text="Удалить" />
+
     </LinearLayout>
 
 </LinearLayout>

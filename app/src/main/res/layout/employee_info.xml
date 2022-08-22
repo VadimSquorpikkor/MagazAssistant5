@@ -14,6 +14,12 @@
 <!--        android:src="@drawable/ic_baseline_add_shopping_cart_24" />-->
 
     <TextView
+        android:id="@+id/text"
+        android:text="Добавить сотрудника"
+        style="@style/text_giant_orange"
+        android:layout_gravity="center"/>
+
+    <TextView
         android:layout_marginTop="8dp"
         style="@style/text_medium"
         android:layout_gravity="center"

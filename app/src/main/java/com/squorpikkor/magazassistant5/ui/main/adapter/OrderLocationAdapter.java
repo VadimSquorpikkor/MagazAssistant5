@@ -77,7 +77,7 @@ public class OrderLocationAdapter extends RecyclerView.Adapter<OrderLocationAdap
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         adapter.setList(allEmployees);
-        adapter.setOnItemLongClickListener(this::openInfo);
+        //adapter.setOnItemLongClickListener(this::openInfo);
     }
 
     @Override
